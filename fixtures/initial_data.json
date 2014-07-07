@@ -4,7 +4,7 @@
         "model": "sites.site",
         "fields": {
             "domain": "localhost:8000",
-            "name": "Pinax Forums Demo [localhost]"
+            "name": "MeneEduca [localhost]"
         }
     },
     {
@@ -12,7 +12,7 @@
         "model": "sites.site",
         "fields": {
             "domain": "example.com",
-            "name": "Pinax Forums Demo"
+            "name": "MeneEduca"
         }
     }
 ]
