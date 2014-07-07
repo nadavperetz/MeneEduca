@@ -1,10 +1,9 @@
 from django.dispatch import receiver
+from eventlog.models import log
 
 from account.signals import password_changed
 from account.signals import user_sign_up_attempt, user_signed_up
 from account.signals import user_login_attempt, user_logged_in
-
-from eventlog.models import log
 
 
 @receiver(user_logged_in)
