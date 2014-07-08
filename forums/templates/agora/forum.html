@@ -1,6 +1,7 @@
 {% extends "agora/base.html" %}
 
 {% load humanize %}
+{% load i18n %}
 
 {% block body %}
     {% include "agora/_forum_breadcrumb.html" %}
@@ -8,10 +9,10 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             {% if can_create_thread %}
-                <a class="btn btn-primary btn-sm pull-right" href="{% url "agora_post_create" forum.pk %}"><i class="fa fa-pencil"></i> Make a New Post</a>
+                <a class="btn btn-primary btn-sm pull-right" href="{% url "agora_post_create" forum.pk %}"><i class="fa fa-pencil"></i> {% trans "Make a New Post"  %}</a>
             {% endif %}
             <h3>
-            {% if forum.closed %}<span class="label pull-right label-info"><i class="fa fa-lock"></i> closed</span>{% endif %}
+            {% if forum.closed %}<span class="label pull-right label-info"><i class="fa fa-lock"></i> {% trans "closed" %}</span>{% endif %}
                 {{ forum.title }}
             </h3>
             <p class="lead">{{ forum.description }}</p>
@@ -49,10 +50,10 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Thread Title</th>
-                        <th>Last Post</th>
-                        <th>Replies</th>
-                        <th>Views</th>
+                        <th>{% trans "Thread Title" %}</th>
+                        <th>{% trans "Last Post" %}</th>
+                        <th>{% trans "Replies" %}</th>
+                        <th>{% trans "Views" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,7 +75,7 @@
             </table>
         {% else %}
             <div class="panel-body">
-                There are currently no threads.
+                {% trans "There are currently no threads." %}
             </div>
         {% endif %}
     </div>
