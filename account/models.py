@@ -29,6 +29,7 @@ from account.managers import EmailAddressManager, EmailConfirmationManager
 from account.signals import signup_code_sent, signup_code_used
 
 
+
 class Account(models.Model):
 
     user = models.OneToOneField(AUTH_USER_MODEL, related_name="account", verbose_name=_("user"))

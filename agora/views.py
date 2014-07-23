@@ -4,7 +4,10 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test, login_required
+from forums.settings import COMPLETE_PROFILE_URL
+
+from forums.profiles.manager import verifyFullProfile
 
 from agora.forms import ThreadForm, ReplyForm
 from agora.models import (
@@ -16,11 +19,16 @@ from agora.models import (
     UserPostCount
 )
 
-
+@login_required
+@user_passes_test(verifyFullProfile,
+                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
 def forums(request):
-
     categories = ForumCategory.objects.filter(parent__isnull=True)
-    categories = categories.order_by("title")
+    """#NP: the categories above are filtered by the parenting and by the user categories
+    categories = ForumCategory.objects.filter(parent__isnull=True).filter(pk__in=request.user.profile.categories.all())
+
+    print categories
+    categories = categories.order_by("title")"""
 
     most_active_forums = Forum.objects.order_by("-post_count")[:5]
     most_viewed_forums = Forum.objects.order_by("-view_count")[:5]
@@ -43,6 +51,7 @@ def forums(request):
     }, context_instance=RequestContext(request))
 
 
+@login_required
 def forum_category(request, category_id):
 
     category = get_object_or_404(ForumCategory, id=category_id)
@@ -53,7 +62,9 @@ def forum_category(request, category_id):
         "forums": forums,
     }, context_instance=RequestContext(request))
 
-
+@login_required
+@user_passes_test(verifyFullProfile,
+                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
 def forum(request, forum_id):
 
     forum = get_object_or_404(Forum, id=forum_id)
@@ -70,7 +81,9 @@ def forum(request, forum_id):
         "can_create_thread": can_create_thread,
     }, context_instance=RequestContext(request))
 
-
+@login_required
+@user_passes_test(verifyFullProfile,
+                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
 def forum_thread(request, thread_id):
     qs = ForumThread.objects.select_related("forum")
     thread = get_object_or_404(qs, id=thread_id)
@@ -119,6 +132,8 @@ def forum_thread(request, thread_id):
 
 
 @login_required
+@user_passes_test(verifyFullProfile,
+                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
 def post_create(request, forum_id):
 
     member = request.user.get_profile()
@@ -162,6 +177,8 @@ def post_create(request, forum_id):
 
 
 @login_required
+@user_passes_test(verifyFullProfile,
+                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
 def reply_create(request, thread_id):
 
     member = request.user.get_profile()
@@ -216,6 +233,8 @@ def reply_create(request, thread_id):
 
 
 @login_required
+@user_passes_test(verifyFullProfile,
+                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
 def post_edit(request, post_kind, post_id):
 
     if post_kind == "thread":
@@ -247,6 +266,8 @@ def post_edit(request, post_kind, post_id):
 
 
 @login_required
+@user_passes_test(verifyFullProfile,
+                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
 def subscribe(request, thread_id):
     user = request.user
     thread = get_object_or_404(ForumThread, pk=thread_id)
@@ -260,6 +281,8 @@ def subscribe(request, thread_id):
 
 
 @login_required
+@user_passes_test(verifyFullProfile,
+                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
 def unsubscribe(request, thread_id):
     user = request.user
     thread = get_object_or_404(ForumThread, pk=thread_id)
@@ -273,6 +296,8 @@ def unsubscribe(request, thread_id):
 
 
 @login_required
+@user_passes_test(verifyFullProfile,
+                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
 def thread_updates(request):
     subscriptions = ThreadSubscription.objects.filter(user=request.user, kind="onsite")
     subscriptions = subscriptions.select_related("thread", "user")

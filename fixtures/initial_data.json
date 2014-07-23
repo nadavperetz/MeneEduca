@@ -14,5 +14,33 @@
             "domain": "example.com",
             "name": "MeneEduca"
         }
+    },
+      {
+        "pk": 1,
+        "model": "profiles.Groups",
+        "fields": {
+            "name": "General"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "profiles.Groups",
+        "fields": {
+            "name": "Students"
+        }
+    },
+       {
+        "pk": 3,
+        "model": "profiles.Groups",
+        "fields": {
+            "name": "Teachers"
+        }
+    },
+       {
+        "pk": 4,
+        "model": "profiles.Groups",
+        "fields": {
+            "name": "Guardians"
+        }
     }
 ]

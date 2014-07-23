@@ -10,3 +10,6 @@ from .models import Profile
 def handle_user_save(sender, created, instance, **kwargs):
     if created:
         Profile.objects.get_or_create(user=instance)
+
+
+
