@@ -19,6 +19,8 @@ from agora.models import (
     UserPostCount
 )
 
+
+
 @login_required
 @user_passes_test(verifyFullProfile,
                   login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
@@ -29,7 +31,6 @@ def forums(request):
 
     print categories
     categories = categories.order_by("title")"""
-
     most_active_forums = Forum.objects.order_by("-post_count")[:5]
     most_viewed_forums = Forum.objects.order_by("-view_count")[:5]
     most_active_members = UserPostCount.objects.order_by("-count")[:5]
