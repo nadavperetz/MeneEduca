@@ -3,13 +3,17 @@ from django.dispatch import receiver
 
 from django.contrib.auth.models import User
 
-from .models import Profile
+from .models import Profile, Student
 
 
 @receiver(post_save, sender=User)
 def handle_user_save(sender, created, instance, **kwargs):
+    print sender
+    print created
+    print instance
+    print kwargs
     if created:
-        Profile.objects.get_or_create(user=instance)
+        Profile.objects.create(user=instance)
 
 
 

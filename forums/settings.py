@@ -132,13 +132,14 @@ INSTALLED_APPS = [
     "bootstrapform",
 
     # external
-    "account",
+    "south",
     "metron",
     "eventlog",
     "easy_thumbnails",
-    "agora",
 
     # project
+    "account",
+    "agora",
     "forums",
     "forums.profiles",
 ]
@@ -198,6 +199,12 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
 ACCOUNT_USE_AUTH_AUTHENTICATE = True
 LOGIN_URL = "account_login"
 COMPLETE_PROFILE_URL = "profiles_edit"
+
+USER_GROUPS = (
+    ('Stud', 'Student'),
+    ('Guar', 'Guardian'),
+    ('Tchr', 'Teacher')
+)
 
 AUTHENTICATION_BACKENDS = [
     "account.auth_backends.UsernameAuthenticationBackend",

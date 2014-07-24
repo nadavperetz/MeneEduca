@@ -28,8 +28,6 @@ from account.hooks import hookset
 from account.managers import EmailAddressManager, EmailConfirmationManager
 from account.signals import signup_code_sent, signup_code_used
 
-
-
 class Account(models.Model):
 
     user = models.OneToOneField(AUTH_USER_MODEL, related_name="account", verbose_name=_("user"))
@@ -122,7 +120,6 @@ class AnonymousAccount(object):
 
 
 class SignupCode(models.Model):
-
     class AlreadyExists(Exception):
         pass
 
@@ -130,6 +127,9 @@ class SignupCode(models.Model):
         pass
 
     code = models.CharField(max_length=64, unique=True)
+    group = models.CharField(max_length=4,
+                                      choices=settings.USER_GROUPS,
+                                      default=settings.USER_GROUPS[0][0])
     max_uses = models.PositiveIntegerField(default=0)
     expiry = models.DateTimeField(null=True, blank=True)
     inviter = models.ForeignKey(AUTH_USER_MODEL, null=True, blank=True)

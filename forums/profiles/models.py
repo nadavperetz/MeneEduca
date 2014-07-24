@@ -21,6 +21,7 @@ class Groups(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User)
     name = models.CharField(max_length=75, blank=True)
+    last_name = models.CharField(max_length=75, blank=True)
     birth = models.DateField(blank=True, null=True)
     avatar = models.ImageField(upload_to=avatar_upload, blank=True)
     bio = models.TextField(blank=True)
@@ -34,30 +35,50 @@ class Profile(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     modified_at = models.DateTimeField(default=timezone.now)
 
+    def is_student(self):
+        if Student.objects.get(pk = self.id):
+            return True
+        else:
+            return False
+
+    def is_teacher(self):
+        if Teacher.objects.get(pk = self.id):
+            return True
+        else:
+            return False
+
+    def is_guardian(self):
+        if Guardian.objects.get(pk = self.id):
+            return True
+        else:
+            return False
+
 
     def save(self, *args, **kwargs):
         self.modified_at = timezone.now()
         return super(Profile, self).save(*args, **kwargs)
 
+    def __str__(self):
+        return "%s.%s" % (self.name, self.last_name)
 
 
 
 class Course(models.Model):
     course_name = models.CharField(max_length=75)
 
+    def __str__(self):
+        return self.course_name
 
 class Teacher(Profile):
     courses = models.ManyToManyField(Course,
                                      blank=True,
                                      null=True)
     def save(self, *args, **kwargs):
-        try:
-            group = Groups.objects.get(name="Teachers")
-        except:
-            group = Groups(name="Teachers")
-            group.save()
-        Profile.groups.add(group)
-        Profile.save(update_fields=['groups'])
+        self.modified_at = timezone.now()
+        super(Teacher, self).save(*args, **kwargs)
+        if not self.groups.all():
+            self.groups.add(Groups.objects.get(name="General"))
+            self.groups.add(Groups.objects.get(name="Teachers"))
 
 
 class Student(Profile):
@@ -65,23 +86,19 @@ class Student(Profile):
                                      blank=True,
                                      null=True)
     def save(self, *args, **kwargs):
-        try:
-            group = Groups.objects.get(name="Students")
-        except:
-            group = Groups(name="Students")
-            group.save()
-        Profile.groups.add(group)
-        Profile.save(update_fields=['groups'])
+        self.modified_at = timezone.now()
+        super(Student, self).save(*args, **kwargs)
+        if not self.groups.all():
+            self.groups.add(Groups.objects.get(name="General"))
+            self.groups.add(Groups.objects.get(name="Students"))
 
 
 class Guardian(Profile):
     #a.k.a. Parent
-    profile = models.OneToOneField(Student)
+    profile = models.ForeignKey(Student)
     def save(self, *args, **kwargs):
-        try:
-            group = Groups.objects.get(name="Guardians")
-        except:
-            group = Groups(name="Guardians")
-            group.save()
-        Profile.groups.add(group)
-        Profile.save(update_fields=['groups'])
+        self.modified_at = timezone.now()
+        super(Guardian, self).save(*args, **kwargs)
+        if not self.groups.all():
+            self.groups.add(Groups.objects.get(name="General"))
+            self.groups.add(Groups.objects.get(name="Guardians"))
