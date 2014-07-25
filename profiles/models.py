@@ -28,7 +28,7 @@ class Profile(models.Model):
 
     complete_profile = models.BooleanField(default=False)
 
-    Group = models.ManyToManyField(Group,
+    group = models.ManyToManyField(Group,
                                     default="General")
 
 
@@ -56,6 +56,8 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         self.modified_at = timezone.now()
+        if not self.Group.all():
+            self.Group.add(Group.objects.get(name="General"))
         return super(Profile, self).save(*args, **kwargs)
 
     def __str__(self):

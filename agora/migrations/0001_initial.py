@@ -36,9 +36,9 @@ class Migration(SchemaMigration):
         db.create_table(m2m_table_name, (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
             ('forum', models.ForeignKey(orm[u'agora.forum'], null=False)),
-            ('groups', models.ForeignKey(orm[u'profiles.groups'], null=False))
+            ('group', models.ForeignKey(orm[u'profiles.group'], null=False))
         ))
-        db.create_unique(m2m_table_name, ['forum_id', 'groups_id'])
+        db.create_unique(m2m_table_name, ['forum_id', 'group_id'])
 
         # Adding model 'ForumThread'
         db.create_table(u'agora_forumthread', (
@@ -123,7 +123,7 @@ class Migration(SchemaMigration):
             'category': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['agora.ForumCategory']", 'null': 'True', 'on_delete': 'models.SET_NULL', 'blank': 'True'}),
             'closed': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
             'description': ('django.db.models.fields.TextField', [], {}),
-            'groups': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['profiles.Groups']", 'symmetrical': 'False'}),
+            'groups': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['profiles.Group']", 'symmetrical': 'False'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'last_modified': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'last_thread': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'+'", 'null': 'True', 'on_delete': 'models.SET_NULL', 'to': u"orm['agora.ForumThread']"}),
@@ -213,8 +213,8 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'profiles.groups': {
-            'Meta': {'object_name': 'Groups'},
+        u'profiles.group': {
+            'Meta': {'object_name': 'Group'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '75'})
         }
