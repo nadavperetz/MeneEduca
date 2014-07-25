@@ -1,5 +1,7 @@
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ValidationError
 from django.views.generic import UpdateView
+from django.shortcuts import render
 from django.utils.decorators import method_decorator
 
 from django.contrib import messages
@@ -7,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import ProfileForm
 from .models import Profile
+from account.models import EmailAddress
 
 class ProfileEditView(UpdateView):
     form_class = ProfileForm
@@ -20,7 +23,20 @@ class ProfileEditView(UpdateView):
     def get_success_url(self):
         return reverse("profiles_edit")
 
+    """def post(self, request, *args, **kwargs):
+
+        return super(ProfileEditView, self).post(request, *args, **kwargs)"""
+
     def form_valid(self, form):
         response = super(ProfileEditView, self).form_valid(form)
-        messages.success(self.request, "You successfully updated your profile.")
+        email = EmailAddress.objects.get(user = self.request.user)
+        if not email.verified:
+            messages.warning(self.request, "You need to authenticate your email address in order to navigate \
+                                           through the site")
+            profile = Profile.objects.get(user = self.request.user)
+            profile.complete_profile = True
+            profile.save()
+        else:
+
+            messages.success(self.request, "You successfully updated your profile.")
         return response

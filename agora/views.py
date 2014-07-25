@@ -53,6 +53,8 @@ def forums(request):
 
 
 @login_required
+@user_passes_test(verifyFullProfile,
+                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
 def forum_category(request, category_id):
 
     category = get_object_or_404(ForumCategory, id=category_id)

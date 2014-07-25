@@ -28,6 +28,8 @@ from account.hooks import hookset
 from account.managers import EmailAddressManager, EmailConfirmationManager
 from account.signals import signup_code_sent, signup_code_used
 
+from forums.profiles.models import Profile
+
 class Account(models.Model):
 
     user = models.OneToOneField(AUTH_USER_MODEL, related_name="account", verbose_name=_("user"))
@@ -267,6 +269,9 @@ class EmailAddress(models.Model):
     def send_confirmation(self, **kwargs):
         confirmation = EmailConfirmation.create(self)
         confirmation.send(**kwargs)
+        profile = Profile.objects.get(user = self.user)
+        profile.complete_profile = False
+        profile.save()
         return confirmation
 
     def change(self, new_email, confirm=True):

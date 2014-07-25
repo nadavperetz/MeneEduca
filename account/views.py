@@ -651,7 +651,10 @@ class SettingsView(LoginRequiredMixin, FormView):
         initial = super(SettingsView, self).get_initial()
         if self.primary_email_address:
             initial["email"] = self.primary_email_address.email
-        initial["timezone"] = self.request.user.account.timezone
+        if self.request.user.account.timezone:
+            initial["timezone"] = self.request.user.account.timezone
+        else:
+            initial["timezone"] = settings.TIME_ZONE
         initial["language"] = self.request.user.account.language
         return initial
 

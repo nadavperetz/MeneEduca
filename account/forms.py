@@ -198,7 +198,8 @@ class SettingsForm(forms.Form):
     timezone = forms.ChoiceField(
         label=_("Timezone"),
         choices=[("", "---------")] + settings.ACCOUNT_TIMEZONES,
-        required=False
+        required=False,
+        initial= settings.TIME_ZONE
     )
     if settings.USE_I18N:
         language = forms.ChoiceField(
