@@ -2,13 +2,11 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
-
 from django.contrib import messages
 from django.contrib.auth.decorators import user_passes_test, login_required
-from forums.settings import COMPLETE_PROFILE_URL
 
-from forums.profiles.manager import verifyFullProfile
-
+from MeneEduca.settings import COMPLETE_PROFILE_URL
+from profiles.manager import verifyFullProfile
 from agora.forms import ThreadForm, ReplyForm
 from agora.models import (
     Forum,
@@ -18,7 +16,6 @@ from agora.models import (
     ThreadSubscription,
     UserPostCount
 )
-
 
 
 @login_required
@@ -62,7 +59,7 @@ def forum_category(request, category_id):
 
     return render_to_response("agora/category.html", {
         "category": category,
-        "forums": forums,
+        "MeneEduca": forums,
     }, context_instance=RequestContext(request))
 
 @login_required

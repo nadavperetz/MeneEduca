@@ -6,10 +6,10 @@ from django.contrib import admin
 
 
 urlpatterns = patterns("",
-    url(r"^$", "forums.views.index", name="index"),
+    url(r"^$", "MeneEduca.views.index", name="index"),
     url(r"^admin/", include(admin.site.urls)),
     url(r"^account/", include("account.urls")),
-    url(r"^profiles/", include("forums.profiles.urls")),
+    url(r"^profiles/", include("profiles.urls")),
 
     url(r"", include("agora.urls"))
 )

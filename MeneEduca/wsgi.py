@@ -15,9 +15,9 @@ framework.
 """
 import os
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "forums.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "MeneEduca.settings")
 
-import forums.startup as startup
+import MeneEduca.startup as startup
 startup.run()
 
 # This application object is used by any WSGI server configured to use this

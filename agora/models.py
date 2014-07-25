@@ -5,14 +5,12 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils import timezone
 from django.utils.html import conditional_escape
-from django.core.exceptions import ValidationError
-
 from django.contrib.auth.models import User
 
-from forums.profiles.models import Groups
-
+from profiles.models import Groups
 from agora.conf import settings
 from agora.managers import ForumThreadManager
+
 
 
 # this is the glue to the activity events framework, provided as a no-op here

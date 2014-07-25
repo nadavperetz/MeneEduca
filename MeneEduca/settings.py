@@ -108,10 +108,10 @@ MIDDLEWARE_CLASSES = [
     "django.contrib.messages.middleware.MessageMiddleware",
 ]
 
-ROOT_URLCONF = "forums.urls"
+ROOT_URLCONF = "MeneEduca.urls"
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = "forums.wsgi.application"
+WSGI_APPLICATION = "MeneEduca.wsgi.application"
 
 TEMPLATE_DIRS = [
     os.path.join(PACKAGE_ROOT, "templates"),
@@ -140,8 +140,8 @@ INSTALLED_APPS = [
     # project
     "account",
     "agora",
-    "forums",
-    "forums.profiles",
+    "MeneEduca",
+    "profiles",
 ]
 
 AUTH_PROFILE_MODULE = "profiles.Profile"
@@ -208,5 +208,5 @@ USER_GROUPS = (
 
 AUTHENTICATION_BACKENDS = [
     "account.auth_backends.UsernameAuthenticationBackend",
-    "forums.auth_backends.PermissionBackend",
+    "MeneEduca.auth_backends.PermissionBackend",
 ]
