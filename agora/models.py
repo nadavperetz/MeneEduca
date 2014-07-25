@@ -7,7 +7,7 @@ from django.utils import timezone
 from django.utils.html import conditional_escape
 from django.contrib.auth.models import User
 
-from profiles.models import Groups
+from profiles.models import Group
 from agora.conf import settings
 from agora.managers import ForumThreadManager
 
@@ -46,7 +46,7 @@ class Forum(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     closed = models.DateTimeField(null=True, blank=True)
-    groups = models.ManyToManyField(Groups)
+    groups = models.ManyToManyField(Group)
 
     # must only have one of these (or neither):
     parent = models.ForeignKey("self",

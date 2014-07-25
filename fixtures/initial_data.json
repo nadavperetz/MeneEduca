@@ -17,28 +17,28 @@
     },
       {
         "pk": 1,
-        "model": "profiles.Groups",
+        "model": "profiles.Group",
         "fields": {
             "name": "General"
         }
     },
     {
         "pk": 2,
-        "model": "profiles.Groups",
+        "model": "profiles.Group",
         "fields": {
             "name": "Students"
         }
     },
        {
         "pk": 3,
-        "model": "profiles.Groups",
+        "model": "profiles.Group",
         "fields": {
             "name": "Teachers"
         }
     },
        {
         "pk": 4,
-        "model": "profiles.Groups",
+        "model": "profiles.Group",
         "fields": {
             "name": "Guardians"
         }
