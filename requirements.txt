@@ -4,3 +4,7 @@ eventlog==0.7.0
 django-jsonfield==0.9.12
 Pillow==2.3.0
 easy-thumbnails==1.4
+Django-bootstrap-form
+South
+Appconf
+Pytz
