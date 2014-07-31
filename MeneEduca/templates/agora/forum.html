@@ -9,7 +9,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             {% if can_create_thread %}
-                <a class="btn btn-primary btn-sm pull-right" href="{% url "agora_post_create" forum.pk %}"><i class="fa fa-pencil"></i> {% trans "Make a New Post"  %}</a>
+                <a class="btn btn-primary btn-sm pull-right" href="{% url "forums:agora_post_create" forum.pk %}"><i class="fa fa-pencil"></i> {% trans "Make a New Post"  %}</a>
             {% endif %}
             <h3>
             {% if forum.closed %}<span class="label pull-right label-info"><i class="fa fa-lock"></i> {% trans "closed" %}</span>{% endif %}
@@ -30,10 +30,10 @@
                 <tbody>
                     {% for subforum in forum.subforums.all %}
                         <tr>
-                            <td><a href="{% url "agora_forum" subforum.pk %}">{{ subforum.title }}</a><br />
+                            <td><a href="{% url "forums:agora_forum" subforum.pk %}">{{ subforum.title }}</a><br />
                                 <small>{{ subforum.description }}</small></td>
                             {% if subforum.last_post %}
-                               <td><a href="{% url "agora_thread" subforum.last_post.thread.pk %}">{{ subforum.last_post.thread.title }}</a><br />
+                               <td><a href="{% url "forums:agora_thread" subforum.last_post.thread.pk %}">{{ subforum.last_post.thread.title }}</a><br />
                                <small>by <a href="{# url "user_page" subforum.last_post.author.pk #}">{{ subforum.last_post.author.username }}</a></small></td>
                             {% else %}
                                 <td></td>
@@ -60,7 +60,7 @@
                     {% for thread in threads %}
                         <tr>
                             <td>
-                                <a href="{% url "agora_thread" thread.pk %}"><b>{{ thread.title }}</b></a>
+                                <a href="{% url "forums:agora_thread" thread.pk %}"><b>{{ thread.title }}</b></a>
                                 {% if thread.sticky %}<span class="label notice">sticky</span>{% endif %}
                                 {% if thread.closed %}<span class="label">closed</span>{% endif %}
                                 <br />

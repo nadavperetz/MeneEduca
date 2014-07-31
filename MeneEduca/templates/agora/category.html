@@ -4,10 +4,10 @@
 
 {% block body %}
     <div class="breadcrumb">
-        <li><a href="{% url "agora_forums" %}">Forums</a></li>
+        <li><a href="{% url "forums:agora_forums" %}">Forums</a></li>
         {% if category.parent %}</span>
             <li>
-                <a href="{% url "agora_category" category.parent.pk %}">
+                <a href="{% url "forums:agora_category" category.parent.pk %}">
                     {{ category.parent.title }}
                 </a>
             </li>
@@ -34,10 +34,10 @@
                     <tbody>
                         {% for forum in forums %}
                             <tr>
-                                <td><a href="{% url "agora_forum" forum.id %}">{{ forum.title }}</a><br />
+                                <td><a href="{% url "forums:agora_forum" forum.id %}">{{ forum.title }}</a><br />
                                     <small>{{ forum.description }}</small></td>
                                 {% if forum.last_reply %}
-                                   <td><a href="{% url "agora_thread" forum.last_reply.thread.id %}">{{ forum.last_reply.thread.title }}</a><br />
+                                   <td><a href="{% url "forums:agora_thread" forum.last_reply.thread.id %}">{{ forum.last_reply.thread.title }}</a><br />
                                    <small>by <a href="{# url user_page forum.last_reply.author.id #}">{{ forum.last_reply.author.username }}</a></small></td>
                                 {% else %}
                                     <td></td>
