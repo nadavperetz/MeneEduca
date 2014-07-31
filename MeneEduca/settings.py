@@ -142,6 +142,7 @@ INSTALLED_APPS = [
     "agora",
     "MeneEduca",
     "profiles",
+    "survey",
 ]
 
 AUTH_PROFILE_MODULE = "profiles.Profile"
