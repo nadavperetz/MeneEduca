@@ -3,7 +3,7 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns(
     "agora.views",
-    url(r"^forum/$", "forums", name="agora_forums"),
+    url(r"^$", "forums", name="agora_forums"),
     url(r"^category/(\d+)/$", "forum_category", name="agora_category"),
     url(r"^forum/(\d+)/$", "forum", name="agora_forum"),
     url(r"^thread/(\d+)/$", "forum_thread", name="agora_thread"),
