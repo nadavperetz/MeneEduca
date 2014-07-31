@@ -23,9 +23,11 @@ class QuestionIpip(models.Model):
     question_number = models.IntegerField()
     question = models.CharField(max_length=200)
     #Scoring use
-    question_weight = models.IntegerField()  # Weight of the answer in the score
+        # Weight of the answer in the score
+    question_weight = models.CharField(max_length=1, choices=(("+", "+"), ("-", "-")))
+        # The user answer
+    answer_value = models.IntegerField(choices=answer_choices, blank=True, null=True)
     type = models.CharField(max_length=20, choices=type_of_question)
-    answer_value = models.IntegerField(choices=answer_choices, blank=True, null=True)  # The user answer
 
     def __str__(self):
         return self.question
