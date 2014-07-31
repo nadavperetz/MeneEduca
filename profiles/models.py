@@ -56,9 +56,9 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         self.modified_at = timezone.now()
-        if not self.Group.all():
-            self.Group.add(Group.objects.get(name="General"))
-        return super(Profile, self).save(*args, **kwargs)
+        super(Profile, self).save(*args, **kwargs)
+        if not self.group:
+            self.group.add(Group.objects.get(name="General"))
 
     def __str__(self):
         return "%s %s" % (self.name, self.last_name)
