@@ -15,7 +15,7 @@
             "name": "MeneEduca"
         }
     },
-      {
+    {
         "pk": 1,
         "model": "profiles.Group",
         "fields": {
@@ -29,18 +29,628 @@
             "name": "Students"
         }
     },
-       {
+    {
         "pk": 3,
         "model": "profiles.Group",
         "fields": {
             "name": "Teachers"
         }
     },
-       {
+    {
         "pk": 4,
         "model": "profiles.Group",
         "fields": {
             "name": "Guardians"
+        }
+    }
+    ,
+    {
+        "pk": 1,
+        "model": "survey.survey",
+        "fields": {
+            "pub_date": "2014-07-31T16:52:31Z",
+            "name": "Big Five"
+        }
+    },
+    {
+        "pk": "1",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "I am the life of the party.",
+            "question_number": "1",
+            "survey": "1",
+            "type": "Extraversion"
+        }
+    },
+    {
+        "pk": "2",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Feel little concern for others.",
+            "question_number": "2",
+            "survey": "1",
+            "type": "Agreeableness"
+        }
+    },
+
+    {
+        "pk": "3",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "I am always prepared.",
+            "question_number": "3",
+            "survey": "1",
+            "type": "Conscientiousness"
+        }
+    },
+    {
+        "pk": "4",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Get stressed out easily.",
+            "question_number": "4",
+            "survey": "1",
+            "type": "Emotional Stability"
+        }
+    },
+    {
+        "pk": "5",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Have a rich vocabulary.",
+            "question_number": "5",
+            "survey": "1",
+            "type": "Intellect"
+        }
+    },
+    {
+        "pk": "6",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Don't talk a lot.",
+            "question_number": "6",
+            "survey": "1",
+            "type": "Extraversion"
+        }
+    },
+    {
+        "pk": "7",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Am interested in people.",
+            "question_number": "7",
+            "survey": "1",
+            "type": "Agreeableness"
+        }
+    },
+    {
+        "pk": "8",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Leave my belongings around.",
+            "question_number": "8",
+            "survey": "1",
+            "type": "Conscientiousness"
+        }
+    },
+    {
+        "pk": "9",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Am relaxed most of the time.",
+            "question_number": "9",
+            "survey": "1",
+            "type": "Emotional Stability"
+        }
+    },
+    {
+        "pk": "10",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Have difficulty understanding abstract ideas.",
+            "question_number": "10",
+            "survey": "1",
+            "type": "Intellect"
+        }
+    },
+    {
+        "pk": "11",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Feel comfortable around people.",
+            "question_number": "11",
+            "survey": "1",
+            "type": "Extraversion"
+        }
+    },
+    {
+        "pk": "12",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Insult people.",
+            "question_number": "12",
+            "survey": "1",
+            "type": "Agreeableness"
+        }
+    },
+    {
+        "pk": "13",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Pay attention to details.",
+            "question_number": "13",
+            "survey": "1",
+            "type": "Conscientiousness"
+        }
+    },
+    {
+        "pk": "14",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Worry about things.",
+            "question_number": "14",
+            "survey": "1",
+            "type": "Emotional Stability"
+        }
+    },
+    {
+        "pk": "15",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Have a vivid imagination.",
+            "question_number": "15",
+            "survey": "1",
+            "type": "Intellect"
+        }
+    },
+    {
+        "pk": "16",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Keep in the background.",
+            "question_number": "16",
+            "survey": "1",
+            "type": "Extraversion"
+        }
+    },
+    {
+        "pk": "17",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Sympathize with others' feelings.",
+            "question_number": "17",
+            "survey": "1",
+            "type": "Agreeableness"
+        }
+    },
+    {
+        "pk": "18",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Make a mess of things.",
+            "question_number": "18",
+            "survey": "1",
+            "type": "Conscientiousness"
+        }
+    },
+    {
+        "pk": "19",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Seldom feel blue.",
+            "question_number": "19",
+            "survey": "1",
+            "type": "Emotional Stability"
+        }
+    },
+    {
+        "pk": "20",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Am not interested in abstract ideas.",
+            "question_number": "20",
+            "survey": "1",
+            "type": "Intellect"
+        }
+    },
+    {
+        "pk": "21",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Start conversations.",
+            "question_number": "21",
+            "survey": "1",
+            "type": "Extraversion"
+        }
+    },
+    {
+        "pk": "22",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Am not interested in other people's problems.",
+            "question_number": "22",
+            "survey": "1",
+            "type": "Agreeableness"
+        }
+    },
+    {
+        "pk": "23",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Get chores done right away.",
+            "question_number": "23",
+            "survey": "1",
+            "type": "Conscientiousness"
+        }
+    },
+    {
+        "pk": "24",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Am easily disturbed.",
+            "question_number": "24",
+            "survey": "1",
+            "type": "Emotional Stability"
+        }
+    },
+    {
+        "pk": "25",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Have excellent ideas.",
+            "question_number": "25",
+            "survey": "1",
+            "type": "Intellect"
+        }
+    },
+    {
+        "pk": "26",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Have little to say.",
+            "question_number": "26",
+            "survey": "1",
+            "type": "Extraversion"
+        }
+    },
+    {
+        "pk": "27",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Have a soft heart.",
+            "question_number": "27",
+            "survey": "1",
+            "type": "Agreeableness"
+        }
+    },
+    {
+        "pk": "28",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Often forget to put things back in their proper place.",
+            "question_number": "28",
+            "survey": "1",
+            "type": "Conscientiousness"
+        }
+    },
+    {
+        "pk": "29",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Get upset easily.",
+            "question_number": "29",
+            "survey": "1",
+            "type": "Emotional Stability"
+        }
+    },
+    {
+        "pk": "30",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Do not have a good imagination.",
+            "question_number": "30",
+            "survey": "1",
+            "type": "Intellect"
+        }
+    },
+    {
+        "pk": "31",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Talk to a lot of different people at parties.",
+            "question_number": "31",
+            "survey": "1",
+            "type": "Extraversion"
+        }
+    },
+    {
+        "pk": "32",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Am not really interested in others.",
+            "question_number": "32",
+            "survey": "1",
+            "type": "Agreeableness"
+        }
+    },
+    {
+        "pk": "33",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Like order.",
+            "question_number": "33",
+            "survey": "1",
+            "type": "Conscientiousness"
+        }
+    },
+    {
+        "pk": "34",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Change my mood a lot.",
+            "question_number": "34",
+            "survey": "1",
+            "type": "Emotional Stability"
+        }
+    },
+    {
+        "pk": "35",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Am quick to understand things.",
+            "question_number": "35",
+            "survey": "1",
+            "type": "Intellect"
+        }
+    },
+    {
+        "pk": "36",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Don't like to draw attention to myself.",
+            "question_number": "36",
+            "survey": "1",
+            "type": "Extraversion"
+        }
+    },
+    {
+        "pk": "37",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Take time out for others.",
+            "question_number": "37",
+            "survey": "1",
+            "type": "Agreeableness"
+        }
+    },
+    {
+        "pk": "38",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Shirk my duties.",
+            "question_number": "38",
+            "survey": "1",
+            "type": "Conscientiousness"
+        }
+    },
+    {
+        "pk": "39",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Have frequent mood swings.",
+            "question_number": "39",
+            "survey": "1",
+            "type": "Emotional Stability"
+        }
+    },
+    {
+        "pk": "40",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Use difficult words.",
+            "question_number": "40",
+            "survey": "1",
+            "type": "Intellect"
+        }
+    },
+    {
+        "pk": "41",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Don't mind being the center of attention.",
+            "question_number": "41",
+            "survey": "1",
+            "type": "Extraversion"
+        }
+    },
+    {
+        "pk": "42",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Feel others' emotions.",
+            "question_number": "42",
+            "survey": "1",
+            "type": "Agreeableness"
+        }
+    },
+    {
+        "pk": "43",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Follow a schedule.",
+            "question_number": "43",
+            "survey": "1",
+            "type": "Conscientiousness"
+        }
+    },
+    {
+        "pk": "44",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Get irritated easily.",
+            "question_number": "44",
+            "survey": "1",
+            "type": "Emotional Stability"
+        }
+    },
+    {
+        "pk": "45",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Spend time reflecting on things.",
+            "question_number": "45",
+            "survey": "1",
+            "type": "Intellect"
+        }
+    },
+    {
+        "pk": "46",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Am quiet around strangers.",
+            "question_number": "46",
+            "survey": "1",
+            "type": "Extraversion"
+        }
+    },
+    {
+        "pk": "47",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Make people feel at ease.",
+            "question_number": "47",
+            "survey": "1",
+            "type": "Agreeableness"
+        }
+    },
+    {
+        "pk": "48",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Am exacting in my work.",
+            "question_number": "48",
+            "survey": "1",
+            "type": "Conscientiousness"
+        }
+    },
+    {
+        "pk": "49",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "-",
+            "answer_value": null,
+            "question": "Often feel blue.",
+            "question_number": "49",
+            "survey": "1",
+            "type": "Emotional Stability"
+        }
+    },
+    {
+        "pk": "50",
+        "model": "survey.questionipip",
+        "fields": {
+            "question_weight": "+",
+            "answer_value": null,
+            "question": "Am full of ideas",
+            "question_number": "50",
+            "survey": "1",
+            "type": "Intellect"
         }
     }
 ]
