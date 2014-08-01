@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+{% load i18n %}
+
+{% load bootstrap %}
+{% load url from future %}
+
+
+
+{% block body %}
+    <h1>Survey</h1>
+    <form method="post" action="">
+		{% csrf_token %}
+    <table>
+        {{ formset.management_form }}
+    	{% for object in mylist %}
+            <th>{{ object.1.question }}</th>
+            <tr> </tr>
+            {% for fields in object.0 %}
+                <td>{{ fields }}</td>
+            {% endfor %}
+            <tr><td> &nbsp;</td> </tr>
+        {% endfor %}
+    </table>
+    <button type="submit">Submit</button>
+</form>
+    {%  comment %}
+On the following pages, there are phrases describing people's behaviors.
+Please use the rating scale below to describe how accurately each statement describes you.
+Describe yourself as you generally are now, not as you wish to be in the future.
+Describe yourself as you honestly see yourself, in relation to other people you know of the same sex as
+you are, and roughly your same age.
+
+So that you can describe yourself in an honest manner, your responses will be kept in absolute confidence.
+Please read each statement carefully, and then fill in the bubble that corresponds to the number on the
+scale.
+
+Response Options
+
+1: Very Inaccurate
+2: Moderately Inaccurate
+3: Neither Inaccurate nor Accurate
+4: Moderately Accurate
+5: Very Accurate
+    {% endcomment %}
+{% endblock %}

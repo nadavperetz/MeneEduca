@@ -1,17 +1,18 @@
-On the following pages, there are phrases describing people's behaviors.
-Please use the rating scale below to describe how accurately each statement describes you.
-Describe yourself as you generally are now, not as you wish to be in the future.
-Describe yourself as you honestly see yourself, in relation to other people you know of the same sex as
-you are, and roughly your same age.
+{% extends "index.html" %}
+{% load i18n %}
 
-So that you can describe yourself in an honest manner, your responses will be kept in absolute confidence.
-Please read each statement carefully, and then fill in the bubble that corresponds to the number on the
-scale.
+{% load bootstrap %}
+{% load url from future %}
 
-Response Options
 
-1: Very Inaccurate
-2: Moderately Inaccurate
-3: Neither Inaccurate nor Accurate
-4: Moderately Accurate
-5: Very Accurate
+
+{% block body %}
+    <h1>Survey results</h1>
+    {% for question in questions %}
+        <li>{{ question.question }}
+        <ul>{{ question.answer_value }}</ul>
+
+        </li>
+    {% endfor %}
+
+{% endblock %}

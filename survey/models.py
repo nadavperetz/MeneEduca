@@ -36,16 +36,22 @@ class QuestionIpip(models.Model):
 
     class Meta:
         unique_together = ["survey", "question_number"]
+        ordering = ["question_number"]
 
 
 class AnswersIpipCompleted(models.Model):
     profile = models.ForeignKey(Profile)
     survey = models.ForeignKey(Survey)
+    completed = models.BooleanField(default=False)
+
+
 
     def __str__(self):
         text = str(self.survey) + " " + str(self.profile)
         return text
 
+    class Meta:
+        unique_together = ["survey", "profile"]
 
 class OneAnswerIpip(models.Model):
     question = models.ForeignKey(QuestionIpip)
@@ -68,5 +74,8 @@ class OneAnswerIpip(models.Model):
         else:
             value = self.answer_value
         return value
+
+    class Meta:
+        ordering = ["question"]
 
 
