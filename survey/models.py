@@ -44,7 +44,17 @@ class AnswersIpipCompleted(models.Model):
     survey = models.ForeignKey(Survey)
     completed = models.BooleanField(default=False)
 
-
+    def get_result(self):
+        questions = OneAnswerIpip.objects.filter(all_answers=self)
+        dictio = {}
+        for i, (a, b) in enumerate(type_of_question):
+            dictio[str(a)] = 0
+        if questions:
+            for question in questions:
+                dictio[str(question.question.type)] += question.score
+            self.completed = True
+            super(AnswersIpipCompleted, self).save()
+            return dictio
 
     def __str__(self):
         text = str(self.survey) + " " + str(self.profile)

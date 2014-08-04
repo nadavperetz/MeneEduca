@@ -17,7 +17,7 @@ class ProfileEditView(UpdateView):
         return user
 
     def get_success_url(self):
-        return reverse("profiles_edit")
+        return reverse("profiles:profiles_edit")
 
     """def post(self, request, *args, **kwargs):
 
