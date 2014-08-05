@@ -5,7 +5,7 @@ import operator
 
 try:
     from urllib.parse import urlencode
-except ImportError: # python 2
+except ImportError:  # python 2
     from urllib import urlencode
 
 from django.core.urlresolvers import reverse
@@ -30,14 +30,14 @@ from account.signals import signup_code_sent, signup_code_used
 
 from profiles.models import Profile
 
-class Account(models.Model):
 
+class Account(models.Model):
     user = models.OneToOneField(AUTH_USER_MODEL, related_name="account", verbose_name=_("user"))
     timezone = TimeZoneField(_("timezone"))
     language = models.CharField(_("language"),
-        max_length=10,
-        choices=settings.ACCOUNT_LANGUAGES,
-        default=settings.LANGUAGE_CODE
+                                max_length=10,
+                                choices=settings.ACCOUNT_LANGUAGES,
+                                default=settings.LANGUAGE_CODE
     )
 
     @classmethod
@@ -108,7 +108,6 @@ def user_post_save(sender, **kwargs):
 
 
 class AnonymousAccount(object):
-
     def __init__(self, request=None):
         self.user = AnonymousUser()
         self.timezone = settings.TIME_ZONE
@@ -130,8 +129,8 @@ class SignupCode(models.Model):
 
     code = models.CharField(max_length=64, unique=True)
     group = models.CharField(max_length=4,
-                                      choices=settings.USER_GROUPS,
-                                      default=settings.USER_GROUPS[0][0])
+                             choices=settings.USER_GROUPS,
+                             default=settings.USER_GROUPS[0][0])
     max_uses = models.PositiveIntegerField(default=0)
     expiry = models.DateTimeField(null=True, blank=True)
     inviter = models.ForeignKey(AUTH_USER_MODEL, null=True, blank=True)
@@ -225,7 +224,6 @@ class SignupCode(models.Model):
 
 
 class SignupCodeResult(models.Model):
-
     signup_code = models.ForeignKey(SignupCode)
     user = models.ForeignKey(AUTH_USER_MODEL)
     timestamp = models.DateTimeField(default=timezone.now)
@@ -236,7 +234,6 @@ class SignupCodeResult(models.Model):
 
 
 class EmailAddress(models.Model):
-
     user = models.ForeignKey(AUTH_USER_MODEL)
     email = models.EmailField(unique=settings.ACCOUNT_EMAIL_UNIQUE)
     verified = models.BooleanField(default=False)
@@ -269,7 +266,7 @@ class EmailAddress(models.Model):
     def send_confirmation(self, **kwargs):
         confirmation = EmailConfirmation.create(self)
         confirmation.send(**kwargs)
-        profile = Profile.objects.get(user = self.user)
+        profile = Profile.objects.get(user=self.user)
         profile.complete_profile = False
         profile.save()
         return confirmation
@@ -289,7 +286,6 @@ class EmailAddress(models.Model):
 
 
 class EmailConfirmation(models.Model):
-
     email_address = models.ForeignKey(EmailAddress)
     created = models.DateTimeField(default=timezone.now())
     sent = models.DateTimeField(null=True)
@@ -312,6 +308,7 @@ class EmailConfirmation(models.Model):
     def key_expired(self):
         expiration_date = self.sent + datetime.timedelta(days=settings.ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS)
         return expiration_date <= timezone.now()
+
     key_expired.boolean = True
 
     def confirm(self):
@@ -345,7 +342,6 @@ class EmailConfirmation(models.Model):
 
 
 class AccountDeletion(models.Model):
-
     user = models.ForeignKey(AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL)
     email = models.EmailField()
     date_requested = models.DateTimeField(default=timezone.now)
