@@ -7,6 +7,15 @@
 
 {% block subnav %}
 <div class="panel panel-default">
+    <div class="panel-heading"><strong>{% trans "Profile" %}</strong></div>
+    <div class="list-group">
+        <a class="list-group-item account-settings" href="{% url "profiles:profiles_edit" %}">
+            {% trans "Edit Profile" %}
+        </a>
+        <a class="list-group-item account-password" href="{% url "survey:index" %}">
+            {% trans "Tests" %}
+        </a>
+    </div>
     <div class="panel-heading"><strong>{% trans "Account" %}</strong></div>
     <div class="list-group">
         <a class="list-group-item account-settings" href="{% url "account_settings" %}">

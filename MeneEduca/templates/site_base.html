@@ -12,11 +12,19 @@
 {% endblock %}
 
 {% block site_brand %}
-    <a class="navbar-brand" href="{% url "forums:agora_forums" %}">{{ SITE_NAME }}</a>
+    <a class="navbar-brand" href="{% url "index" %}">{{ SITE_NAME }}</a>
+    <ul class="nav navbar-nav pull-left">
+        <li class="dropdown">
+                    <a href="{% url "forums:agora_forums" %}">{% trans "Forums" %}</a>
+        </li>
+</ul>
+
 {% endblock %}
 
 {% block extra_head_base %}
-    {% block extra_head %}{% endblock %}
+    {% block extra_head %}
+
+    {% endblock %}
 {% endblock %}
 
 

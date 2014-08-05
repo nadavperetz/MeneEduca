@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.core.urlresolvers import reverse
 from django.forms.formsets import formset_factory
@@ -8,7 +9,11 @@ from django.contrib.auth.decorators import login_required
 from survey.models import Survey, QuestionIpip, AnswersIpipCompleted, OneAnswerIpip
 from survey.forms import FormAnswerIpip
 
-# Create your views here.
+
+@login_required
+def index(request):
+    return render(request, "survey/index.html")
+
 
 @login_required
 def survey_ipip(request, survey_id):
