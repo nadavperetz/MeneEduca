@@ -199,7 +199,7 @@ ACCOUNT_LOGOUT_REDIRECT_URL = "forums:agora_forums"
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 2
 ACCOUNT_USE_AUTH_AUTHENTICATE = True
 LOGIN_URL = "account_login"
-COMPLETE_PROFILE_URL = "profiles_edit"
+COMPLETE_PROFILE_URL = "profiles:profiles_edit"
 
 USER_GROUPS = (
     ('Stud', 'Student'),
