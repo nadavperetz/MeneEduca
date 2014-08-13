@@ -1,0 +1,26 @@
+{% load thumbnail %}
+
+<div class="panel panel-default">
+    <div class="panel-heading"> {{ user.profile.name }} {{ user.profile.last_name }}</div>
+
+        <ul class="list-group media-list">
+                <li class="list-group-item media">
+                    <img class="pull-left media-object thumbnail img-rounded" src="{{ user.profile.avatar|thumbnail_url:'avatar' }}" alt="{{ user.username }}" />
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <a href="">
+                                {{ user.profile.name }} {{ user.profile.last_name }}
+                            </a>
+                        </h4>
+                    </div>
+                </li>
+        </ul>
+    <br>
+    <div class="panel-heading"> Salas de aula</div>
+
+    <ul class="list-group media-list">
+        <li class="list-group-item media">
+
+        </li>
+    </ul>
+</div>
