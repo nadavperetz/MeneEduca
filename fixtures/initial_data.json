@@ -646,7 +646,7 @@
         "model": "survey.questionipip",
         "fields": {
             "question_weight": "+",
-            
+
             "question": "Am full of ideas",
             "question_number": "50",
             "survey": "1",

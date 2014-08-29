@@ -46,7 +46,7 @@ class Forum(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     closed = models.DateTimeField(null=True, blank=True)
-    groups = models.ManyToManyField(Group)
+    groups = models.ForeignKey(Group)
 
     # must only have one of these (or neither):
     parent = models.ForeignKey("self",

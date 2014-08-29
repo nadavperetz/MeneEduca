@@ -71,6 +71,10 @@ def forum(request, forum_id):
         not forum.closed,
     ])
 
+    if not (forum.groups in request.user.profile.group.all()):
+        messages.error(request, "You do not have permission to read this.")
+        return HttpResponseRedirect(reverse("forums:agora_forums"))
+
     return render_to_response("agora/forum.html", {
         "forum": forum,
         "threads": threads,
@@ -117,6 +121,10 @@ def forum_thread(request, thread_id):
     posts = ForumThread.objects.posts(thread, reverse=(order_type == "desc"))
     thread.inc_views()
 
+    if not (thread.forum.groups in request.user.profile.group.all()):
+        messages.error(request, "You do not have permission to read this.")
+        return HttpResponseRedirect(reverse("forums:agora_forums"))
+
     return render_to_response("agora/thread.html", {
         "thread": thread,
         "posts": posts,
@@ -132,7 +140,7 @@ def forum_thread(request, thread_id):
                   login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
 def post_create(request, forum_id):
 
-    member = request.user.get_profile()
+    member = request.user.profile
     forum = get_object_or_404(Forum, id=forum_id)
 
     if forum.closed:
@@ -165,6 +173,10 @@ def post_create(request, forum_id):
     else:
         form = ThreadForm()
 
+    if not (forum.groups in request.user.profile.group.all()):
+        messages.error(request, "You do not have permission to post this.")
+        return HttpResponseRedirect(reverse("forums:agora_forums"))
+
     return render_to_response("agora/post_create.html", {
         "form": form,
         "member": member,
@@ -177,7 +189,7 @@ def post_create(request, forum_id):
                   login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
 def reply_create(request, thread_id):
 
-    member = request.user.get_profile()
+    member = request.user.profile
     thread = get_object_or_404(ForumThread, id=thread_id)
 
     if thread.closed:
