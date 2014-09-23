@@ -81,6 +81,7 @@ def forum(request, forum_id):
         "can_create_thread": can_create_thread,
     }, context_instance=RequestContext(request))
 
+
 @login_required
 @user_passes_test(verifyFullProfile,
                   login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete

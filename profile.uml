@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DjangoModelDependency</ID>
+  <OriginalElement>#pinax</OriginalElement>
+  <nodes>
+    <node x="517.5" y="129.0">profiles.models.Profile</node>
+    <node x="57.09375" y="225.0">profiles.models.Course</node>
+    <node x="414.0" y="462.0">profiles.models.Teacher</node>
+    <node x="310.75" y="819.0">profiles.models.Guardian</node>
+    <node x="0.0" y="450.0">profiles.models.Student</node>
+    <node x="722.75" y="0.0">profiles.models.Group</node>
+    <node x="442.75" y="12.0">django.contrib.auth.models.User</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="profiles.models.Student" target="profiles.models.Profile">
+      <point x="98.5" y="-159.5" />
+      <point x="295.5" y="430.0" />
+      <point x="576.5" y="430.0" />
+      <point x="-118.0" y="135.5" />
+    </edge>
+    <edge source="profiles.models.Guardian" target="profiles.models.Profile">
+      <point x="93.5" y="-147.5" />
+      <point x="591.25" y="794.0" />
+      <point x="798.5" y="794.0" />
+      <point x="798.5" y="430.0" />
+      <point x="812.5" y="430.0" />
+      <point x="118.0" y="135.5" />
+    </edge>
+    <edge source="profiles.models.Profile" target="profiles.models.Group">
+      <point x="88.5" y="-135.5" />
+      <point x="783.0" y="104.0" />
+      <point x="816.25" y="104.0" />
+      <point x="0.0" y="39.5" />
+    </edge>
+    <edge source="profiles.models.Teacher" target="profiles.models.Profile">
+      <point x="93.5" y="-147.5" />
+      <point x="0.0" y="135.5" />
+    </edge>
+    <edge source="profiles.models.Profile" target="django.contrib.auth.models.User">
+      <point x="-88.5" y="-135.5" />
+      <point x="606.0" y="104.0" />
+      <point x="572.75" y="104.0" />
+      <point x="0.0" y="27.5" />
+    </edge>
+    <edge source="profiles.models.Student" target="profiles.models.Course">
+      <point x="-98.5" y="-159.5" />
+      <point x="98.5" y="430.0" />
+      <point x="116.09375" y="430.0" />
+      <point x="-59.0" y="39.5" />
+    </edge>
+    <edge source="profiles.models.Guardian" target="profiles.models.Student">
+      <point x="-93.5" y="-147.5" />
+      <point x="404.25" y="794.0" />
+      <point x="197.0" y="794.0" />
+      <point x="0.0" y="159.5" />
+    </edge>
+    <edge source="profiles.models.Teacher" target="profiles.models.Course">
+      <point x="-93.5" y="-147.5" />
+      <point x="507.5" y="420.0" />
+      <point x="234.09375" y="420.0" />
+      <point x="59.0" y="39.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="297.5" y="123.5" />
+  <SelectedNodes>
+    <node>profiles.models.Course</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+</Diagram>
+
