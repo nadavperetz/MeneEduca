@@ -37,8 +37,7 @@ class Account(models.Model):
     language = models.CharField(_("language"),
                                 max_length=10,
                                 choices=settings.ACCOUNT_LANGUAGES,
-                                default=settings.LANGUAGE_CODE
-    )
+                                default=settings.LANGUAGE_CODE)
 
     @classmethod
     def for_request(cls, request):

@@ -1,70 +1,117 @@
-# coding=utf-8
-from django.shortcuts import render, get_object_or_404, get_list_or_404
+from __future__ import unicode_literals
+
+import json
+
+from django.conf import settings
+from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.contrib.sites.models import Site
+from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
-from django.forms.formsets import formset_factory
-from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, redirect, render_to_response
+from django.template import RequestContext
+from django.utils.http import urlquote
+from django.views.generic.base import TemplateView
+from .utils import send_mail_template
+
+from .forms import FormForForm
+from .models import Form
+from .settings import USE_SITES, EMAIL_FAIL_SILENTLY
+from .signals import form_invalid, form_valid
+from .utils import split_choices
 
 
-from survey.models import Survey, QuestionIpip, AnswersIpipCompleted, OneAnswerIpip
-from survey.forms import FormAnswerIpip
+class FormDetail(TemplateView):
 
+    template_name = "forms/form_detail.html"
 
-@login_required
-def index(request):
-    return render(request, "survey/index.html")
+    def get_context_data(self, **kwargs):
+        context = super(FormDetail, self).get_context_data(**kwargs)
+        published = Form.objects.published(for_user=self.request.user)
+        context["form"] = get_object_or_404(published, slug=kwargs["slug"])
+        return context
 
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        login_required = context["form"].login_required
+        if login_required and not request.user.is_authenticated():
+            path = urlquote(request.get_full_path())
+            bits = (settings.LOGIN_URL, REDIRECT_FIELD_NAME, path)
+            return redirect("%s?%s=%s" % bits)
+        return self.render_to_response(context)
 
-@login_required
-def survey_ipip(request, survey_id):
-    this_survey = get_object_or_404(Survey, pk=survey_id)
-    answer_ipip_completed, created = AnswersIpipCompleted.objects.get_or_create(
-        profile=request.user.profile,
-        survey=this_survey)
-    if not answer_ipip_completed.completed:
-        questions = get_list_or_404(QuestionIpip, survey=this_survey)
-        extra = (len(questions))
-        form_ipip_formset = formset_factory(FormAnswerIpip, extra=extra)
-        mylist = []
-        if request.method == 'POST':
-            """Ainda esta incompleto!!!!
-               Esta solucao nao é dentro dos padroes do django!!!!!!!!!!!!!!!!!
-                """
-            formset = form_ipip_formset(request.POST)
-            for form in formset.data.iteritems():
-                if form[0][6:] == "-answer_value":
-                    number = int(form[0][5])
-                    one_answer = OneAnswerIpip(question=questions[number],
-                                               all_answers=answer_ipip_completed,
-                                               answer_value=int(form[1]),
-                                               )
-                    one_answer.save()
-            answer_ipip_completed.completed = True
-            answer_ipip_completed.save()
-            return HttpResponseRedirect(reverse('survey:survey_result', args=(survey_id, )))
+    def post(self, request, *args, **kwargs):
+        published = Form.objects.published(for_user=request.user)
+        form = get_object_or_404(published, slug=kwargs["slug"])
+        form_for_form = FormForForm(form, RequestContext(request),
+                                    request.POST or None,
+                                    request.FILES or None)
+        if not form_for_form.is_valid():
+            form_invalid.send(sender=request, form=form_for_form)
         else:
-            formset = form_ipip_formset()
-            for subform, question in zip(formset.forms, questions):
-                mylist.append([subform, question])
-        context = {'formset': formset, 'survey': this_survey,
-                   'questions': questions, 'mylist': mylist}
-        return render(request, "survey/questions.html", context)
-    else:
-        return HttpResponseRedirect(reverse('survey:survey_result', args=(survey_id, )))
+            # Attachments read must occur before model save,
+            # or seek() will fail on large uploads.
+            attachments = []
+            for f in form_for_form.files.values():
+                f.seek(0)
+                attachments.append((f.name, f.read()))
+            entry = form_for_form.save()
+            form_valid.send(sender=request, form=form_for_form, entry=entry)
+            self.send_emails(request, form_for_form, form, entry, attachments)
+            if not self.request.is_ajax():
+                return redirect("form_sent", slug=form.slug)
+        context = {"form": form, "form_for_form": form_for_form}
+        return self.render_to_response(context)
+
+    def render_to_response(self, context, **kwargs):
+        if self.request.is_ajax():
+            json_context = json.dumps({
+                "errors": context["form_for_form"].errors,
+                "form": context["form_for_form"].as_p(),
+                "message": context["form"].response,
+            })
+            return HttpResponse(json_context, content_type="application/json")
+        return super(FormDetail, self).render_to_response(context, **kwargs)
+
+    def send_emails(self, request, form_for_form, form, entry, attachments):
+        subject = form.email_subject
+        if not subject:
+            subject = "%s - %s" % (form.title, entry.entry_time)
+        fields = []
+        for (k, v) in form_for_form.fields.items():
+            value = form_for_form.cleaned_data[k]
+            if isinstance(value, list):
+                value = ", ".join([i.strip() for i in value])
+            fields.append((v.label, value))
+        context = {
+            "fields": fields,
+            "message": form.email_message,
+            "request": request,
+        }
+        email_from = form.email_from or settings.DEFAULT_FROM_EMAIL
+        email_to = form_for_form.email_to()
+        if email_to and form.send_email:
+            send_mail_template(subject, "form_response", email_from,
+                               email_to, context=context,
+                               fail_silently=EMAIL_FAIL_SILENTLY)
+        headers = None
+        if email_to:
+            headers = {"Reply-To": email_to}
+        email_copies = split_choices(form.email_copies)
+        if email_copies:
+            send_mail_template(subject, "form_response_copies", email_from,
+                               email_copies, context=context,
+                               attachments=attachments,
+                               fail_silently=EMAIL_FAIL_SILENTLY,
+                               headers=headers)
+
+form_detail = FormDetail.as_view()
 
 
-def survey_result(request, survey_id):
-    this_survey = get_object_or_404(Survey, pk=survey_id)
-    answer_ipip_completed = AnswersIpipCompleted.objects.filter(profile=request.user.profile,
-                                                             survey=this_survey)
-
-    if answer_ipip_completed:
-        answer_ipip_completed = answer_ipip_completed[0]
-        if answer_ipip_completed.completed:
-            questions = get_list_or_404(OneAnswerIpip, all_answers=answer_ipip_completed)
-            context = {'survey': this_survey,'questions': questions}
-            return render(request, "survey/survey.html", context)
-        else:
-            return HttpResponseRedirect(reverse('survey:survey_ipip', args=(survey_id, )))
-    else:
-        return HttpResponseRedirect(reverse('survey:survey_ipip', args=(survey_id, )))
+def form_sent(request, slug, template="forms/form_sent.html"):
+    """
+    Show the response message.
+    """
+    published = Form.objects.published(for_user=request.user)
+    context = {"form": get_object_or_404(published, slug=slug)}
+    return render_to_response(template, context, RequestContext(request))

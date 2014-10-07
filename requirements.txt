@@ -8,3 +8,6 @@ Django-bootstrap-form
 South
 django-Appconf
 Pytz
+future
+unidecode
+
