@@ -17,7 +17,7 @@ class TimeZoneField(six.with_metaclass(models.SubfieldBase, models.CharField)):
     def __init__(self, *args, **kwargs):
         defaults = {
             "max_length": 100,
-            "default": "",
+            "default": settings.TIME_ZONE,
             "choices": settings.ACCOUNT_TIMEZONES,
             "blank": True,
         }
