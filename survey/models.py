@@ -42,7 +42,7 @@ class FormManager(models.Manager):
 
 # #####################################################################
 # #
-#   Each of the models are implemented as abstract to allow for      #
+# Each of the models are implemented as abstract to allow for      #
 #   subclassing. Default concrete implementations are then defined   #
 #   at the end of this module.                                       #
 #                                                                    #
@@ -69,14 +69,15 @@ class AbstractForm(models.Model):
     publish_date = models.DateTimeField(
         _("Published from"),
         help_text=_("With published selected, won't be shown until this time"),
-                    blank=True, null=True)
+        blank=True, null=True)
     expiry_date = models.DateTimeField(
         _("Expires on"),
         help_text=_("With published selected, won't be shown after this time"),
-                    blank=True, null=True)
+        blank=True, null=True)
     login_required = models.BooleanField(_("Login required"),
-        default=False,
-        help_text=_("If checked, only logged in users can view the form"))
+                                         default=False,
+                                         help_text=_(
+                                             "If checked, only logged in users can view the form"))
     send_email = models.BooleanField(_("Send email"), default=True, help_text=
     _("If checked, the person entering the form will be sent an email"))
     email_from = models.EmailField(_("From address"), blank=True,
@@ -120,7 +121,7 @@ class AbstractForm(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ("form_detail", (), {"slug": self.slug})
+        return "survey:form_detail", (), {"slug": self.slug}
 
     def admin_links(self):
         kw = {"args": (self.id,)}

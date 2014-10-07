@@ -4,8 +4,8 @@ from future.builtins import str
 from django import template
 from django.template.loader import get_template
 
-from forms_builder.forms.forms import FormForForm
-from forms_builder.forms.models import Form
+from survey.forms import FormForForm
+from survey.models import Form
 
 
 register = template.Library()
@@ -35,7 +35,7 @@ class BuiltFormNode(template.Node):
         if not isinstance(form, Form) or (form.login_required and not
                                           user.is_authenticated()):
             return ""
-        t = get_template("forms/includes/built_form.html")
+        t = get_template("survey/forms/includes/built_form.html")
         context["form"] = form
         form_args = (form, context, post or None, files or None)
         context["form_for_form"] = FormForForm(*form_args)

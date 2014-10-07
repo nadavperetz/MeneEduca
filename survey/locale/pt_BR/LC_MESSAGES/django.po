@@ -246,11 +246,11 @@ msgstr "Mensagem"
 
 #: models.py:84
 msgid "Form"
-msgstr "Formulário"
+msgstr "Formulário IPIP"
 
 #: models.py:85
 msgid "Forms"
-msgstr "Formulários"
+msgstr "Formulários IPIP"
 
 #: models.py:116
 msgid "View form on site"

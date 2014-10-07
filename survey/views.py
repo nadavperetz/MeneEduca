@@ -12,7 +12,7 @@ from django.shortcuts import get_object_or_404, redirect, render_to_response
 from django.template import RequestContext
 from django.utils.http import urlquote
 from django.views.generic.base import TemplateView
-from .utils import send_mail_template
+#from .utils import send_mail_template
 
 from .forms import FormForForm
 from .models import Form
@@ -23,7 +23,7 @@ from .utils import split_choices
 
 class FormDetail(TemplateView):
 
-    template_name = "forms/form_detail.html"
+    template_name = "survey/forms/form_detail.html"
 
     def get_context_data(self, **kwargs):
         context = super(FormDetail, self).get_context_data(**kwargs)
