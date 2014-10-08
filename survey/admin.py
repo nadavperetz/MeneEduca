@@ -178,7 +178,7 @@ class FormAdmin(admin.ModelAdmin):
                         message = ungettext("1 entry deleted",
                                             "%(count)s entries deleted", count)
                         info(request, message % {"count": count})
-        template = "admin/forms/entries.html"
+        template = "survey/admin/forms/entries.html"
         context = {"title": _("View Entries"), "entries_form": entries_form,
                    "opts": self.model._meta, "original": form,
                    "can_delete_entries": can_delete_entries,
