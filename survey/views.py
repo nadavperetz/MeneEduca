@@ -11,6 +11,7 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render_to_response
 from django.template import RequestContext
 from django.utils.http import urlquote
+from django.views.generic import ListView
 from django.views.generic.base import TemplateView
 #from .utils import send_mail_template
 
@@ -19,6 +20,11 @@ from .models import Form
 from .settings import USE_SITES, EMAIL_FAIL_SILENTLY
 from .signals import form_invalid, form_valid
 from .utils import split_choices
+
+
+class SurveyListView(ListView):
+    model = Form
+    template_name = "survey/survey_list_view.html"
 
 
 class FormDetail(TemplateView):
