@@ -27,8 +27,12 @@ class SurveyListView(ListView):
     template_name = "survey/survey_list_view.html"
 
 
-class FormDetail(TemplateView):
+class SurveyCompletedListView(ListView):
+    model = Form
+    template_name = "survey/survey_completed_list_view.html"
 
+
+class FormDetail(TemplateView):
     template_name = "survey/forms/form_detail.html"
 
     def get_context_data(self, **kwargs):
@@ -63,9 +67,6 @@ class FormDetail(TemplateView):
                 attachments.append((f.name, f.read()))
             entry = form_for_form.save()
             form_valid.send(sender=request, form=form_for_form, entry=entry)
-            self.send_emails(request, form_for_form, form, entry, attachments)
-            if not self.request.is_ajax():
-                return redirect("form_sent", slug=form.slug)
         context = {"form": form, "form_for_form": form_for_form}
         return self.render_to_response(context)
 
@@ -78,38 +79,6 @@ class FormDetail(TemplateView):
             })
             return HttpResponse(json_context, content_type="application/json")
         return super(FormDetail, self).render_to_response(context, **kwargs)
-
-    def send_emails(self, request, form_for_form, form, entry, attachments):
-        subject = form.email_subject
-        if not subject:
-            subject = "%s - %s" % (form.title, entry.entry_time)
-        fields = []
-        for (k, v) in form_for_form.fields.items():
-            value = form_for_form.cleaned_data[k]
-            if isinstance(value, list):
-                value = ", ".join([i.strip() for i in value])
-            fields.append((v.label, value))
-        context = {
-            "fields": fields,
-            "message": form.email_message,
-            "request": request,
-        }
-        email_from = form.email_from or settings.DEFAULT_FROM_EMAIL
-        email_to = form_for_form.email_to()
-        if email_to and form.send_email:
-            send_mail_template(subject, "form_response", email_from,
-                               email_to, context=context,
-                               fail_silently=EMAIL_FAIL_SILENTLY)
-        headers = None
-        if email_to:
-            headers = {"Reply-To": email_to}
-        email_copies = split_choices(form.email_copies)
-        if email_copies:
-            send_mail_template(subject, "form_response_copies", email_from,
-                               email_copies, context=context,
-                               attachments=attachments,
-                               fail_silently=EMAIL_FAIL_SILENTLY,
-                               headers=headers)
 
 form_detail = FormDetail.as_view()
 

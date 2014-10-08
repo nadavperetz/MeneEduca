@@ -25,28 +25,26 @@ from .utils import now, slugify
 
 try:
     import xlwt
+
     XLWT_INSTALLED = True
     XLWT_DATETIME_STYLE = xlwt.easyxf(num_format_str='MM/DD/YYYY HH:MM:SS')
 except ImportError:
     XLWT_INSTALLED = False
 
-
 fs = FileSystemStorage(location=UPLOAD_ROOT)
 form_admin_filter_horizontal = ()
 form_admin_fieldsets = [
     (None, {"fields": ("title", ("status", "login_required",),
-        ("publish_date", "expiry_date",),
-        "intro", "button_text", "response")}),
-    (_("Email"), {"fields": ("send_email", "email_from", "email_copies",
-        "email_subject", "email_message")}),]
+                       ("publish_date", "expiry_date",),
+                       "intro", "button_text", "response")})]
 
 if EDITABLE_SLUGS:
     form_admin_fieldsets.append(
-            (_("Slug"), {"fields": ("slug",), "classes": ("collapse",)}))
+        (_("Slug"), {"fields": ("slug",), "classes": ("collapse",)}))
 
 if USE_SITES:
     form_admin_fieldsets.append((_("Sites"), {"fields": ("sites",),
-        "classes": ("collapse",)}))
+                                              "classes": ("collapse",)}))
     form_admin_filter_horizontal = ("sites",)
 
 
@@ -60,14 +58,13 @@ class FormAdmin(admin.ModelAdmin):
     fieldentry_model = FieldEntry
 
     inlines = (FieldAdmin,)
-    list_display = ("title", "status", "email_copies", "publish_date",
+    list_display = ("title", "status", "publish_date",
                     "expiry_date", "total_entries", "admin_links")
     list_display_links = ("title",)
-    list_editable = ("status", "email_copies", "publish_date", "expiry_date")
+    list_editable = ("status", "publish_date", "expiry_date")
     list_filter = ("status",)
     filter_horizontal = form_admin_filter_horizontal
-    search_fields = ("title", "intro", "response", "email_from",
-                     "email_copies")
+    search_fields = ("title", "intro", "response")
     radio_fields = {"status": admin.HORIZONTAL}
     fieldsets = form_admin_fieldsets
 
@@ -84,7 +81,8 @@ class FormAdmin(admin.ModelAdmin):
         Add the entries view to urls.
         """
         urls = super(FormAdmin, self).get_urls()
-        extra_urls = patterns("",
+        extra_urls = patterns(
+            "",
             url("^(?P<form_id>\d+)/entries/$",
                 self.admin_site.admin_view(self.entries_view),
                 name="form_entries"),
@@ -134,7 +132,9 @@ class FormAdmin(admin.ModelAdmin):
                     delimiter = bytes(CSV_DELIMITER, encoding="utf-8")
                     csv = writer(queue, delimiter=delimiter)
                     writerow = lambda row: csv.writerow([c.encode("utf-8")
-                        if hasattr(c, "encode") else c for c in row])
+                                                         if hasattr(c,
+                                                                    "encode") else c
+                                                         for c in row])
                 writerow(entries_form.columns())
                 for row in entries_form.rows(csv=True):
                     writerow(row)
@@ -170,7 +170,8 @@ class FormAdmin(admin.ModelAdmin):
                     except ImportError:
                         def info(request, message, fail_silently=True):
                             request.user.message_set.create(message=message)
-                    entries = self.formentry_model.objects.filter(id__in=selected)
+                    entries = self.formentry_model.objects.filter(
+                        id__in=selected)
                     count = entries.count()
                     if count > 0:
                         entries.delete()

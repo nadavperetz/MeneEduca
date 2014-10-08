@@ -1,4 +1,5 @@
 from __future__ import unicode_literals
+from datetime import datetime
 from future.builtins import str
 
 from django.core.urlresolvers import reverse
@@ -43,10 +44,10 @@ class FormManager(models.Manager):
 # #####################################################################
 # #
 # Each of the models are implemented as abstract to allow for      #
-#   subclassing. Default concrete implementations are then defined   #
-#   at the end of this module.                                       #
-#                                                                    #
-######################################################################
+# subclassing. Default concrete implementations are then defined   #
+# at the end of this module.                                       #
+# #
+# #####################################################################
 
 @python_2_unicode_compatible
 class AbstractForm(models.Model):
@@ -54,9 +55,10 @@ class AbstractForm(models.Model):
     A user-built form.
     """
 
-    sites = models.ManyToManyField(Site, editable=settings.USE_SITES,
-                                   default=[django_settings.SITE_ID],
-                                   related_name="%(app_label)s_%(class)s_forms")
+    sites = models.ManyToManyField(
+        Site, editable=settings.USE_SITES,
+        default=[django_settings.SITE_ID],
+        related_name="%(app_label)s_%(class)s_forms")
     title = models.CharField(_("Title"), max_length=50)
     slug = models.SlugField(_("Slug"), editable=settings.EDITABLE_SLUGS,
                             max_length=100, unique=True)
@@ -74,21 +76,10 @@ class AbstractForm(models.Model):
         _("Expires on"),
         help_text=_("With published selected, won't be shown after this time"),
         blank=True, null=True)
-    login_required = models.BooleanField(_("Login required"),
-                                         default=False,
-                                         help_text=_(
-                                             "If checked, only logged in users can view the form"))
-    send_email = models.BooleanField(_("Send email"), default=True, help_text=
-    _("If checked, the person entering the form will be sent an email"))
-    email_from = models.EmailField(_("From address"), blank=True,
-                                   help_text=_(
-                                       "The address the email will be sent from"))
-    email_copies = models.CharField(_("Send copies to"), blank=True,
-                                    help_text=_(
-                                        "One or more email addresses, separated by commas"),
-                                    max_length=200)
-    email_subject = models.CharField(_("Subject"), max_length=200, blank=True)
-    email_message = models.TextField(_("Message"), blank=True)
+    login_required = models.BooleanField(
+        _("Login required"),
+        default=False,
+        help_text=_("If checked, only logged in users can view the form"))
 
     objects = FormManager()
 
@@ -161,14 +152,15 @@ class AbstractField(models.Model):
     field_type = models.IntegerField(_("Type"), choices=fields.NAMES)
     required = models.BooleanField(_("Required"), default=True)
     visible = models.BooleanField(_("Visible"), default=True)
-    choices = models.CharField(_("Choices"),
-                               max_length=settings.CHOICES_MAX_LENGTH,
-                               blank=True,
-                               help_text="Comma separated options where applicable. If an option "
-                                         "itself contains commas, surround the option starting with the %s"
-                                         "character and ending with the %s character." %
-                                         (settings.CHOICES_QUOTE,
-                                          settings.CHOICES_UNQUOTE))
+    choices = models.CharField(
+        _("Choices"),
+        max_length=settings.CHOICES_MAX_LENGTH,
+        blank=True,
+        help_text="Comma separated options where applicable. If an option "
+                  "itself contains commas, surround the option starting with"
+                  " the %s character and ending with the %s character." %
+                  (settings.CHOICES_QUOTE,
+                   settings.CHOICES_UNQUOTE))
     default = models.CharField(_("Default value"), blank=True,
                                max_length=settings.FIELD_MAX_LENGTH)
     placeholder_text = models.CharField(_("Placeholder Text"), null=True,
@@ -252,8 +244,8 @@ class AbstractFieldEntry(models.Model):
         abstract = True
 
 
-###################################################
-#                                                 #
+# ##################################################
+# #
 #   Default concrete implementations are below.   #
 #                                                 #
 ###################################################

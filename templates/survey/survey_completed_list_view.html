@@ -1,0 +1,23 @@
+{% extends "survey/base.html" %}
+
+{% load url from future %}
+{% load bootstrap %}
+{% load i18n %}
+
+{% block head_title %}Survey{% endblock %}
+
+{% block body %}
+    <div class="row">
+
+        {% for object in object_list %}
+        <div class="col-md-5">
+            <h2>{{ object }}</h2>
+            <p> {{ object.intro }} </p>
+            <p><a class="btn btn-default" href="
+            {% url 'survey:form_detail' object.slug %}" role="button">
+                {% trans "Lets start!" %} &raquo;</a>
+        </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}
