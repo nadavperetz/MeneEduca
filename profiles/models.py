@@ -60,9 +60,9 @@ class Profile(models.Model):
         if not self.group.all():
             self.group.add(Group.objects.get(name="General"))
 
-
     def __str__(self):
         return "%s %s" % (self.name, self.last_name)
+
 
 
 class Course(models.Model):
@@ -72,7 +72,8 @@ class Course(models.Model):
         return self.course_name
 
 
-class Teacher(Profile):
+class Teacher(models.Model):
+    profile = models.OneToOneField(Profile)
     courses = models.ManyToManyField(Course,
                                      blank=True,
                                      null=True)
@@ -80,12 +81,13 @@ class Teacher(Profile):
     def save(self, *args, **kwargs):
         self.modified_at = timezone.now()
         super(Teacher, self).save(*args, **kwargs)
-        if not self.group.all():
-            self.group.add(Group.objects.get(name="General"))
-            self.group.add(Group.objects.get(name="Teachers"))
+        if not self.profile.group.all():
+            self.profile.group.add(Group.objects.get(name="General"))
+            self.profile.group.add(Group.objects.get(name="Teachers"))
 
 
-class Student(Profile):
+class Student(models.Model):
+    profile = models.OneToOneField(Profile)
     courses = models.ManyToManyField(Course,
                                      blank=True,
                                      null=True)
@@ -93,18 +95,20 @@ class Student(Profile):
     def save(self, *args, **kwargs):
         self.modified_at = timezone.now()
         super(Student, self).save(*args, **kwargs)
-        if not self.Group.all():
-            self.group.add(Group.objects.get(name="General"))
-            self.group.add(Group.objects.get(name="Students"))
+        if not self.profile.group.all():
+            self.profile.group.add(Group.objects.get(name="General"))
+            self.profile.group.add(Group.objects.get(name="Students"))
 
 
-class Guardian(Profile):
+class Guardian(models.Model):
     # a.k.a. Parent
-    profile = models.ForeignKey(Student)
+    profile = models.OneToOneField(Profile)
+    children = models.ManyToManyField(Student,
+                                      related_name='guardians_children')
 
     def save(self, *args, **kwargs):
         self.modified_at = timezone.now()
         super(Guardian, self).save(*args, **kwargs)
-        if not self.group.all():
-            self.group.add(Group.objects.get(name="General"))
-            self.group.add(Group.objects.get(name="Guardians"))
+        if not self.profile.group.all():
+            self.profile.group.add(Group.objects.get(name="General"))
+            self.profile.group.add(Group.objects.get(name="Guardians"))

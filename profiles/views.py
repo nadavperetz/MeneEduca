@@ -11,8 +11,7 @@ class ProfileEditView(UpdateView):
     form_class = ProfileForm
     model = Profile
 
-
-    def get_object(self):
+    def get_object(self, **kwargs):
         user = self.request.user.profile
         return user
 
