@@ -4,7 +4,6 @@
 <html lang="{{ LANGUAGE_CODE }}">
     <head>
         <meta charset="utf-8" />
-        <title>{% block head_title_base %}{% if SITE_NAME %}{{ SITE_NAME }} | {% endif %}{% block head_title %}{% endblock %}{% endblock %}</title>
         {% block viewport %}
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% endblock %}
@@ -24,9 +23,12 @@
         {% endblock %}
 
         {% block extra_head_base %}
-            {% block extra_head %}{% endblock %}
+            {% block extra_head %}
+
+            {% endblock %}
         {% endblock %}
     </head>
+
     <body class="{% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}">
         <div class="{% block wrapper_class %}{% endblock %}">
 
@@ -45,12 +47,6 @@
                             </div>
                             <div class="collapse navbar-collapse">
                                 {% block nav %}
-                                    {% comment %}
-                                        <ul class="nav">
-                                            <li><a href="#tab_one">One</a></li>
-                                            <li><a href="#tab_two">Two</a></li>
-                                        </ul>
-                                    {% endcomment %}
                                 {% endblock %}
                                 {% block account_bar %}{% include "_account_bar.html" %}{% endblock %}
                             </div>
