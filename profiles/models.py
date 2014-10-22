@@ -13,13 +13,6 @@ def avatar_upload(instance, filename):
     return os.path.join("avatars", filename)
 
 
-class Group(models.Model):
-    name = models.CharField(max_length=75)
-
-    def __str__(self):
-        return self.name
-
-
 class Profile(models.Model):
     user = models.OneToOneField(User)
     name = models.CharField(max_length=75, blank=True)
@@ -30,8 +23,6 @@ class Profile(models.Model):
 
     complete_profile = models.BooleanField(default=False)
 
-    group = models.ManyToManyField(Group,
-                                   default="General")
 
     created_at = models.DateTimeField(default=timezone.now)
     modified_at = models.DateTimeField(default=timezone.now)
@@ -57,12 +48,9 @@ class Profile(models.Model):
     def save(self, *args, **kwargs):
         self.modified_at = timezone.now()
         super(Profile, self).save(*args, **kwargs)
-        if not self.group.all():
-            self.group.add(Group.objects.get(name="General"))
 
     def __str__(self):
         return "%s %s" % (self.name, self.last_name)
-
 
 
 class Course(models.Model):
@@ -80,10 +68,6 @@ class Teacher(models.Model):
 
     def save(self, *args, **kwargs):
         self.modified_at = timezone.now()
-        super(Teacher, self).save(*args, **kwargs)
-        if not self.profile.group.all():
-            self.profile.group.add(Group.objects.get(name="General"))
-            self.profile.group.add(Group.objects.get(name="Teachers"))
 
 
 class Student(models.Model):
@@ -95,9 +79,6 @@ class Student(models.Model):
     def save(self, *args, **kwargs):
         self.modified_at = timezone.now()
         super(Student, self).save(*args, **kwargs)
-        if not self.profile.group.all():
-            self.profile.group.add(Group.objects.get(name="General"))
-            self.profile.group.add(Group.objects.get(name="Students"))
 
 
 class Guardian(models.Model):
@@ -108,7 +89,3 @@ class Guardian(models.Model):
 
     def save(self, *args, **kwargs):
         self.modified_at = timezone.now()
-        super(Guardian, self).save(*args, **kwargs)
-        if not self.profile.group.all():
-            self.profile.group.add(Group.objects.get(name="General"))
-            self.profile.group.add(Group.objects.get(name="Guardians"))

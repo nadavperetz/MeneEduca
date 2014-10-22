@@ -143,6 +143,7 @@ INSTALLED_APPS = [
     "MeneEduca",
     "profiles",
     "survey",
+    "groups",
 ]
 
 AUTH_PROFILE_MODULE = "profiles.Profile"
