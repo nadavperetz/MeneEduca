@@ -1,4 +1,5 @@
 {% load thumbnail %}
+{% load i18n %}
 
 {% if user.is_authenticated %}
 <div class="panel panel-default">
@@ -17,12 +18,15 @@
                 </li>
         </ul>
     <br>
-    <div class="panel-heading"> Salas de aula</div>
-
-    <ul class="list-group media-list">
-        <li class="list-group-item media">
-
-        </li>
-    </ul>
-</div>
+    {% if user.profile.is_student %}
+        <div class="panel-heading">{% trans "Disciplines" %}</div>
+            <ul class="list-group media-list">
+                {% for discipline in user.profile.student.groups_set %}
+                <li class="list-group-item media">
+                    {{ discipline }}
+                {% endfor %}
+                </li>
+            </ul>
+        </div>
+    {% endif %}
 {% endif %}
