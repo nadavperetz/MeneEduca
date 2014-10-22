@@ -8,14 +8,10 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 from MeneEduca.settings import COMPLETE_PROFILE_URL
 from profiles.manager import verifyFullProfile
 from agora.forms import ThreadForm, ReplyForm
-from agora.models import (
-    Forum,
-    ForumCategory,
-    ForumReply,
-    ForumThread,
-    ThreadSubscription,
-    UserPostCount
-)
+from agora.models import Forum, ForumCategory, ForumReply, ForumThread
+from agora.models import ThreadSubscription, UserPostCount
+from groups.models import Group
+
 
 
 @login_required
@@ -23,8 +19,9 @@ from agora.models import (
                   login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
 def forums(request):
 
-    user_groups = request.user.profile.group.all()
-    user_forums = Forum.objects.filter(parent__isnull=True).filter(groups=user_groups)
+    user_groups = Group.objects.filter(profiles=request.user.profile)
+    user_forums = Forum.objects.filter(parent__isnull=True,
+                                       groups=user_groups)
     user_threads = ForumThread.objects.filter(forum=user_forums)
 
     most_active_forums = user_forums.order_by("-post_count")[:5]

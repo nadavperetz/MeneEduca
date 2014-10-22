@@ -62,19 +62,14 @@ class Course(models.Model):
 
 class Teacher(models.Model):
     profile = models.OneToOneField(Profile)
-    courses = models.ManyToManyField(Course,
-                                     blank=True,
-                                     null=True)
 
     def save(self, *args, **kwargs):
         self.modified_at = timezone.now()
+        super(Teacher, self).save(*args, **kwargs)
 
 
 class Student(models.Model):
     profile = models.OneToOneField(Profile)
-    courses = models.ManyToManyField(Course,
-                                     blank=True,
-                                     null=True)
 
     def save(self, *args, **kwargs):
         self.modified_at = timezone.now()
