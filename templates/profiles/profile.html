@@ -21,9 +21,9 @@
     {% if user.profile.is_student %}
         <div class="panel-heading">{% trans "Disciplines" %}</div>
             <ul class="list-group media-list">
-                {% for discipline in user.profile.student.groups_set %}
+                {% for disci in disciplines %}
                 <li class="list-group-item media">
-                    {{ discipline }}
+                    {{ disci }}
                 {% endfor %}
                 </li>
             </ul>

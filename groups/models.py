@@ -6,7 +6,12 @@ from profiles.models import Profile
 class Group(models.Model):
     name = models.CharField(max_length=75)
     profiles = models.ManyToManyField(Profile)
-    is_discipline = models.BooleanField(default=False)
+
+    def is_discipline(self):
+        if self.discipline_set:
+            return True
+        else:
+            return False
 
     def __str__(self):
         return self.name
