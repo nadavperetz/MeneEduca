@@ -27,13 +27,6 @@
                     {% if group.is_discipline %}
                         <li class="list-group-item media">
                         {{ group }}
-                        {% for discipline in group.discipline_set.all %}
-                            {% if not discipline.group_set.is_discipline %}
-                                <li class="list-group-item text-info">
-                                {{ discipline.group_set }}
-                                </li>
-                            {% endif %}
-                        {% endfor %}
                     {% endif %}
                 {% endfor %}
             </ul>
