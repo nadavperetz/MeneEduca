@@ -62,6 +62,6 @@ class Assignment(models.Model):
              update_fields=None):
         if not self.pk:
             group = Group(name=self.title)
-            self.group = group
             group.save()
+            self.group = group
         super(Assignment, self).save()
