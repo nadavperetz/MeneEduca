@@ -6,7 +6,7 @@ from django.contrib import admin
 
 
 urlpatterns = patterns('',
-                       url(r"^$", "MeneEduca.views.index", name="index"),
+                       url(r"^$", "agora.views.forums", name="index"),
                        url(r"^admin/", include(admin.site.urls)),
                        url(r"^account/", include("account.urls")),
                        url(r"^profiles/",
