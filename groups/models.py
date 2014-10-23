@@ -4,8 +4,8 @@ from profiles.models import Profile
 
 
 class Group(models.Model):
-    name = models.CharField(max_length=75)
-    profiles = models.ManyToManyField(Profile)
+    name = models.CharField(max_length=75, unique=True)
+    profiles = models.ManyToManyField(Profile, blank=True, null=True)
 
     def is_discipline(self):
         if self.discipline_set:
@@ -15,4 +15,5 @@ class Group(models.Model):
 
     def __str__(self):
         return self.name
+
 
