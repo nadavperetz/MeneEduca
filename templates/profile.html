@@ -1,0 +1,35 @@
+{% load thumbnail %}
+{% load i18n %}
+{% load groups_tags %}
+
+{% if user.is_authenticated %}
+<div class="panel panel-default">
+    <div class="panel-heading"> {{ user.profile.name }} {{ user.profile.last_name }}</div>
+
+        <ul class="list-group media-list">
+                <li class="list-group-item media">
+                    <img class="pull-left media-object thumbnail img-rounded" src="{{ user.profile.avatar|thumbnail_url:'avatar' }}" alt="{{ user.username }}" />
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <a href="">
+                                {{ user.profile.name }} {{ user.profile.last_name }}
+                            </a>
+                        </h4>
+                    </div>
+                </li>
+        </ul>
+    <br>
+    {% if user.profile.is_student %}
+
+        <div class="panel-heading">{% trans "Disciplines" %}</div>
+            <ul class="list-group media-list">
+                {% for group in user.profile.group_set.all  %}
+                    {% if group.is_discipline %}
+                        <li class="list-group-item media">
+                        {{ group }}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+    {% endif %}

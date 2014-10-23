@@ -2,13 +2,9 @@
 
 {% block body %}
     <div class="row">
-        <div class="col-md-3">
             {% if categories %}
                 {% include "agora/_category_panel.html" %}
             {% endif %}
-            {% include "profiles/profile.html" %}
-        </div>
-        <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-heading">Most Active Forums</div>
                 {% if most_active_forums %}
@@ -123,5 +119,4 @@
                 {% endif %}
             </div>
         </div>
-    </div>
 {% endblock %}

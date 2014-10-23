@@ -31,7 +31,6 @@
 
     <body class="{% block body_class %}{% endblock %}" id="{% block body_id %}{% endblock %}">
         <div class="{% block wrapper_class %}{% endblock %}">
-
             {% block topbar_base %}
                 <header>
                     <div class="navbar navbar-default {% block navbar_class %}navbar-fixed-top{% endblock %}">
@@ -57,13 +56,7 @@
             {% endblock %}
 
             {% block body_base %}
-                <section id="content_body">
-                    <div class="container">
-                        {% include "_messages.html" %}
-                        {% block body %}
-                        {% endblock %}
-                    </div>
-                </section>
+
             {% endblock %}
 
             {% block footer_base %}

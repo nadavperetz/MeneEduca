@@ -13,7 +13,6 @@ from agora.models import ThreadSubscription, UserPostCount
 from groups.models import Group
 
 
-
 @login_required
 @user_passes_test(verifyFullProfile,
                   login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
@@ -31,7 +30,36 @@ def forums(request):
     most_active_threads = user_threads.order_by("-reply_count")
     most_viewed_threads = user_threads.order_by("-view_count")
 
-    return render_to_response("agora/forums.html", {
+    return render_to_response("agora/statics.html", {
+        "most_active_forums": most_active_forums,
+        "most_viewed_forums": most_viewed_forums,
+        "User": request.user.profile,
+        "latest_posts": latest_posts,
+        "latest_threads": latest_threads,
+        "most_active_threads": most_active_threads,
+        "most_viewed_threads": most_viewed_threads,
+    }, context_instance=RequestContext(request))
+
+
+
+@login_required
+@user_passes_test(verifyFullProfile,
+                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
+def statics(request):
+
+    user_groups = Group.objects.filter(profiles=request.user.profile)
+    user_forums = Forum.objects.filter(parent__isnull=True,
+                                       groups=user_groups)
+    user_threads = ForumThread.objects.filter(forum=user_forums)
+
+    most_active_forums = user_forums.order_by("-post_count")[:5]
+    most_viewed_forums = user_forums.order_by("-view_count")[:5]
+    latest_threads = user_threads.order_by("-last_modified")
+    latest_posts = ForumReply.objects.filter(thread=user_threads).order_by("-created")[:10]
+    most_active_threads = user_threads.order_by("-reply_count")
+    most_viewed_threads = user_threads.order_by("-view_count")
+
+    return render_to_response("agora/statics.html", {
         "most_active_forums": most_active_forums,
         "most_viewed_forums": most_viewed_forums,
         "User": request.user.profile,
@@ -68,7 +96,7 @@ def forum(request, forum_id):
         not forum.closed,
     ])
 
-    if not (forum.groups in request.user.profile.group.all()):
+    if not (forum.groups in request.user.profile.group_set.all()):
         messages.error(request, "You do not have permission to read this.")
         return HttpResponseRedirect(reverse("forums:agora_forums"))
 
@@ -119,7 +147,7 @@ def forum_thread(request, thread_id):
     posts = ForumThread.objects.posts(thread, reverse=(order_type == "desc"))
     thread.inc_views()
 
-    if not (thread.forum.groups in request.user.profile.group.all()):
+    if not (thread.forum.groups in request.user.profile.group_set.all()):
         messages.error(request, "You do not have permission to read this.")
         return HttpResponseRedirect(reverse("forums:agora_forums"))
 
@@ -171,7 +199,7 @@ def post_create(request, forum_id):
     else:
         form = ThreadForm()
 
-    if not (forum.groups in request.user.profile.group.all()):
+    if not (forum.groups in request.user.profile.group_set.all()):
         messages.error(request, "You do not have permission to post this.")
         return HttpResponseRedirect(reverse("forums:agora_forums"))
 
