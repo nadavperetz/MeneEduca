@@ -9,7 +9,6 @@ from django.contrib.auth.models import User
 
 from agora.conf import settings
 from agora.managers import ForumThreadManager
-from groups.models import Group
 
 
 # this is the glue to the activity events framework, provided as a no-op here
@@ -39,13 +38,12 @@ class ForumCategory(models.Model):
         return self.forum_set.order_by("title")
 
 
-
 class Forum(models.Model):
 
     title = models.CharField(max_length=100)
     description = models.TextField()
     closed = models.DateTimeField(null=True, blank=True)
-    groups = models.ForeignKey(Group)
+    group = models.ForeignKey('groups.Group')
 
     # must only have one of these (or neither):
     parent = models.ForeignKey("self",

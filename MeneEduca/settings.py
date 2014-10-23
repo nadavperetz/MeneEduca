@@ -136,7 +136,6 @@ INSTALLED_APPS = [
     "metron",
     "eventlog",
     "easy_thumbnails",
-    'debug_toolbar',
 
     # project
     "account",

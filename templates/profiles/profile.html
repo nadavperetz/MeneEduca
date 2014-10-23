@@ -25,11 +25,14 @@
             <ul class="list-group media-list">
                 {% for group in user.profile.group_set.all  %}
                     {% if group.is_discipline %}
-                        <li class="list-group-item media">
+                        <a class="list-group-item" href="
+                            {% url 'forums:agora_forum'  group.forum_set.first.pk %}">
                         {{ group }}
+                        </a>
                     {% endif %}
                 {% endfor %}
             </ul>
-        </div>
+
     {% endif %}
-    {% endif %}
+</div>
+{% endif %}

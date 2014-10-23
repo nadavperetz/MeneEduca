@@ -13,12 +13,16 @@ class Discipline(models.Model):
     finish_date = models.DateField(verbose_name=_(u"Finish date"),
                                    default=date(date.today().year, 12, 31))
     teacher = models.ForeignKey(Teacher)
-    group = models.ForeignKey('groups.Group')
+    group = models.ForeignKey('groups.Group', blank=True)
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
-        if not self.code:
-            self.code = self.name[:15]
+        if not self.pk:
+            if not self.code:
+                self.code = self.name[:15]
+            group = Group(name=self.name)
+            group.save()
+            self.group = group
         super(Discipline, self).save()
 
     def __str__(self):
@@ -57,6 +61,7 @@ class Assignment(models.Model):
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         if not self.pk:
-            group = Group(name='teste')
+            group = Group(name=self.title)
             self.group = group
+            group.save()
         super(Assignment, self).save()

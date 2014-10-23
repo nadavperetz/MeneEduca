@@ -20,7 +20,7 @@ def forums(request):
 
     user_groups = Group.objects.filter(profiles=request.user.profile)
     user_forums = Forum.objects.filter(parent__isnull=True,
-                                       groups=user_groups)
+                                       group=user_groups)
     user_threads = ForumThread.objects.filter(forum=user_forums)
 
     most_active_forums = user_forums.order_by("-post_count")[:5]
@@ -49,7 +49,7 @@ def statics(request):
 
     user_groups = Group.objects.filter(profiles=request.user.profile)
     user_forums = Forum.objects.filter(parent__isnull=True,
-                                       groups=user_groups)
+                                       group=user_groups)
     user_threads = ForumThread.objects.filter(forum=user_forums)
 
     most_active_forums = user_forums.order_by("-post_count")[:5]
@@ -96,7 +96,7 @@ def forum(request, forum_id):
         not forum.closed,
     ])
 
-    if not (forum.groups in request.user.profile.group_set.all()):
+    if not (forum.group in request.user.profile.group_set.all()):
         messages.error(request, "You do not have permission to read this.")
         return HttpResponseRedirect(reverse("forums:agora_forums"))
 
@@ -147,7 +147,7 @@ def forum_thread(request, thread_id):
     posts = ForumThread.objects.posts(thread, reverse=(order_type == "desc"))
     thread.inc_views()
 
-    if not (thread.forum.groups in request.user.profile.group_set.all()):
+    if not (thread.forum.group in request.user.profile.group_set.all()):
         messages.error(request, "You do not have permission to read this.")
         return HttpResponseRedirect(reverse("forums:agora_forums"))
 
@@ -199,7 +199,7 @@ def post_create(request, forum_id):
     else:
         form = ThreadForm()
 
-    if not (forum.groups in request.user.profile.group_set.all()):
+    if not (forum.group in request.user.profile.group_set.all()):
         messages.error(request, "You do not have permission to post this.")
         return HttpResponseRedirect(reverse("forums:agora_forums"))
 
