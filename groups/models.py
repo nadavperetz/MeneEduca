@@ -9,7 +9,7 @@ class Group(models.Model):
     profiles = models.ManyToManyField(Profile, blank=True, null=True)
 
     def is_discipline(self):
-        if self.discipline_set:
+        if self.discipline_set.all():
             return True
         else:
             return False

@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+from __future__ import unicode_literals
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from datetime import date
@@ -13,16 +15,17 @@ class Discipline(models.Model):
     finish_date = models.DateField(verbose_name=_(u"Finish date"),
                                    default=date(date.today().year, 12, 31))
     teacher = models.ForeignKey(Teacher)
-    group = models.ForeignKey('groups.Group', blank=True)
+    group = models.ForeignKey('groups.Group', blank=True, null=True)
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         if not self.pk:
             if not self.code:
                 self.code = self.name[:15]
-            group = Group(name=self.name)
-            group.save()
-            self.group = group
+            group_teste = Group(name=str(self.name))
+            group_teste.save()
+            print group_teste
+            self.group = group_teste
         super(Discipline, self).save()
 
     def __str__(self):

@@ -22,16 +22,21 @@
     {% if user.profile.is_student %}
 
         <div class="panel-heading">{% trans "Disciplines" %}</div>
-            <ul class="list-group media-list">
+
                 {% for group in user.profile.group_set.all  %}
                     {% if group.is_discipline %}
-                        <a class="list-group-item" href="
-                            {% url 'forums:agora_forum'  group.forum_set.first.pk %}">
-                        {{ group }}
+                        <a class="list-group-item active" href="
+                           {% url "forums:agora_forum" group.forum_set.first.pk %}">
+                            {{ group }}
                         </a>
+                        {% for assignments in group.discipline_set.first.assignment_set.all %}
+                            <a class="list-group-item" href="
+                           {% url "forums:agora_forum" assignments.group.forum_set.first.pk %}">
+                            {{ assignments.group }}
+                        </a>
+                        {% endfor %}
                     {% endif %}
                 {% endfor %}
-            </ul>
 
     {% endif %}
 </div>
