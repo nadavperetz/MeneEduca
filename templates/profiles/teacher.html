@@ -1,0 +1,13 @@
+{% load i18n %}
+<div class="panel-heading">{% trans "Disciplines" %}</div>
+
+{% for discipline in user.profile.teacher.discipline_of_teacher.all  %}
+    <a class="list-group-item active" href="{% url "forums:agora_forum" discipline.group.forum_set.first.pk %}">
+        {{ discipline.group }}
+    </a>
+    {% for assignments in discipline.assignment_set.all %}
+        <a class="list-group-item" href="{% url "forums:agora_forum" assignments.group.forum_set.first.pk %}">
+            {{ assignments.group }}
+        </a>
+    {% endfor %}
+{% endfor %}

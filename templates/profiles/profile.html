@@ -3,56 +3,31 @@
 {% load groups_tags %}
 
 {% if user.is_authenticated %}
-<div class="panel panel-default">
-    <div class="panel-heading"> {{ user.profile.name }} {{ user.profile.last_name }}</div>
+    <div class="panel panel-default">
+        <div class="panel-heading"> {{ user.profile.name }} {{ user.profile.last_name }}</div>
 
         <ul class="list-group media-list">
-                <li class="list-group-item media">
-                    <img class="pull-left media-object thumbnail img-rounded" src="{{ user.profile.avatar|thumbnail_url:'avatar' }}" alt="{{ user.username }}" />
-                    <div class="media-body">
-                        <h4 class="media-heading">
-                            <a href="">
-                                {{ user.profile.name }} {{ user.profile.last_name }}
-                            </a>
-                        </h4>
-                    </div>
-                </li>
+            <li class="list-group-item media">
+                <img class="pull-left media-object thumbnail img-rounded" src="{{ user.profile.avatar|thumbnail_url:'avatar' }}" alt="{{ user.username }}" />
+                <div class="media-body">
+                    <h4 class="media-heading">
+                        <a href="">
+                            {{ user.profile.name }} {{ user.profile.last_name }}
+                        </a>
+                    </h4>
+                </div>
+            </li>
         </ul>
-    <br>
-    {% if user.profile.is_teacher %}
-        <div class="panel-heading">{% trans "Disciplines" %}</div>
-                {% for discipline in user.profile.teacher.discipline_of_teacher.all  %}
-                    <a class="list-group-item active" href="">
-                        {{ discipline }}
-                    </a>
-                    {% for assignments in discipline.assignment_set.all %}
-                            <a class="list-group-item" href="">
-                            {{ assignments }}
-                    </a>
-                    {% endfor %}
-                {% endfor %}
+        <br>
+        {% if user.profile.is_teacher %}
+            {% include "profiles/teacher.html" %}
+        {% endif %}
+        {% if user.profile.is_student %}
+            {% include "profiles/student.html" %}
+        {% endif %}
+        {% if user.profile.is_guardian %}
+            {% include "profiles/guardian.html" %}
+        {% endif %}
 
-    {% endif %}
-    {% if user.profile.is_student %}
-
-        <div class="panel-heading">{% trans "Disciplines" %}</div>
-
-                {% for group in user.profile.group_set.all  %}
-                    {% if group.is_discipline %}
-                        <a class="list-group-item active" href="
-                           {% url "forums:agora_forum" group.forum_set.first.pk %}">
-                            {{ group }}
-                        </a>
-                        {% for assignments in group.discipline_set.first.assignment_set.all %}
-                            <a class="list-group-item" href="
-                           {% url "forums:agora_forum" assignments.group.forum_set.first.pk %}">
-                            {{ assignments.group }}
-                        </a>
-                        {% endfor %}
-                    {% endif %}
-                {% endfor %}
-
-    {% endif %}
-
-</div>
+    </div>
 {% endif %}
