@@ -14,7 +14,7 @@ class Discipline(models.Model):
                                   default=date(date.today().year, 1, 1))
     finish_date = models.DateField(verbose_name=_(u"Finish date"),
                                    default=date(date.today().year, 12, 31))
-    teacher = models.ForeignKey(Teacher)
+    teacher = models.ForeignKey(Teacher, related_name="discipline_of_teacher")
     group = models.ForeignKey('groups.Group', blank=True, null=True)
 
     def save(self, force_insert=False, force_update=False, using=None,
@@ -41,7 +41,7 @@ class Classroom(models.Model):
 
 class Grade(models.Model):
     discipline = models.ForeignKey(Discipline)
-    student = models.ForeignKey(Student)
+    student = models.ForeignKey(Student, related_name="student_grade")
     value = models.FloatField(verbose_name=_(u"Value"))
 
     def __str__(self):

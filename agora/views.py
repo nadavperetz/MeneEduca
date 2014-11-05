@@ -16,8 +16,8 @@ from groups.models import Group
 
 
 @login_required
-@user_passes_test(verifyFullProfile,
-                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
+# decorator that just call the view if the profile is complete
+@user_passes_test(verifyFullProfile, login_url=COMPLETE_PROFILE_URL)
 def forums(request):
 
     user_groups = Group.objects.filter(profiles=request.user.profile)
