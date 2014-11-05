@@ -43,10 +43,10 @@ def forums(request):
     }, context_instance=RequestContext(request))
 
 
-
 @login_required
-@user_passes_test(verifyFullProfile,
-                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
+# decorator that just call the view if the profile is complete
+@user_passes_test(verifyFullProfile, login_url=COMPLETE_PROFILE_URL)
+# decorator that just call the view if the profile is complete
 def statics(request):
 
     user_groups = Group.objects.filter(profiles=request.user.profile)
@@ -73,28 +73,28 @@ def statics(request):
 
 
 @login_required
-@user_passes_test(verifyFullProfile,
-                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
+# decorator that just call the view if the profile is complete
+@user_passes_test(verifyFullProfile, login_url=COMPLETE_PROFILE_URL)
 def forum_category(request, category_id):
 
     category = get_object_or_404(ForumCategory, id=category_id)
-    forums = category.forums.order_by("title")
+    some_forums = category.forums.order_by("title")
 
     return render_to_response("agora/category.html", {
         "category": category,
-        "MeneEduca": forums,
+        "MeneEduca": some_forums,
     }, context_instance=RequestContext(request))
 
-@login_required
-@user_passes_test(verifyFullProfile,
-                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
-def forum(request, forum_id):
 
-    forum = get_object_or_404(Forum, id=forum_id)
+@login_required
+ # decorator that just call the view if the profile is complete
+@user_passes_test(verifyFullProfile, login_url=COMPLETE_PROFILE_URL)
+def forum(request, forum_id):
+    requested_forum = get_object_or_404(Forum, id=forum_id)
     threads = forum.threads.order_by("-sticky", "-last_modified")
 
     can_create_thread = all([
-        request.user.has_perm("agora.add_forumthread", obj=forum),
+        request.user.has_perm("agora.add_forumthread", obj=requested_forum),
         not forum.closed,
     ])
 
@@ -110,8 +110,8 @@ def forum(request, forum_id):
 
 
 @login_required
-@user_passes_test(verifyFullProfile,
-                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
+# decorator that just call the view if the profile is complete
+@user_passes_test(verifyFullProfile, login_url=COMPLETE_PROFILE_URL)
 def forum_thread(request, thread_id):
     qs = ForumThread.objects.select_related("forum")
     thread = get_object_or_404(qs, id=thread_id)
@@ -164,29 +164,28 @@ def forum_thread(request, thread_id):
 
 
 @login_required
-@user_passes_test(verifyFullProfile,
-                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
+# decorator that just call the view if the profile is complete
+@user_passes_test(verifyFullProfile, login_url=COMPLETE_PROFILE_URL)
 def post_create(request, forum_id):
-
     member = request.user.profile
-    forum = get_object_or_404(Forum, id=forum_id)
+    requested_forum = get_object_or_404(Forum, id=forum_id)
 
     if forum.closed:
         messages.error(request, "This forum is closed.")
-        return HttpResponseRedirect(reverse("forums:agora_forum", args=[forum.id]))
+        return HttpResponseRedirect(reverse("forums:agora_forum", args=[requested_forum.id]))
 
-    can_create_thread = request.user.has_perm("agora.add_forumthread", obj=forum)
+    can_create_thread = request.user.has_perm("agora.add_forumthread", obj=requested_forum)
 
     if not can_create_thread:
         messages.error(request, "You do not have permission to create a thread.")
-        return HttpResponseRedirect(reverse("forums:agora_forum", args=[forum.id]))
+        return HttpResponseRedirect(reverse("forums:agora_forum", args=[requested_forum.id]))
 
     if request.method == "POST":
         form = ThreadForm(request.POST)
 
         if form.is_valid():
             thread = form.save(commit=False)
-            thread.forum = forum
+            thread.forum = requested_forum
             thread.author = request.user
             thread.save()
 
@@ -208,13 +207,13 @@ def post_create(request, forum_id):
     return render_to_response("agora/post_create.html", {
         "form": form,
         "member": member,
-        "forum": forum
+        "forum": requested_forum
     }, context_instance=RequestContext(request))
 
 
 @login_required
-@user_passes_test(verifyFullProfile,
-                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
+# decorator that just call the view if the profile is complete
+@user_passes_test(verifyFullProfile, login_url=COMPLETE_PROFILE_URL)
 def reply_create(request, thread_id):
 
     member = request.user.profile
@@ -269,8 +268,8 @@ def reply_create(request, thread_id):
 
 
 @login_required
-@user_passes_test(verifyFullProfile,
-                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
+# decorator that just call the view if the profile is complete
+@user_passes_test(verifyFullProfile, login_url=COMPLETE_PROFILE_URL)
 def post_edit(request, post_kind, post_id):
 
     if post_kind == "thread":
@@ -302,8 +301,9 @@ def post_edit(request, post_kind, post_id):
 
 
 @login_required
-@user_passes_test(verifyFullProfile,
-                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
+# decorator that just call the view if the profile is complete
+
+@user_passes_test(verifyFullProfile, login_url=COMPLETE_PROFILE_URL)
 def subscribe(request, thread_id):
     user = request.user
     thread = get_object_or_404(ForumThread, pk=thread_id)
@@ -317,8 +317,8 @@ def subscribe(request, thread_id):
 
 
 @login_required
-@user_passes_test(verifyFullProfile,
-                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
+# decorator that just call the view if the profile is complete
+@user_passes_test(verifyFullProfile, login_url=COMPLETE_PROFILE_URL)
 def unsubscribe(request, thread_id):
     user = request.user
     thread = get_object_or_404(ForumThread, pk=thread_id)
@@ -332,8 +332,8 @@ def unsubscribe(request, thread_id):
 
 
 @login_required
-@user_passes_test(verifyFullProfile,
-                  login_url=COMPLETE_PROFILE_URL)  # decorator that just call the view if the profile is complete
+# decorator that just call the view if the profile is complete
+@user_passes_test(verifyFullProfile, login_url=COMPLETE_PROFILE_URL)
 def thread_updates(request):
     subscriptions = ThreadSubscription.objects.filter(user=request.user, kind="onsite")
     subscriptions = subscriptions.select_related("thread", "user")
@@ -342,8 +342,6 @@ def thread_updates(request):
     if request.method == "POST":
         subscriptions.filter(pk=request.POST["thread_id"]).delete()
 
-    ctx = {
-        "subscriptions": subscriptions,
-    }
+    ctx = {"subscriptions": subscriptions, }
     ctx = RequestContext(request, ctx)
     return render_to_response("agora/thread_updates.html", ctx)
