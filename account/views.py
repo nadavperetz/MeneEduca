@@ -26,7 +26,6 @@ from account.utils import default_redirect
 
 
 class SignupView(FormView):
-
     template_name = "account/signup.html"
     template_name_ajax = "account/ajax/signup.html"
     template_name_email_confirmation_sent = "account/email_confirmation_sent.html"
@@ -166,15 +165,16 @@ class SignupView(FormView):
         return Account.create(request=self.request, user=self.created_user, create_email=False)
 
     def generate_username(self, form):
-        raise NotImplementedError("Unable to generate username by default. "
-            "Override SignupView.generate_username in a subclass.")
+        raise NotImplementedError(_("Unable to generate username by default. "
+                                    "Override SignupView.generate_username in a subclass."))
 
     def create_email_address(self, form, **kwargs):
         kwargs.setdefault("primary", True)
         kwargs.setdefault("verified", False)
         if self.signup_code:
             self.signup_code.use(self.created_user)
-            kwargs["verified"] = self.signup_code.email and self.created_user.email == self.signup_code.email
+            kwargs["verified"] = self.signup_code.email and \
+                                 self.created_user.email == self.signup_code.email
         return EmailAddress.objects.add_email(self.created_user, self.created_user.email, **kwargs)
 
     def send_email_confirmation(self, email_address):
@@ -248,7 +248,6 @@ class SignupView(FormView):
 
 
 class LoginView(FormView):
-
     template_name = "account/login.html"
     template_name_ajax = "account/ajax/login.html"
     form_class = LoginUsernameForm
@@ -312,7 +311,6 @@ class LoginView(FormView):
 
 
 class LogoutView(TemplateResponseMixin, View):
-
     template_name = "account/logout.html"
     redirect_field_name = "next"
 
@@ -347,7 +345,6 @@ class LogoutView(TemplateResponseMixin, View):
 
 
 class ConfirmEmailView(TemplateResponseMixin, View):
-
     http_method_names = ["get", "post"]
     messages = {
         "email_confirmed": {
@@ -418,7 +415,6 @@ class ConfirmEmailView(TemplateResponseMixin, View):
 
 
 class ChangePasswordView(FormView):
-
     template_name = "account/password_change.html"
     form_class = ChangePasswordForm
     redirect_field_name = "next"
@@ -503,7 +499,6 @@ class ChangePasswordView(FormView):
 
 
 class PasswordResetView(FormView):
-
     template_name = "account/password_reset.html"
     template_name_sent = "account/password_reset_sent.html"
     form_class = PasswordResetForm
@@ -549,7 +544,6 @@ class PasswordResetView(FormView):
 
 
 class PasswordResetTokenView(FormView):
-
     template_name = "account/password_reset_token.html"
     template_name_fail = "account/password_reset_token_fail.html"
     form_class = PasswordResetTokenForm
@@ -630,7 +624,6 @@ class PasswordResetTokenView(FormView):
 
 
 class SettingsView(LoginRequiredMixin, FormView):
-
     template_name = "account/settings.html"
     form_class = SettingsForm
     redirect_field_name = "next"
@@ -719,12 +712,12 @@ class SettingsView(LoginRequiredMixin, FormView):
 
 
 class DeleteView(LogoutView):
-
     template_name = "account/delete.html"
     messages = {
         "account_deleted": {
             "level": messages.WARNING,
-            "text": _("Your account is now inactive and your data will be expunged in the next {expunge_hours} hours.")
+            "text": _(
+                "Your account is now inactive and your data will be expunged in the next {expunge_hours} hours.")
         },
     }
 

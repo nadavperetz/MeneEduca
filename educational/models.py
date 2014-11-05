@@ -23,8 +23,8 @@ class Discipline(models.Model):
             if not self.code:
                 self.code = self.name[:15]
             group_teste = Group(name=str(self.name))
+            group_teste.add(self.teacher)
             group_teste.save()
-            print group_teste
             self.group = group_teste
         super(Discipline, self).save()
 
@@ -65,6 +65,7 @@ class Assignment(models.Model):
              update_fields=None):
         if not self.pk:
             group = Group(name=self.title)
+            group.add(self.discipline.teacher)
             group.save()
             self.group = group
         super(Assignment, self).save()

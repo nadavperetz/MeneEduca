@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
 from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext_lazy as _
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
@@ -21,8 +22,7 @@ from groups.models import Group
 def forums(request):
 
     user_groups = Group.objects.filter(profiles=request.user.profile)
-    user_forums = Forum.objects.filter(parent__isnull=True,
-                                       group=user_groups)
+    user_forums = Forum.objects.filter(parent__isnull=True, group=user_groups)
     user_threads = ForumThread.objects.filter(forum=user_forums)
 
     most_active_forums = user_forums.order_by("-post_count")[:5]
@@ -50,8 +50,7 @@ def forums(request):
 def statics(request):
 
     user_groups = Group.objects.filter(profiles=request.user.profile)
-    user_forums = Forum.objects.filter(parent__isnull=True,
-                                       group=user_groups)
+    user_forums = Forum.objects.filter(parent__isnull=True, group=user_groups)
     user_threads = ForumThread.objects.filter(forum=user_forums)
 
     most_active_forums = user_forums.order_by("-post_count")[:5]
@@ -80,10 +79,9 @@ def forum_category(request, category_id):
     category = get_object_or_404(ForumCategory, id=category_id)
     some_forums = category.forums.order_by("title")
 
-    return render_to_response("agora/category.html", {
-        "category": category,
-        "MeneEduca": some_forums,
-    }, context_instance=RequestContext(request))
+    return render_to_response("agora/category.html",
+                              {"category": category, "MeneEduca": some_forums, },
+                              context_instance=RequestContext(request))
 
 
 @login_required
@@ -91,22 +89,19 @@ def forum_category(request, category_id):
 @user_passes_test(verifyFullProfile, login_url=COMPLETE_PROFILE_URL)
 def forum(request, forum_id):
     requested_forum = get_object_or_404(Forum, id=forum_id)
-    threads = forum.threads.order_by("-sticky", "-last_modified")
+    threads = requested_forum.threads.order_by("-sticky", "-last_modified")
 
-    can_create_thread = all([
-        request.user.has_perm("agora.add_forumthread", obj=requested_forum),
-        not forum.closed,
-    ])
+    can_create_thread = all([request.user.has_perm("agora.add_forumthread", obj=requested_forum),
+                            not requested_forum.closed, ])
 
-    if not (forum.group in request.user.profile.group_set.all()):
-        messages.error(request, "You do not have permission to read this.")
+    if not (requested_forum.group in request.user.profile.group_set.all()):
+        messages.error(request, _("You do not have permission to read this."))
         return HttpResponseRedirect(reverse("forums:agora_forums"))
 
-    return render_to_response("agora/forum.html", {
-        "forum": forum,
-        "threads": threads,
-        "can_create_thread": can_create_thread,
-    }, context_instance=RequestContext(request))
+    return render_to_response("agora/forum.html",
+                              {"forum": requested_forum, "threads": threads,
+                               "can_create_thread": can_create_thread, },
+                              context_instance=RequestContext(request))
 
 
 @login_required
@@ -170,8 +165,8 @@ def post_create(request, forum_id):
     member = request.user.profile
     requested_forum = get_object_or_404(Forum, id=forum_id)
 
-    if forum.closed:
-        messages.error(request, "This forum is closed.")
+    if requested_forum.closed:
+        messages.error(request, _("This forum is closed."))
         return HttpResponseRedirect(reverse("forums:agora_forum", args=[requested_forum.id]))
 
     can_create_thread = request.user.has_perm("agora.add_forumthread", obj=requested_forum)
@@ -200,7 +195,7 @@ def post_create(request, forum_id):
     else:
         form = ThreadForm()
 
-    if not (forum.group in request.user.profile.group_set.all()):
+    if not (requested_forum.group in request.user.profile.group_set.all()):
         messages.error(request, "You do not have permission to post this.")
         return HttpResponseRedirect(reverse("forums:agora_forums"))
 
