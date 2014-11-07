@@ -17,6 +17,12 @@ class Discipline(models.Model):
     teacher = models.ForeignKey(Teacher, related_name="discipline_of_teacher")
     group = models.ForeignKey('groups.Group', blank=True, null=True)
 
+    def is_active(self):
+        if date.today() > self.finish_date:
+            return False
+        else:
+            return True
+
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         if not self.pk:
@@ -50,10 +56,21 @@ class Grade(models.Model):
         return text
 
 
+class Deadline(models.Model):
+    description = models.CharField(max_length=60, verbose_name=_(u"title"))
+    start_date = models.DateTimeField()
+    finish_date = models.DateTimeField()
+
+    def __str__(self):
+        text = str(self.description)[10]
+        return text
+
+
 class Assignment(models.Model):
     discipline = models.ForeignKey('educational.Discipline')
     title = models.CharField(max_length=60, verbose_name=_(u"title"))
     group = models.ForeignKey('groups.Group', blank=True, editable=False)
+    deadlines = models.ManyToManyField(Deadline, blank=True, null=True)
 
     def __str__(self):
         opt = " Assign. "
