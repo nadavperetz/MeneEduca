@@ -10,6 +10,8 @@ class Event(models.Model):
     profile = models.ForeignKey('profiles.Profile')
 
     def __str__(self):
-        text = str(self.description)[10]
+        text = str(self.description)[:10]
         return text
 
+    class Meta:
+        ordering = ['finish_date', 'start_date']

@@ -5,5 +5,13 @@
 {% if user.is_authenticated %}
     <div class="panel panel-default">
        <div class="panel-heading"> {% trans "Next seven days" %}</div>
+            <table class="table table-striped">
+                {% for event in user.profile.event_set.all %}
+                <tr>
+                <td>{{ event.finish_date|date:"j/M" }}</td>
+                <td>{{ event }}</td>
+                </tr>
+                {% endfor %}
+            </table>
     </div>
 {% endif %}

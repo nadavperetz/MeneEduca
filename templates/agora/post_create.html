@@ -16,7 +16,7 @@
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-12">
                     <form action="{% url "forums:agora_post_create" forum.pk %}" method="POST" class="form form-horizontal">
                         <legend>Create Post</legend>
                         {% csrf_token %}

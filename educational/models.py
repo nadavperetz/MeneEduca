@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from datetime import date, timedelta
 from django.utils import timezone
 from groups.models import Group
+from events_calendar.models import Event
 
 
 class Discipline(models.Model):
@@ -70,7 +71,6 @@ class Assignment(models.Model):
     discipline = models.ForeignKey('educational.Discipline')
     title = models.CharField(max_length=60, verbose_name=_(u"title"))
     group = models.ForeignKey('groups.Group', blank=True, editable=False)
-    deadlines = models.ManyToManyField('events_calendar.Event', blank=True, null=True)
 
     def __str__(self):
         opt = " Assign. "
@@ -86,3 +86,27 @@ class Assignment(models.Model):
             group.save()
             self.group = group
         super(Assignment, self).save()
+
+
+class Deadline(models.Model):
+    description = models.CharField(max_length=60, verbose_name=_(u"title"))
+    start_date = models.DateTimeField(default=timezone.now())
+    finish_date = models.DateTimeField()
+    assignment = models.ForeignKey(Assignment)
+    event = models.ManyToManyField('events_calendar.Event', blank=True, null=True)
+
+    def __str__(self):
+        text = str(self.description)
+        return text
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        if not self.pk:
+            super(Deadline, self).save()
+            for user in self.assignment.group.profiles.all():
+                event = Event.objects.get_or_create(description=self.description,
+                                                    start_date=self.start_date,
+                                                    finish_date=self.finish_date,
+                                                    profile=user)
+                if event[1]: #Se foi criado
+                    self.event.add(event[0]) # Adicionar
+        super(Deadline, self).save()
