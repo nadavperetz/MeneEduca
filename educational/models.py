@@ -2,7 +2,8 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from datetime import date
+from datetime import date, timedelta
+from django.utils import timezone
 from profiles.models import Teacher, Student
 from groups.models import Group
 
@@ -22,6 +23,17 @@ class Discipline(models.Model):
             return False
         else:
             return True
+
+    def get_next_assignments(self, delta=7):
+        end = timezone.now() + timedelta(days=delta)
+        assignments = Assignment.objects.filter(discipline=self)
+        deadlines = []
+        for assig in assignments:
+            filtered = assig.deadlines.filter(finish_date__gte=end)
+            deadlines.append(filtered)
+        deadlines.sort()
+        return deadlines
+
 
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
