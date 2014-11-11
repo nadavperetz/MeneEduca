@@ -1,0 +1,9 @@
+{% load thumbnail %}
+{% load i18n %}
+{% load groups_tags %}
+
+{% if user.is_authenticated %}
+    <div class="panel panel-default">
+       <div class="panel-heading"> {% trans "Next seven days" %}</div>
+    </div>
+{% endif %}

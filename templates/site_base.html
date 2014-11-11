@@ -28,13 +28,16 @@
             <div class="col-md-3">
                 {% include "profiles/profile.html" %}
             </div>
+
             <div class="col-md-7">
                 {% block body %}
                 {% endblock %}
             </div>
-          <div class="col-md-3">
+
+          <div class="col-md-2">
+              {% include "profiles/calendar.html" %}
           </div>
-         </div>
+        </div>
     </section>
 {% endblock %}
 
