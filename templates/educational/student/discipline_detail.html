@@ -1,0 +1,6 @@
+{% extends "site_base.html" %}
+
+{% block body %}
+    {{ object }}
+    {% include "agora/forum_raw.html" with forum_id=object.group.forum_set.first.pk  %}
+{% endblock %}

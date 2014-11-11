@@ -13,8 +13,11 @@ urlpatterns = patterns('',
                            include("profiles.urls", namespace='profiles')),
                        url(r"^survey/",
                            include("survey.urls", namespace='survey')),
+                       url(r"^educational/",
+                           include("educational.urls", namespace='educational')),
                        url(r"^forums/",
-                           include("agora.urls", namespace='forums'))
+                           include("agora.urls", namespace='forums')),
+
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

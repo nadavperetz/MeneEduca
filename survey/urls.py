@@ -11,3 +11,5 @@ urlpatterns = patterns(
     url(r"sent/(?P<slug>.*)/$", "form_sent", name="form_sent"),
     url(r"detail/(?P<slug>.*)/$", "form_detail", name="form_detail"),
 )
+
+

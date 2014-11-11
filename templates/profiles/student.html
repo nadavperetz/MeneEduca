@@ -8,8 +8,8 @@
             {{ group }}
         </a>
         {% for assignments in group.discipline_set.first.assignment_set.all %}
-            <a class="list-group-item" href="{% url "forums:agora_forum" assignments.group.forum_set.first.pk %}">
-                {{ assignments.group }}
+            <a class="list-group-item " href="{% url "forums:agora_forum" assignments.group.forum_set.first.pk %}">
+                &nbsp; • &nbsp;{{ assignments.group }}
             </a>
         {% endfor %}
     {% endif %}
