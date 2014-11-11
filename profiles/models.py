@@ -3,9 +3,8 @@ import uuid
 
 from django.db import models
 from django.utils import timezone
-
 from django.contrib.auth.models import User
-
+from django.utils.translation import ugettext_lazy as _
 
 def avatar_upload(instance, filename):
     ext = filename.split(".")[-1]
@@ -82,8 +81,7 @@ class Student(models.Model):
 class Guardian(models.Model):
     # a.k.a. Parent
     profile = models.OneToOneField(Profile)
-    children = models.ManyToManyField(Student,
-                                      related_name='guardians_children')
+    children = models.ManyToManyField(Student, related_name='guardians_children')
 
     def save(self, *args, **kwargs):
         self.modified_at = timezone.now()

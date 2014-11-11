@@ -4,7 +4,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from datetime import date, timedelta
 from django.utils import timezone
-from profiles.models import Teacher, Student
 from groups.models import Group
 
 
@@ -15,7 +14,7 @@ class Discipline(models.Model):
                                   default=date(date.today().year, 1, 1))
     finish_date = models.DateField(verbose_name=_(u"Finish date"),
                                    default=date(date.today().year, 12, 31))
-    teacher = models.ForeignKey(Teacher, related_name="discipline_of_teacher")
+    teacher = models.ForeignKey('profiles.Teacher', related_name="discipline_of_teacher")
     group = models.ForeignKey('groups.Group', blank=True, null=True)
 
     def is_active(self):
@@ -58,7 +57,7 @@ class Classroom(models.Model):
 
 class Grade(models.Model):
     discipline = models.ForeignKey(Discipline)
-    student = models.ForeignKey(Student, related_name="student_grade")
+    student = models.ForeignKey('profiles.Student', related_name="student_grade")
     value = models.FloatField(verbose_name=_(u"Value"))
 
     def __str__(self):
@@ -67,21 +66,11 @@ class Grade(models.Model):
         return text
 
 
-class Deadline(models.Model):
-    description = models.CharField(max_length=60, verbose_name=_(u"title"))
-    start_date = models.DateTimeField()
-    finish_date = models.DateTimeField()
-
-    def __str__(self):
-        text = str(self.description)[10]
-        return text
-
-
 class Assignment(models.Model):
     discipline = models.ForeignKey('educational.Discipline')
     title = models.CharField(max_length=60, verbose_name=_(u"title"))
     group = models.ForeignKey('groups.Group', blank=True, editable=False)
-    deadlines = models.ManyToManyField(Deadline, blank=True, null=True)
+    deadlines = models.ManyToManyField('events_calendar.Event', blank=True, null=True)
 
     def __str__(self):
         opt = " Assign. "

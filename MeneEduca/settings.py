@@ -145,6 +145,7 @@ INSTALLED_APPS = [
     "survey",
     "groups",
     'educational',
+    'events_calendar'
 ]
 
 AUTH_PROFILE_MODULE = "profiles.Profile"
