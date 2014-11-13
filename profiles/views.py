@@ -1,6 +1,7 @@
 from django.core.urlresolvers import reverse
 from django.views.generic import UpdateView
 from django.contrib import messages
+from django.conf import settings
 
 from forms import ProfileForm
 from profiles.models import Profile
@@ -26,9 +27,9 @@ class ProfileEditView(UpdateView):
         response = super(ProfileEditView, self).form_valid(form)
         email = EmailAddress.objects.get(user = self.request.user)
         profile = Profile.objects.get(user = self.request.user)
-        if not email.verified:
-            messages.warning(self.request, "You need to authenticate your email address in order to navigate \
-                                           through the site")
+        if (not settings.ACCOUNT_EMAIL_VERIFICATION) or (not email.verified):
+                messages.warning(self.request, "You need to authenticate your email address in order to navigate \
+                                               through the site")
         else:
             if not profile.complete_profile:
                 profile.complete_profile = True
