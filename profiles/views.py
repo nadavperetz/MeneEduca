@@ -2,6 +2,7 @@ from django.core.urlresolvers import reverse
 from django.views.generic import UpdateView
 from django.contrib import messages
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 
 from forms import ProfileForm
 from profiles.models import Profile
@@ -19,20 +20,17 @@ class ProfileEditView(UpdateView):
     def get_success_url(self):
         return reverse("profiles:profiles_edit")
 
-    """def post(self, request, *args, **kwargs):
-
-        return super(ProfileEditView, self).post(request, *args, **kwargs)"""
-
     def form_valid(self, form):
         response = super(ProfileEditView, self).form_valid(form)
-        email = EmailAddress.objects.get(user = self.request.user)
-        profile = Profile.objects.get(user = self.request.user)
-        if (not settings.ACCOUNT_EMAIL_VERIFICATION) or (not email.verified):
-                messages.warning(self.request, "You need to authenticate your email address in order to navigate \
-                                               through the site")
+        email = EmailAddress.objects.get(user=self.request.user)
+        profile = Profile.objects.get(user=self.request.user)
+        if settings.ACCOUNT_EMAIL_VERIFICATION and (not email.verified):
+                messages.warning(self.request, _("You need to authenticate your email address \
+                                               in order to navigate \
+                                               through the site"))
         else:
             if not profile.complete_profile:
                 profile.complete_profile = True
                 profile.save()
-            messages.success(self.request, "You successfully updated your profile.")
+            messages.success(self.request, _("You successfully updated your profile."))
         return response
