@@ -1,11 +1,11 @@
 from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
 
-indicator_choices = ((1, _('Extroversion (1)')),
-           (2, _('Agreeableness (2)')),
-           (3, _('Conscientiousness (3)')),
-           (4, _('Emotional Stability (4)')),
-           (5, _('Intellect/Imagination (5)')))
+indicator_choices = (('1', _('Extroversion (1)')),
+                     ('2', _('Agreeableness (2)')),
+                     ('3', _('Conscientiousness (3)')),
+                     ('4', _('Emotional Stability (4)')),
+                     ('5', _('Intellect/Imagination (5)')))
 
 answers = ((1, _('Very Inaccurate')),
            (2, _('Moderately Inaccurate')),
@@ -16,6 +16,7 @@ answers = ((1, _('Very Inaccurate')),
 
 indicator_weight = (('+', '+'),
                     ('-', '-'))
+
 
 class QuestionnaireModel(models.Model):
     name = models.CharField(max_length=50, verbose_name=_("Name"))
@@ -37,6 +38,7 @@ class QuestionModel(models.Model):
 
 class QuestionAnswered(models.Model):
     question = models.ForeignKey(QuestionModel)
+    answer = models.IntegerField(choices=answers)
 
 
 class QuestionnaireAnswered(models.Model):
