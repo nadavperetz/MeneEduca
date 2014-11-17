@@ -1,0 +1,19 @@
+{% extends "site_base.html" %}
+
+{% block body %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>
+           {{ object.questionnaire }}
+        </h3>
+    </div>
+     <table class="table table-striped">
+        {% for question in object.answers.all  %}
+            <tr>
+                <td>{{ question.question }}</td>
+                <td>{{ question.answer }}</td>
+            </tr>
+        {% endfor %}
+     </table>
+</div>
+{% endblock %}

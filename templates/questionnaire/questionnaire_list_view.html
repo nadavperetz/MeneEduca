@@ -1,0 +1,20 @@
+{% extends "site_base.html" %}
+
+{% block body %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>
+            My questionnaires
+        </h3>
+    </div>
+     <table class="table table-striped">
+         {% for object in object_list %}
+         <thead>
+            <tr>
+                <th><a href="{% url 'questionnaire:choice' object.pk %}">{{ object }}</a></th>
+            </tr>
+         </thead>
+        {% endfor %}
+        </table>
+</div>
+{% endblock %}
