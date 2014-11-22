@@ -6,7 +6,7 @@ from profiles.models import Profile
 
 
 class Group(models.Model):
-    name = models.CharField(max_length=75, unique=True)
+    name = models.CharField(max_length=75)
     profiles = models.ManyToManyField(Profile, blank=True, null=True)
 
     def is_discipline(self):

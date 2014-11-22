@@ -40,7 +40,8 @@ class Discipline(models.Model):
             if not self.code:
                 self.code = self.name[:15]
             group_teste = Group(name=str(self.name))
-            group_teste.add(self.teacher)
+            group_teste.save()
+            group_teste.profiles.add(self.teacher.profile)
             group_teste.save()
             self.group = group_teste
         super(Discipline, self).save()
