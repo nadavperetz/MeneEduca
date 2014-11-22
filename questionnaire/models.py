@@ -27,7 +27,7 @@ class QuestionnaireModel(models.Model):
 
 class QuestionModel(models.Model):
     question = models.CharField(max_length=50, verbose_name=_("Question"))
-    type_of_answer = models.CharField(max_length=30, verbose_name=_("Type of Factor"),
+    type_of_answer = models.CharField(max_length=30, verbose_name=_("Type of    Factor"),
                                       choices=indicator_choices)
     weight = models.CharField(max_length=1, verbose_name=_("Weight"), choices=indicator_weight)
     questionnaire = models.ForeignKey(QuestionnaireModel)
@@ -36,20 +36,23 @@ class QuestionModel(models.Model):
         return self.question
 
 
-class QuestionAnswered(models.Model):
-    question = models.ForeignKey(QuestionModel)
-    answer = models.IntegerField(choices=answers)
-
-
 class QuestionnaireAnswered(models.Model):
     questionnaire = models.ForeignKey(QuestionnaireModel)
     student = models.ForeignKey('profiles.Student')
-    answers = models.ManyToManyField(QuestionAnswered)
 
     def __str__(self):
         text = str(self.questionnaire) + " "
         text += str(self.student)
         return text
+
+
+class QuestionAnswered(models.Model):
+    question = models.ForeignKey(QuestionModel)
+    answer = models.IntegerField(choices=answers, blank=True, null=True)
+    questionnaire = models.ForeignKey(QuestionnaireAnswered)
+    answered = models.BooleanField(default=False)
+
+
 
 
 

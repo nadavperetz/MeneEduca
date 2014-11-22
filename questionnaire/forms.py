@@ -1,15 +1,11 @@
 from django import forms
 
-from profiles.models import Profile
+from .models import QuestionAnswered, QuestionnaireAnswered
+from django.forms.models import inlineformset_factory
 
 
-class QuestionnaireForm(forms.ModelForm):
-
+class QuestionnaireAnsweredForm(forms.ModelForm):
     class Meta:
-        model = Profile
-        exclude = ["user",
-                   "complete_profile",
-                   "created_at",
-                   "modified_at",
-                   "group"]
+        model = QuestionnaireAnswered
+
 

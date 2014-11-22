@@ -9,6 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 def avatar_upload(instance, filename):
     ext = filename.split(".")[-1]
     filename = "%s.%s" % (uuid.uuid4(), ext)
+    print os.path.join("avatars", filename)
     return os.path.join("avatars", filename)
 
 
