@@ -2,17 +2,22 @@ from random import shuffle
 from timeout import timeout, TimeoutError
 from math import factorial
 
+
 def bigger_groups_number(npeople, ngroups):
     return npeople % ngroups
+
 
 def smaller_groups_number(npeople, ngroups):
     return ngroups - npeople % ngroups
 
+
 def bigger_groups_size(npeople, ngroups):
     return npeople // ngroups + 1
 
+
 def smaller_groups_size(npeople, ngroups):
     return npeople // ngroups
+
 
 def bruteforce_group_formation(people, ngroups):
     groups = []
@@ -20,6 +25,7 @@ def bruteforce_group_formation(people, ngroups):
         groups.append([])
 
     return bruteforce_group_formation2(people, groups, 0)[1]
+
 
 def bruteforce_group_formation2(people, groups, count):
     npeople = len(people)
@@ -78,6 +84,7 @@ def bruteforce_group_formation2(people, groups, count):
 
     return best_solution
 
+
 def rate_group(group):
     ntraits = len(grop[0].get_traits())
     max_traits = [0.0] * ntraits
@@ -102,6 +109,7 @@ def rate_group(group):
 
     return rate
 
+
 def rate_formation(groups):
     rate = 1.0
     for group in groups:
@@ -109,6 +117,7 @@ def rate_formation(groups):
     rate **= (1.0 / len(groups))
 
     return rate
+
 
 @timeout(10)
 def random_group_formation(people, ngroups):
@@ -140,6 +149,7 @@ def random_group_formation(people, ngroups):
 
     return best_formation
 
+
 def stupid_group_formation(people, ngroups):
     npeople = len(people)
 
@@ -162,6 +172,7 @@ def stupid_group_formation(people, ngroups):
 
     return bigger_groups + smaller_groups
 
+
 def total_solutions(npeople, ngroups):
     bigger_number = bigger_groups_number(npeople, ngroups)
     smaller_number = smaller_groups_number(npeople, ngroups)
@@ -174,6 +185,7 @@ def total_solutions(npeople, ngroups):
     ans //= factorial(bigger_number) * factorial(smaller_number)
 
     return ans
+
 
 def smart_group_formation(people, ngroups):
     npeople = len(people)
