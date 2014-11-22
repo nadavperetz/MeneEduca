@@ -21,7 +21,7 @@ class Profile(models.Model):
     name = models.CharField(max_length=75, blank=True)
     last_name = models.CharField(max_length=75, blank=True)
     birth = models.DateField(blank=True, null=True)
-    avatar = models.ImageField(upload_to=avatar_upload, blank=True)
+    avatar = models.ImageField(upload_to=avatar_upload, blank=True, default='avatars/default.jpg')
     bio = models.TextField(blank=True)
     complete_profile = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
