@@ -108,6 +108,6 @@ class Deadline(models.Model):
                                                     start_date=self.start_date,
                                                     finish_date=self.finish_date,
                                                     profile=user)
-                if event[1]: #Se foi criado
-                    self.event.add(event[0]) # Adicionar
+                if event[1]:  # Se foi criado
+                    self.event.add(event[0])  # Adicionar
         super(Deadline, self).save()
