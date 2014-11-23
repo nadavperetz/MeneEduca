@@ -16,15 +16,12 @@ class QuestionnaireListView(ListView):
 
 def questionnaire_redirect(request, pk):
     questionnaire = get_object_or_404(QuestionnaireModel, pk=pk)
-    try:
-        questionnaire_answered = QuestionnaireAnswered.objects.get(
-            questionnaire=questionnaire,
-            student=request.user.profile.student)
-        if questionnaire_answered.finish:
-            return redirect('questionnaire:detail', pk=pk)
-    except ObjectDoesNotExist:
-        pass
-    finally:
+    q = QuestionnaireAnswered.objects.get(
+        questionnaire=questionnaire,
+        student=request.user.profile.student)
+    if q and q.finish:
+        return redirect('questionnaire:detail', pk=pk)
+    else:
         return redirect('questionnaire:answer', pk=pk)
 
 
@@ -72,16 +69,15 @@ def questionnaire_create_view(request, pk):
                 teste.questionnaire = questionnaire[0]
                 teste.save()
             i += 1
-        questionnaire[0].verify_and_set()
+        questionnaire[0].finsh = True
+        questionnaire[0].save()
         return HttpResponseRedirect(reverse(
             'questionnaire:detail', kwargs={'pk': questionnaire_model.pk}))
     else:
         formset = questionnaire_formset()
         for subform, question in zip(formset.forms, lista_perguntas):
             subform.instance.question = question.question
-            print subform.initial
             subform.initial = {'question': question.question}
-            print subform.initial
     context = {'questionnaire': questionnaire_model, 'formset': formset}
     return render(request, 'questionnaire/questionnaire_form.html', context)
 

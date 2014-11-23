@@ -4,7 +4,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 
 indicator_choices = (('1', _('Extroversion (1)')),
                      ('2', _('Agreeableness (2)')),
-                     ('3', _('Conscientiousness (3)')),
+                     ('3', _('Conscient iousness (3)')),
                      ('4', _('Emotional Stability (4)')),
                      ('5', _('Intellect/Imagination (5)')))
 
@@ -42,21 +42,6 @@ class QuestionnaireAnswered(models.Model):
     student = models.ForeignKey('profiles.Student')
     finish = models.BooleanField(default=False)
 
-    def verify_and_set(self):
-        for question in self.questionnaire.questionmodel_set.all():
-            answer = self.questionanswered_set.filter(question=question)[0]
-            if answer:
-                if not answer.answered:
-                    print "Resposta"
-                    print answer
-                    return False
-            else:
-                print "Pergunta"
-                print question
-                return False
-        self.finish = True
-        self.save()
-        return True
 
     def __str__(self):
         text = str(self.questionnaire) + " "
