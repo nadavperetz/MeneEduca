@@ -1,0 +1,52 @@
+{% extends "site_base.html" %}
+
+{% load i18n %}
+
+{% load bootstrap %}
+{% load url from future %}
+
+{% block head_title %}{% trans "View Discipline" %}{% endblock %}
+
+{% block body %}
+
+    <div class="table-responsive">
+        <h4>
+            {{ discipline.code}} - {{ discipline.name }}
+            <a href="{% url 'educational:discipline_update' discipline.pk %}">
+                <span class="glyphicon glyphicon-edit"></span>
+            </a>
+        </h4>
+        <table class="table">
+
+            <tbody>
+            <tr>
+                <th>{% trans "Teacher" %}</th>
+                <td>{{ discipline.teacher }}</td>
+            </tr>
+            <tr>
+                <th>{% trans "Assignments" %}</th>
+                <td><a href="#">{% trans "Add new assingment" %}</a> </td>
+            </tr>
+            {% for assignment in discipline.assignment_set.all %}
+                <tr>
+                    <th> </th>
+                    <td>{{ assignment.title }} <td>
+                </tr>
+            {% endfor %}
+             <tr>
+            <th>{% trans "Students" %}</th>
+                <td><a href="#">{% trans "Edit students" %}</a> </td>
+            </tr>
+            {% for profile in discipline.group.profiles.all %}
+                {% if profile.is_student %}
+                <tr>
+                    <th> </th>
+                    <td>{{ profile }} <td>
+                </tr>
+                {% endif %}
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div><!-- /.table-responsive -->
+{% endblock %}

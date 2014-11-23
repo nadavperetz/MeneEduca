@@ -8,12 +8,18 @@ from educational.models import Discipline
 
 class DisciplineDetailView(DetailView):
     model = Discipline
+    template_name = 'educational/teacher/discipline_detail.html'
 
 
 class DisciplineUpdateView(UpdateView):
     model = Discipline
     template_name = 'educational/teacher/disicpline_update_view.html'
     fields = ['name', 'code', 'start_date', 'finish_date', 'teacher']
+
+    def get_success_url(self):
+        print self.object.pk
+
+        return reverse('educational:discipline_detail', kwargs={'pk': self.object.pk})
 
 
 
