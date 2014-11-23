@@ -17,8 +17,6 @@ class DisciplineUpdateView(UpdateView):
     fields = ['name', 'code', 'start_date', 'finish_date', 'teacher']
 
     def get_success_url(self):
-        print self.object.pk
-
         return reverse('educational:discipline_detail', kwargs={'pk': self.object.pk})
 
 
