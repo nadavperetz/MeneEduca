@@ -1,5 +1,8 @@
+# -*- coding: utf-8 -*-
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.forms.models import inlineformset_factory
+from django.http.response import HttpResponseRedirect
 from django.views.generic import ListView, CreateView, DetailView
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -13,12 +16,15 @@ class QuestionnaireListView(ListView):
 
 def questionnaire_redirect(request, pk):
     questionnaire = get_object_or_404(QuestionnaireModel, pk=pk)
-    questionnaire_answered = QuestionnaireAnswered.objects.filter(
-        questionnaire=questionnaire,
-        student=request.user.profile)
-    if questionnaire_answered:
-        return redirect('questionnaire:detail', pk=pk)
-    else:
+    try:
+        questionnaire_answered = QuestionnaireAnswered.objects.get(
+            questionnaire=questionnaire,
+            student=request.user.profile.student)
+        if questionnaire_answered.finish:
+            return redirect('questionnaire:detail', pk=pk)
+    except ObjectDoesNotExist:
+        pass
+    finally:
         return redirect('questionnaire:answer', pk=pk)
 
 
@@ -29,21 +35,23 @@ class QuestionnaireDetailView(DetailView):
     def get_object(self, **kwargs):
         questionnaire_answered = QuestionnaireAnswered.objects.get(
             questionnaire__pk=self.kwargs['pk'],
-            student=self.request.user.profile)
+            student__profile=self.request.user.profile)
         return questionnaire_answered
 
 
 def questionnaire_create_view(request, pk):
     questionnaire_model = QuestionnaireModel.objects.get(pk=pk)
+
+    """A query abaixo busca o objeto, se nao existe, eh criado. A query devolve uma  devolve uma tupla (objeto, bool)
+       O booleano indica se foi criado (True) ou ele ja existe(False"""
     questionnaire = QuestionnaireAnswered.objects.get_or_create(
         questionnaire=questionnaire_model,
         student=request.user.profile.student)
-    """"
     if questionnaire[1]:  # Se o questionario foi criado
         for question in questionnaire_model.questionmodel_set.all():
             question_answer = QuestionAnswered(question=question,
                                                questionnaire=questionnaire[0])
-            question_answer.save()"""
+            question_answer.save()
 
     lista_perguntas = list(questionnaire[0].questionanswered_set.all())
     questionnaire_formset = inlineformset_factory(
@@ -64,7 +72,9 @@ def questionnaire_create_view(request, pk):
                 teste.questionnaire = questionnaire[0]
                 teste.save()
             i += 1
-        return reverse('questionnaire:detail')
+        questionnaire[0].verify_and_set()
+        return HttpResponseRedirect(reverse(
+            'questionnaire:detail', kwargs={'pk': questionnaire_model.pk}))
     else:
         formset = questionnaire_formset()
         for subform, question in zip(formset.forms, lista_perguntas):

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -39,6 +40,23 @@ class QuestionModel(models.Model):
 class QuestionnaireAnswered(models.Model):
     questionnaire = models.ForeignKey(QuestionnaireModel)
     student = models.ForeignKey('profiles.Student')
+    finish = models.BooleanField(default=False)
+
+    def verify_and_set(self):
+        for question in self.questionnaire.questionmodel_set.all():
+            answer = self.questionanswered_set.filter(question=question)[0]
+            if answer:
+                if not answer.answered:
+                    print "Resposta"
+                    print answer
+                    return False
+            else:
+                print "Pergunta"
+                print question
+                return False
+        self.finish = True
+        self.save()
+        return True
 
     def __str__(self):
         text = str(self.questionnaire) + " "
