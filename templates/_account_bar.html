@@ -20,7 +20,7 @@
                 <li><a href="{% url "profiles:profiles_edit" %}"><i class="fa fa-user"></i> {% trans "Edit Profile" %}</a></li>
                 <li><a href="{% url "account_settings" %}"><i class="fa fa-user"></i> {% trans "Settings" %}</a></li>
                 {% if request.user.profile.is_student %}
-                    <li><a href="{% url "questionnaire:index" %}"><i class="fa fa-user"></i>{% trans "Tests" %}</a>
+                    <li><a href="{% url "questionnaire:index" %}"><i class="fa fa-user"></i> {% trans "Tests" %}</a>
                     </li>
                 {% endif %}
                 {% if request.user.profile.is_teacher %}

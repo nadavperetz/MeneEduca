@@ -7,13 +7,8 @@
            {{ object.questionnaire }}
         </h3>
     </div>
-     <table class="table table-striped">
-        {% for question in object.answers.all  %}
-            <tr>
-                <td>{{ question.question }}</td>
-                <td>{{ question.answer }}</td>
-            </tr>
+        {% for key, value in object.values.items  %}
+        <h4>{{ key }} : {{ value }}</h4>
         {% endfor %}
-     </table>
 </div>
 {% endblock %}
