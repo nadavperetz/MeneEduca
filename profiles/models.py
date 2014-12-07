@@ -4,10 +4,8 @@ import uuid
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.utils.translation import ugettext_lazy as _
+# from django.utils.translation import ugettext_lazy as _
 
-# for personality traits
-import random
 
 def avatar_upload(instance, filename):
     ext = filename.split(".")[-1]
@@ -49,12 +47,6 @@ class Profile(models.Model):
         self.modified_at = timezone.now()
         super(Profile, self).save(*args, **kwargs)
 
-    # to-do
-    def get_traits(self):
-        traits = []
-        for x in range(5):
-            traits.append(random.uniform(0, 1))
-        return traits
 
     def __str__(self):
         return "%s %s" % (self.name, self.last_name)

@@ -50,6 +50,7 @@ class Discipline(models.Model):
         return self.code + " " + self.name
 
 
+"""
 class Classroom(models.Model):
     name = models.CharField(max_length=60, verbose_name=_(u"Name"))
 
@@ -65,7 +66,7 @@ class Grade(models.Model):
     def __str__(self):
         text = str(self.student)[:10] + " " + str(self.student)[:10] + " "
         text += "[" + str(self.value) + "]"
-        return text
+        return text"""
 
 
 class Assignment(models.Model):
