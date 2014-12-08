@@ -30,7 +30,7 @@
             {% for assignment in discipline.assignment_set.all %}
                 <tr>
                     <th> </th>
-                    <td>{{ assignment.title }} <td>
+                    <td><a href="{% url 'educational:assignment_detail' assignment.pk %}">{{ assignment.title }}</a><td>
                 </tr>
             {% endfor %}
              <tr>

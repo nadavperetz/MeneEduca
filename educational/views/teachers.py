@@ -18,6 +18,12 @@ class DisciplineUpdateView(UpdateView):
     def get_success_url(self):
         return reverse('educational:discipline_detail', kwargs={'pk': self.object.pk})
 
+
+class AssignmentDetailView(DetailView):
+    model = Assignment
+    template_name = 'educational/teacher/assignment_detail.html'
+
+
 class AssignmentCreateView(CreateView):
     model = Assignment
     template_name = 'educational/teacher/assignment_create_view.html'
