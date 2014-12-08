@@ -25,7 +25,7 @@
             </tr>
             <tr>
                 <th>{% trans "Assignments" %}</th>
-                <td><a href="#">{% trans "Add new assingment" %}</a> </td>
+                <td><a href="{% url 'educational:assignment_create' discipline_id=discipline.pk %}">{% trans "Add new assingment" %}</a> </td>
             </tr>
             {% for assignment in discipline.assignment_set.all %}
                 <tr>
