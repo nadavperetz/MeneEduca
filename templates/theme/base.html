@@ -34,19 +34,23 @@
 </head>
 <body>
 <div class="wrapper">
-    {% include "_messages.html" %}
     <div class="box">
         <div class="row row-offcanvas row-offcanvas-left">
             <!-- main right col -->
             <div class="column col-sm-12 col-xs-11" id="main">
+
                 {% block topbar_base %}
                     {% block account_bar %}
+
                         {% include "theme/_account_bar.html" %}
+
                     {% endblock %}
 
                 {% endblock %}
                 <div class="padding">
+
                     <div class="full col-sm-9">
+                    {% include "_messages.html" %}
                         <!-- content -->
                             <!-- main col left -->
                             <div class="col-sm-3">
@@ -55,8 +59,10 @@
                                 {% endblock %}
                             </div>
                         <div class="row">
+
                             <!-- main col right -->
                             <div class="col-sm-9">
+
                                 {% block body %}
                                 {% endblock %}
 
