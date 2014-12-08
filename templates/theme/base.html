@@ -3,7 +3,7 @@
 {% load url from future %}
 <html lang="{{ LANGUAGE_CODE }}">
 <head>
-TESTE
+    TESTE
     <meta charset="utf-8" />
     {% block viewport %}
         <title>Meneduca</title>
@@ -34,19 +34,40 @@ TESTE
 </head>
 <body>
 <div class="wrapper">
+    {% include "_messages.html" %}
     <div class="box">
         <div class="row row-offcanvas row-offcanvas-left">
             <!-- main right col -->
             <div class="column col-sm-12 col-xs-11" id="main">
-                <div class="{% block wrapper_class %}{% endblock %}">
-                    {% block topbar_base %}
-                        {% block account_bar %}
-                            {% include "theme/_account_bar.html" %}
-                        {% endblock %}
-
+                {% block topbar_base %}
+                    {% block account_bar %}
+                        {% include "theme/_account_bar.html" %}
                     {% endblock %}
-                </div>
 
+                {% endblock %}
+                <div class="padding">
+                    <div class="full col-sm-9">
+                        <!-- content -->
+                            <!-- main col left -->
+                            <div class="col-sm-3">
+                                {% block profile %}
+                                    {% include "profiles/profile.html" %}
+                                {% endblock %}
+                            </div>
+                        <div class="row">
+                            <!-- main col right -->
+                            <div class="col-sm-9">
+                                {% block body %}
+                                {% endblock %}
+
+
+                            </div>
+                        </div><!--/row-->
+
+
+
+                    </div><!-- /col-9 -->
+                </div><!-- /padding -->
                 {% block body_base %}
 
                 {% endblock %}
@@ -60,6 +81,7 @@ TESTE
                         </div>
                     </footer>
                 {% endblock %}
+
 
                 {% block script_base %}
                     <script src="{% block jquery_src %}{% static "pinax/js/jquery.js" %}{% endblock %}"></script>
@@ -79,6 +101,5 @@ TESTE
         </div>
     </div>
 </div>
-
 </body>
 </html>
