@@ -1,14 +1,25 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% load url from future %} 
-{% block bodyclass %}about{% endblock %}
-{% block content %}  
-{% endblock %}
+{% load url from future %}
+
 {% block profile %}
-<ul class="subnavilist">
-    <li><a href="{% url 'messages_inbox' %} ">&raquo;&nbsp;{% trans "Inbox" %}</a></li>
-    <li><a href="{% url 'messages_outbox' %} ">&raquo;&nbsp;{% trans "Sent Messages" %}</a></li>
-    <li><a href="{% url 'messages_compose' %} ">&raquo;&nbsp;{% trans "New Message" %}</a></li>
-    <li><a href="{% url 'messages_trash' %} ">&raquo;&nbsp;{% trans "Trash" %}</a></li>
-</ul>
+    <div class="panel panel-default">
+        <div class="panel-heading"><strong>{% trans "Messages" %}</strong></div>
+        <div class="list-group">
+            <a class="list-group-item account-settings" href="{% url "messages_inbox" %}">
+                &raquo;&nbsp;{% trans "Inbox" %}
+            </a>
+            <a class="list-group-item account-settings" href="{% url "messages_outbox" %}">
+                &raquo;&nbsp;{% trans "Sent Messages" %}
+            </a>
+            <a class="list-group-item account-settings" href="{% url "messages_compose" %}">
+                &raquo;&nbsp;{% trans "New Message" %}
+            </a>
+            <a class="list-group-item account-settings" href="{% url "messages_trash" %}">
+                &raquo;&nbsp;{% trans "Trash" %}
+            </a>
+
+        </div>
+    </div>
+
 {% endblock %}
