@@ -98,6 +98,7 @@ TEMPLATE_CONTEXT_PROCESSORS = [
     "django.contrib.messages.context_processors.messages",
     "account.context_processors.account",
     "pinax_theme_bootstrap.context_processors.theme",
+    "django_messages.context_processors.inbox",
 ]
 
 
