@@ -15,8 +15,8 @@ class Discipline(models.Model):
                                   default=date(date.today().year, 1, 1))
     finish_date = models.DateField(verbose_name=_(u"Finish date"),
                                    default=date(date.today().year, 12, 31))
-    teacher = models.ForeignKey('profiles.Teacher', related_name="discipline_of_teacher")
-    group = models.ForeignKey('groups.Group', blank=True, null=True)
+    teacher = models.ForeignKey('profiles.Teacher', related_name="discipline_of_teacher", verbose_name=_(u"teacher"))
+    group = models.ForeignKey('groups.Group', blank=True, null=True, verbose_name=_(u"group"))
 
     def is_active(self):
         if date.today() > self.finish_date:
@@ -70,9 +70,9 @@ class Grade(models.Model):
 
 
 class Assignment(models.Model):
-    discipline = models.ForeignKey('educational.Discipline')
+    discipline = models.ForeignKey('educational.Discipline', verbose_name=_(u"discipline"))
     title = models.CharField(max_length=60, verbose_name=_(u"title"))
-    group = models.ManyToManyField('groups.Group', blank=True, editable=False)
+    group = models.ManyToManyField('groups.Group', blank=True, editable=False, verbose_name=_(u"group"))
 
     def __str__(self):
         opt = " Assign. "
@@ -93,10 +93,10 @@ class Assignment(models.Model):
 
 class Deadline(models.Model):
     description = models.CharField(max_length=60, verbose_name=_(u"title"))
-    start_date = models.DateTimeField(default=timezone.now())
-    finish_date = models.DateTimeField()
-    assignment = models.ForeignKey(Assignment)
-    event = models.ManyToManyField('events_calendar.Event', blank=True, null=True)
+    start_date = models.DateTimeField(default=timezone.now(), verbose_name=_(u"start date"))
+    finish_date = models.DateTimeField(verbose_name=_(u"finish date"))
+    assignment = models.ForeignKey(Assignment, verbose_name=_(u"assignment"))
+    event = models.ManyToManyField('events_calendar.Event', blank=True, null=True, verbose_name=_(u"eventos"))
 
     def __str__(self):
         text = str(self.description)
@@ -116,8 +116,8 @@ class Deadline(models.Model):
 
 
 class Remainder(models.Model):
-    start_date = models.DateField(default=timezone.now())
-    finish_date = models.DateField()
-    description = models.CharField(max_length=60, verbose_name=_(u"title"))
-    forum = models.ForeignKey('agora.Forum')
+    start_date = models.DateField(default=timezone.now(), verbose_name=_(u"start date"))
+    finish_date = models.DateField(verbose_name=_(u"finish date"))
+    description = models.CharField(max_length=60, verbose_name=_(u"description"))
+    forum = models.ForeignKey('agora.Forum', verbose_name=_(u"forum"))
 

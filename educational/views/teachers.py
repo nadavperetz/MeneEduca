@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from educational.models import Discipline, Assignment
 
+
 class DisciplineDetailView(DetailView):
     model = Discipline
     template_name = 'educational/teacher/discipline_detail.html'
