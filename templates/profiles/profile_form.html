@@ -7,10 +7,16 @@
 {% block head_title %}{% trans "Edit Profile" %}{% endblock %}
 
 {% block body %}
-    <form action="" method="POST" enctype="multipart/form-data">
-        <legend>{% trans "Edit Profile" %}</legend>
-        {% csrf_token %}
-        {{ form|bootstrap }}
-        <button type="submit" class="btn btn-primary">Save</button>
-    </form>
+    <div class="panel panel-default">
+        <div class="panel-heading"><h4>Profile</h4></div>
+        <div class="panel-body">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <legend>{% trans "Edit Profile" %}</legend>
+                {% csrf_token %}
+                {{ form|bootstrap }}
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+
 {% endblock %}
