@@ -26,13 +26,13 @@
     {% for assignment in discipline.assignment_set.all %}
         <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" style="width: 100%; text-align: left" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                <li>   {{ assignment.group }}
+                <li>   {{ assignment }}
                 <span class="glyphicon glyphicon-plus pull-right "></span></li>
             </button>
             <ul class="dropdown-menu" style="width: 100%;" role="menu" aria-labelledby="dropdownMenu1">
                 <li>
-                    <a role="menuitem"  href="{% url "forums:agora_forum" assignment.group.forum_set.first.pk %}">
-                        {% trans "Go to Forum" %}
+                    <a role="menuitem"  href="#">
+                        {% trans "View groups" %}
                     </a>
                 </li>
                 <li>

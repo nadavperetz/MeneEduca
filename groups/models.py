@@ -1,13 +1,12 @@
 # -*- encoding: utf-8 -*-
 from django.db import models
 from agora.models import Forum
-from profiles.models import Profile
 # Create your models here.
 
 
 class Group(models.Model):
     name = models.CharField(max_length=75)
-    profiles = models.ManyToManyField(Profile, blank=True, null=True)
+    profiles = models.ManyToManyField("profiles.Profile", blank=True, null=True)
 
     def is_discipline(self):
         if self.discipline_set.all():

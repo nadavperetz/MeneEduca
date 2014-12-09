@@ -72,7 +72,7 @@ class Grade(models.Model):
 class Assignment(models.Model):
     discipline = models.ForeignKey('educational.Discipline')
     title = models.CharField(max_length=60, verbose_name=_(u"title"))
-    group = models.ForeignKey('groups.Group', blank=True, editable=False)
+    group = models.ManyToManyField('groups.Group', blank=True, editable=False)
 
     def __str__(self):
         opt = " Assign. "

@@ -1,16 +1,15 @@
 {% load i18n %}
-
 <div class="panel-heading">{% trans "Disciplines" %}</div>
 
-{% for group in user.profile.group_set.all  %}
-    {% if group.is_discipline %}
-        <a class="list-group-item active" href="{% url "forums:agora_forum" group.forum_set.first.pk %}">
-            {{ group }}
+
+{% for discipline, assignments in user.profile.discipline_and_groups.items  %}
+        <a class="list-group-item active" href="{% url "forums:agora_forum" discipline.forum_set.first.pk %}">
+            {{ discipline }}
         </a>
-        {% for assignments in group.discipline_set.first.assignment_set.all %}
-            <a class="list-group-item " href="{% url "forums:agora_forum" assignments.group.forum_set.first.pk %}">
-                &nbsp; • &nbsp;{{ assignments.group }}
+        {% for assignment in assignments %}
+            <a class="list-group-item " href="{% url "forums:agora_forum" assignment.forum_set.first.pk %}">
+                &nbsp; • &nbsp;{{ assignment }}
             </a>
         {% endfor %}
-    {% endif %}
+
 {% endfor %}

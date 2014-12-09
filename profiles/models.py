@@ -4,7 +4,9 @@ import uuid
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-# from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
+
+from educational.models import Discipline
 
 
 def avatar_upload(instance, filename):
@@ -43,13 +45,31 @@ class Profile(models.Model):
         else:
             return False
 
-    def save(self, *args, **kwargs):
-        self.modified_at = timezone.now()
-        super(Profile, self).save(*args, **kwargs)
+    def discipline_and_groups(self):
+        returning = {}
+        if self.is_student():
+            disciplines = Discipline.objects.filter(group__profiles=self)
+            # print disciplines
+            for discipline in disciplines:
+                aux = []
+                assignments = discipline.assignment_set.all()
+                for assign in assignments:
+                    # print assign
+                    group = assign.group.filter(profiles=self)
+                    if group:
+                        aux.append(group.first())
+                # print aux
+                returning[discipline.group] = aux
+            # print returning
+        return returning
 
 
     def __str__(self):
         return "%s %s" % (self.name, self.last_name)
+
+    def save(self, *args, **kwargs):
+        self.modified_at = timezone.now()
+        super(Profile, self).save(*args, **kwargs)
 
 
 class Course(models.Model):
