@@ -1,0 +1,570 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-09 19:56-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: 404.html:5
+msgid "Not Found"
+msgstr ""
+
+#: 404.html:9
+msgid "Page not found"
+msgstr ""
+
+#: 404.html:10
+msgid "We're sorry but that page could not be found."
+msgstr ""
+
+#: 500.html:5
+msgid "Server Error"
+msgstr ""
+
+#: 500.html:9
+msgid "Something went wrong"
+msgstr ""
+
+#: 500.html:10
+msgid ""
+"We're sorry but a server error has occurred. We've been notified and will "
+"look into it as soon as possible."
+msgstr ""
+
+#: account/base.html:10
+msgid "Profile"
+msgstr ""
+
+#: account/base.html:13 educational/teacher/disicpline_update_view.html:8
+#: profiles/profile_form.html:7 profiles/profile_form.html.py:14
+#: theme/_account_bar.html:37
+msgid "Edit Profile"
+msgstr ""
+
+#: account/base.html:18 account/password_change.html:14
+#: account/settings.html:14
+msgid "Account"
+msgstr ""
+
+#: account/base.html:21 account/settings.html:18 theme/_account_bar.html:38
+msgid "Settings"
+msgstr ""
+
+#: account/base.html:24 account/password_change.html:9
+#: account/password_change.html.py:18
+msgid "Change password"
+msgstr ""
+
+#: account/base.html:27
+msgid "Delete account"
+msgstr ""
+
+#: account/delete.html:14
+msgid "Deactivate Account"
+msgstr ""
+
+#: account/delete.html:16
+msgid ""
+"If you go ahead and deactivate your account, you may lose <b>all</b> of your "
+"information "
+msgstr ""
+
+#: account/delete.html:20
+msgid "Deactivate account"
+msgstr ""
+
+#: account/email_confirm.html:6 account/email_confirm.html.py:12
+msgid "Confirm Email"
+msgstr ""
+
+#: account/email_confirm.html:15
+#, python-format
+msgid "Confirm email address <b>%(email)s</b>?"
+msgstr ""
+
+#: account/email_confirm.html:16
+msgid "Confirm"
+msgstr ""
+
+#: account/email_confirmation_sent.html:6
+#: account/email_confirmation_sent.html:9
+msgid "Confirm your email address"
+msgstr ""
+
+#: account/email_confirmation_sent.html:11
+#, python-format
+msgid ""
+"We have sent you an email to <b>%(email)s</b> for verification. Follow the "
+"link provided to finalize the signup process. If you do not receive it "
+"within a few minutes, contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s"
+"\">%(THEME_CONTACT_EMAIL)s</a>."
+msgstr ""
+
+#: account/email_confirmed.html:6 account/email_confirmed.html.py:9
+msgid "Email confirmed"
+msgstr ""
+
+#: account/email_confirmed.html:10
+#, python-format
+msgid "You have confirmed <b>%(email)s</b>"
+msgstr ""
+
+#: account/login.html:7 account/login.html.py:20 theme/_account_bar.html:57
+msgid "Log in"
+msgstr ""
+
+#: account/login.html:13
+msgid "Log in to an existing account"
+msgstr ""
+
+#: account/login.html:19
+msgid "Forgot your password?"
+msgstr ""
+
+#: account/logout.html:6 account/logout.html.py:12 account/logout.html:16
+#: theme/_account_bar.html:52
+msgid "Log out"
+msgstr ""
+
+#: account/logout.html:15
+msgid "Are you sure you want to log out?"
+msgstr ""
+
+#: account/password_change.html:22 account/password_reset_token.html:17
+msgid "Save"
+msgstr ""
+
+#: account/password_reset.html:8 account/password_reset.html.py:16
+msgid "Password reset"
+msgstr ""
+
+#: account/password_reset.html:17
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll send you "
+"an email allowing you to reset it."
+msgstr ""
+
+#: account/password_reset.html:23
+msgid "Reset my password"
+msgstr ""
+
+#: account/password_reset.html:30
+#, python-format
+msgid ""
+"If you have any trouble resetting your password, contact us at <a href="
+"\"mailto:%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</a>."
+msgstr ""
+
+#: account/password_reset_sent.html:7 account/password_reset_sent.html:10
+msgid "Password reset sent"
+msgstr ""
+
+#: account/password_reset_sent.html:12
+#, python-format
+msgid ""
+"We have sent you an email. If you do not receive it within a few minutes, "
+"try resending or contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
+"%(THEME_CONTACT_EMAIL)s</a>."
+msgstr ""
+
+#: account/password_reset_sent.html:21
+msgid "Resend"
+msgstr ""
+
+#: account/password_reset_sent.html:26
+#, python-format
+msgid ""
+"We have resent the password email. If you do not receive it within a few "
+"minutes, contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
+"%(THEME_CONTACT_EMAIL)s</a>."
+msgstr ""
+
+#: account/password_reset_token.html:7 account/password_reset_token.html:13
+msgid "Set your new password"
+msgstr ""
+
+#: account/password_reset_token_fail.html:6
+#: account/password_reset_token_fail.html:9
+msgid "Bad token"
+msgstr ""
+
+#: account/password_reset_token_fail.html:11
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(url)s\">new password reset</a>."
+msgstr ""
+
+#: account/signup.html:7 account/signup.html.py:13 account/signup.html:19
+#: account/signup_closed.html:6 theme/_account_bar.html:58
+msgid "Sign up"
+msgstr ""
+
+#: account/signup_closed.html:9
+msgid "This site is in private beta"
+msgstr ""
+
+#: account/signup_closed.html:12
+msgid " \"Your signup code...\"  "
+msgstr ""
+
+#: account/email/email_confirmation_message.txt:1
+#, python-format
+msgid ""
+"A user on %(site_name)s has created an account using this email address.\n"
+"\n"
+"To confirm this email address, go to %(activate_url)s\n"
+"\n"
+"If you did not sign up for this site, you can ignore this message.\n"
+msgstr ""
+
+#: account/email/email_confirmation_subject.txt:1
+#, python-format
+msgid "Confirm email address for %(site_name)s"
+msgstr ""
+
+#: account/email/password_reset.txt:1
+#, python-format
+msgid ""
+"You're receiving this email because you or someone else has requested a "
+"password for your user account at %(site_name)s.\n"
+"It can be safely ignored if you did not request a password reset. Click the "
+"link below to reset your password.\n"
+"\n"
+"%(password_reset_url)s\n"
+msgstr ""
+
+#: account/email/password_reset_subject.txt:1
+#, python-format
+msgid "[%(site_name)s] Password reset"
+msgstr ""
+
+#: agora/forum_raw.html:8
+msgid "Make a New Post"
+msgstr ""
+
+#: agora/forum_raw.html:11
+msgid "closed"
+msgstr ""
+
+#: agora/forum_raw.html:49
+msgid "Thread Title"
+msgstr ""
+
+#: agora/forum_raw.html:50
+msgid "Last Post"
+msgstr ""
+
+#: agora/forum_raw.html:51
+msgid "Replies"
+msgstr ""
+
+#: agora/forum_raw.html:52
+msgid "Views"
+msgstr ""
+
+#: agora/forum_raw.html:74
+msgid "There are currently no threads."
+msgstr ""
+
+#: agora/reminders/_forum_messages.html:5
+#: agora/reminders/_statics_messages.html:3
+msgid "Reminders"
+msgstr ""
+
+#: agora/reminders/_forum_messages.html:8
+msgid "Description"
+msgstr ""
+
+#: agora/reminders/_forum_messages.html:9 django_messages/trash.html:16
+#: django_messages/view.html:16
+msgid "Date"
+msgstr ""
+
+#: django_messages/base.html:7 theme/_account_bar.html:28
+msgid "Messages"
+msgstr ""
+
+#: django_messages/base.html:10 django_messages/inbox.html:8
+#: django_messages/new_message.html:13
+msgid "Inbox"
+msgstr ""
+
+#: django_messages/base.html:13 django_messages/outbox.html:8
+msgid "Sent Messages"
+msgstr ""
+
+#: django_messages/base.html:16
+msgid "New Message"
+msgstr ""
+
+#: django_messages/base.html:19
+msgid "Trash"
+msgstr ""
+
+#: django_messages/compose.html:7
+msgid "Compose Message"
+msgstr ""
+
+#: django_messages/compose.html:13
+msgid "Send"
+msgstr ""
+
+#: django_messages/inbox.html:14 django_messages/trash.html:14
+#: django_messages/view.html:14
+msgid "Sender"
+msgstr ""
+
+#: django_messages/inbox.html:15 django_messages/outbox.html:16
+#: django_messages/trash.html:15 django_messages/view.html:12
+msgid "Subject"
+msgstr ""
+
+#: django_messages/inbox.html:16
+msgid "Received"
+msgstr ""
+
+#: django_messages/inbox.html:17 django_messages/outbox.html:18
+#: django_messages/trash.html:17
+msgid "Action"
+msgstr ""
+
+#: django_messages/inbox.html:29 django_messages/outbox.html:28
+#: django_messages/trash.html:26 django_messages/view.html:17
+msgid "DATETIME_FORMAT"
+msgstr ""
+
+#: django_messages/inbox.html:30 django_messages/outbox.html:29
+msgid "delete"
+msgstr ""
+
+#: django_messages/inbox.html:36 django_messages/outbox.html:35
+#: django_messages/trash.html:33
+msgid "No messages."
+msgstr ""
+
+#: django_messages/new_message.html:4
+#, python-format
+msgid ""
+"Hello %(recipient)s,\n"
+"\n"
+"    you received a private message from %(sender)s with\n"
+"    the following contents:"
+msgstr ""
+
+#: django_messages/new_message.html:12
+#, python-format
+msgid "Sent from %(site_url)s"
+msgstr ""
+
+#: django_messages/new_message.html:14 django_messages/view.html:24
+msgid "Reply"
+msgstr ""
+
+#: django_messages/outbox.html:15 django_messages/view.html:18
+msgid "Recipient"
+msgstr ""
+
+#: django_messages/outbox.html:17
+msgid "Sent"
+msgstr ""
+
+#: django_messages/trash.html:8
+msgid "Deleted Messages"
+msgstr ""
+
+#: django_messages/trash.html:27
+msgid "undelete"
+msgstr ""
+
+#: django_messages/trash.html:36
+msgid ""
+"Deleted Messages are removed from the trash at unregular intervals, don't "
+"rely on this feature for long-time storage."
+msgstr ""
+
+#: django_messages/view.html:8
+msgid "View Messag"
+msgstr ""
+
+#: django_messages/view.html:26
+msgid "Delete"
+msgstr ""
+
+#: educational/teacher/assignment_create_view.html:8
+#: educational/teacher/assignment_create_view.html:13
+msgid "Create Assignment"
+msgstr ""
+
+#: educational/teacher/assignment_detail.html:8 profiles/teacher.html:40
+msgid "View Assignment"
+msgstr ""
+
+#: educational/teacher/discipline_detail.html:8 profiles/teacher.html:20
+msgid "View Discipline"
+msgstr ""
+
+#: educational/teacher/discipline_detail.html:23
+msgid "Teacher"
+msgstr ""
+
+#: educational/teacher/discipline_detail.html:27
+msgid "Assignments"
+msgstr ""
+
+#: educational/teacher/discipline_detail.html:28
+msgid "Add new assingment"
+msgstr ""
+
+#: educational/teacher/discipline_detail.html:37
+msgid "Students"
+msgstr ""
+
+#: educational/teacher/discipline_detail.html:38
+msgid "Edit students"
+msgstr ""
+
+#: educational/teacher/disicpline_update_view.html:12
+msgid "Edit Discipline"
+msgstr ""
+
+#: pagination/builtin_pagination.html:10 pagination/builtin_pagination.html:13
+#: pagination/django_pagination_pagination.html:9
+#: pagination/django_pagination_pagination.html:12
+msgid "Previous"
+msgstr ""
+
+#: pagination/builtin_pagination.html:19 pagination/builtin_pagination.html:21
+#: pagination/django_pagination_pagination.html:22
+#: pagination/django_pagination_pagination.html:24
+msgid "Next"
+msgstr ""
+
+#: profiles/calendar.html:7
+msgid "Next seven days"
+msgstr ""
+
+#: profiles/student.html:2 profiles/teacher.html:5
+msgid "Disciplines"
+msgstr ""
+
+#: profiles/teacher.html:15
+msgid "Go to Forum"
+msgstr ""
+
+#: profiles/teacher.html:35
+msgid "View groups"
+msgstr ""
+
+#: questionnaire/questionnaire_form.html:10
+msgid "Questionnaire"
+msgstr ""
+
+#: survey/base.html:6
+msgid "Surveys"
+msgstr ""
+
+#: survey/base.html:10 survey/forms/form_detail.html:7
+msgid "Survey"
+msgstr ""
+
+#: survey/base.html:14
+msgid "Incompleted"
+msgstr ""
+
+#: survey/base.html:17
+msgid "Completed"
+msgstr ""
+
+#: survey/survey_completed_list_view.html:18
+msgid "Lets start!"
+msgstr ""
+
+#: survey/admin/forms/change_form.html:10 survey/admin/forms/entries.html:117
+msgid "View entries"
+msgstr ""
+
+#: survey/admin/forms/change_form.html:13
+msgid "History"
+msgstr ""
+
+#: survey/admin/forms/change_form.html:17
+msgid "View on site"
+msgstr ""
+
+#: survey/admin/forms/entries.html:62
+msgid "No entries selected"
+msgstr ""
+
+#: survey/admin/forms/entries.html:65
+msgid "Delete selected entries?"
+msgstr ""
+
+#: survey/admin/forms/entries.html:74
+msgid "Home"
+msgstr ""
+
+#: survey/admin/forms/entries.html:88
+msgid "Field"
+msgstr ""
+
+#: survey/admin/forms/entries.html:89
+msgid "Include"
+msgstr ""
+
+#: survey/admin/forms/entries.html:90
+msgid "Filter by"
+msgstr ""
+
+#: survey/admin/forms/entries.html:108
+msgid "All"
+msgstr ""
+
+#: survey/admin/forms/entries.html:116 survey/admin/forms/entries.html:157
+msgid "Back to form"
+msgstr ""
+
+#: survey/admin/forms/entries.html:118
+msgid "Export CSV"
+msgstr ""
+
+#: survey/admin/forms/entries.html:120
+msgid "Export XLS"
+msgstr ""
+
+#: survey/admin/forms/entries.html:124
+msgid "Entries"
+msgstr ""
+
+#: survey/admin/forms/entries.html:158
+msgid "Delete selected"
+msgstr ""
+
+#: survey/admin/forms/entries.html:162
+msgid "No entries to display"
+msgstr ""
+
+#: theme/_account_bar.html:40
+msgid "Tests"
+msgstr ""
+
+#: theme/_account_bar.html:44
+msgid "Teacher area"
+msgstr ""
+
+#: theme/_account_bar.html:48
+msgid "Admin"
+msgstr ""

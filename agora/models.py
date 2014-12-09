@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 import datetime
 import json
-from datetime import date
 
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -12,7 +11,7 @@ from django.contrib.auth.models import User
 
 from agora.conf import settings
 from agora.managers import ForumThreadManager
-
+from django.utils.translation import ugettext_lazy as _
 
 # this is the glue to the activity events framework, provided as a no-op here
 def issue_update(kind, **kwargs):
@@ -20,8 +19,8 @@ def issue_update(kind, **kwargs):
 
 
 class ForumCategory(models.Model):
-    title = models.CharField(max_length=100)
-    parent = models.ForeignKey("self", null=True, blank=True, related_name="subcategories")
+    title = models.CharField(max_length=100, verbose_name=_(u"title"))
+    parent = models.ForeignKey("self", null=True, blank=True, related_name="subcategories", verbose_name=_(u"parent"))
 
     # @@@ total descendant forum count?
     # @@@ make group-aware
@@ -41,30 +40,24 @@ class ForumCategory(models.Model):
 
 
 class Forum(models.Model):
-    title = models.CharField(max_length=100)
-    description = models.TextField()
-    closed = models.DateTimeField(null=True, blank=True)
-    group = models.ForeignKey('groups.Group')
+    title = models.CharField(max_length=100, verbose_name=_(u"title"))
+    description = models.TextField(verbose_name=_(u"description"))
+    closed = models.DateTimeField(null=True, blank=True, verbose_name=_(u"closed"))
+    group = models.ForeignKey('groups.Group', verbose_name=_(u"group"))
 
     # must only have one of these (or neither):
     parent = models.ForeignKey("self", null=True,
-                               blank=True, related_name="subforums")
+                               blank=True, related_name="subforums", verbose_name=_(u"parent"))
     category = models.ForeignKey(ForumCategory, null=True,
-                                 blank=True, on_delete=models.SET_NULL)
+                                 blank=True, on_delete=models.SET_NULL, verbose_name=_(u"category"))
 
+    last_modified = models.DateTimeField(default=timezone.now, editable=False, verbose_name=_(u"last modified"))
+    last_thread = models.ForeignKey("ForumThread", null=True,
+                                    editable=False, on_delete=models.SET_NULL,
+                                    related_name="+", verbose_name=_(u"last thread"))
 
-    last_modified = models.DateTimeField(default=timezone.now, editable=False)
-    last_thread = models.ForeignKey(
-
-        "ForumThread",
-        null=True,
-        editable=False,
-        on_delete=models.SET_NULL,
-        related_name="+"
-    )
-
-    view_count = models.IntegerField(default=0, editable=False)
-    post_count = models.IntegerField(default=0, editable=False)
+    view_count = models.IntegerField(default=0, editable=False, verbose_name=_(u"view count"))
+    post_count = models.IntegerField(default=0, editable=False, verbose_name=_(u"post count"))
 
     @property
     def have_remainders(self):
@@ -240,10 +233,10 @@ class Forum(models.Model):
 
 
 class ForumPost(models.Model):
-    author = models.ForeignKey(User, related_name="%(app_label)s_%(class)s_related")
-    content = models.TextField()
-    content_html = models.TextField()
-    created = models.DateTimeField(default=timezone.now, editable=False)
+    author = models.ForeignKey(User, related_name="%(app_label)s_%(class)s_related", verbose_name=_(u"author"))
+    content = models.TextField(verbose_name=_(u"content"))
+    content_html = models.TextField(verbose_name=_(u"content html"))
+    created = models.DateTimeField(default=timezone.now, editable=False, verbose_name=_(u"created"))
 
     class Meta:
         abstract = True
@@ -264,23 +257,23 @@ class ForumThread(ForumPost):
     # used for code that needs to know the kind of post this object is.
     kind = "thread"
 
-    forum = models.ForeignKey(Forum, related_name="threads")
-    title = models.CharField(max_length=100)
+    forum = models.ForeignKey(Forum, related_name="threads", verbose_name=_(u"forum"))
+    title = models.CharField(max_length=100, verbose_name=_(u"title"))
     last_modified = models.DateTimeField(
         default=timezone.now,
-        editable=False
+        editable=False, verbose_name=_(u"last modified")
     )
     last_reply = models.ForeignKey(
         "ForumReply",
         null=True,
         editable=False,
-        on_delete=models.SET_NULL
+        on_delete=models.SET_NULL, verbose_name=_(u"last reply")
     )
-    sticky = models.IntegerField(default=0)
-    closed = models.DateTimeField(null=True, blank=True)
-    view_count = models.IntegerField(default=0, editable=False)
-    reply_count = models.IntegerField(default=0, editable=False)
-    subscriber_count = models.IntegerField(default=0, editable=False)
+    sticky = models.IntegerField(default=0, verbose_name=_(u"sticky"))
+    closed = models.DateTimeField(null=True, blank=True, verbose_name=_(u"closed"))
+    view_count = models.IntegerField(default=0, editable=False, verbose_name=_(u"view count"))
+    reply_count = models.IntegerField(default=0, editable=False, verbose_name=_(u"reply count"))
+    subscriber_count = models.IntegerField(default=0, editable=False, verbose_name=_(u"subscriber count"))
 
     objects = ForumThreadManager()
 
@@ -354,7 +347,7 @@ class ForumReply(ForumPost):
     # used for code that needs to know the kind of post this object is.
     kind = "reply"
 
-    thread = models.ForeignKey(ForumThread, related_name="replies")
+    thread = models.ForeignKey(ForumThread, related_name="replies", verbose_name=_(u"thread"))
 
     class Meta:
         verbose_name = "forum reply"
@@ -362,8 +355,8 @@ class ForumReply(ForumPost):
 
 
 class UserPostCount(models.Model):
-    user = models.ForeignKey(User, related_name="post_count")
-    count = models.IntegerField(default=0)
+    user = models.ForeignKey(User, related_name="post_count", verbose_name=_(u"user"))
+    count = models.IntegerField(default=0, verbose_name=_(u"count"))
 
     @classmethod
     def calculate(cls):
@@ -383,9 +376,9 @@ class UserPostCount(models.Model):
 
 
 class ThreadSubscription(models.Model):
-    thread = models.ForeignKey(ForumThread, related_name="subscriptions")
-    user = models.ForeignKey(User, related_name="forum_subscriptions")
-    kind = models.CharField(max_length=15)
+    thread = models.ForeignKey(ForumThread, related_name="subscriptions", verbose_name=_(u"thread"))
+    user = models.ForeignKey(User, related_name="forum_subscriptions", verbose_name=_(u"user"))
+    kind = models.CharField(max_length=15, verbose_name=_(u"kind"))
 
     class Meta:
         unique_together = [("thread", "user", "kind")]
