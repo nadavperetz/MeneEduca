@@ -1,8 +1,20 @@
 {% load i18n %}
-<div class="panel panel-default">
-    <div class="panel-heading">{% trans "Reminders" %}</div>
-        <ul></ul>
-        <ul>Aviso importante 1</ul>
-        <ul>Aviso importante 2</ul>
+{% if forum.have_remainders %}
+    <div class="panel panel-default">
 
-</div>
+        <div class="panel-heading">{% trans "Reminders" %}</div>
+        <table class="table">
+            <tr>
+                <th>{% trans "Description" %}</th>
+                <th >{% trans "Date" %}</th>
+            </tr>
+            {% for remainder in forum.get_active_remainders %}
+                <tr>
+                    <td>{{ remainder.description }}</td>
+                    <td >{{ remainder.finish_date|date:'d/m/Y' }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+{% endif %}

@@ -113,3 +113,11 @@ class Deadline(models.Model):
                 if event[1]:  # Se foi criado
                     self.event.add(event[0])  # Adicionar
         super(Deadline, self).save()
+
+
+class Remainder(models.Model):
+    start_date = models.DateField(default=timezone.now())
+    finish_date = models.DateField()
+    description = models.CharField(max_length=60, verbose_name=_(u"title"))
+    forum = models.ForeignKey('agora.Forum')
+

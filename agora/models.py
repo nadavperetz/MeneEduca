@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 import datetime
 import json
+from datetime import date
 
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -19,7 +20,6 @@ def issue_update(kind, **kwargs):
 
 
 class ForumCategory(models.Model):
-
     title = models.CharField(max_length=100)
     parent = models.ForeignKey("self", null=True, blank=True, related_name="subcategories")
 
@@ -41,28 +41,21 @@ class ForumCategory(models.Model):
 
 
 class Forum(models.Model):
-
     title = models.CharField(max_length=100)
     description = models.TextField()
     closed = models.DateTimeField(null=True, blank=True)
     group = models.ForeignKey('groups.Group')
 
     # must only have one of these (or neither):
-    parent = models.ForeignKey("self",
-        null=True,
-        blank=True,
-        related_name="subforums"
-    )
-    category = models.ForeignKey(ForumCategory,
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL
-    )
+    parent = models.ForeignKey("self", null=True,
+                               blank=True, related_name="subforums")
+    category = models.ForeignKey(ForumCategory, null=True,
+                                 blank=True, on_delete=models.SET_NULL)
 
-    # @@@ make group-aware
 
     last_modified = models.DateTimeField(default=timezone.now, editable=False)
     last_thread = models.ForeignKey(
+
         "ForumThread",
         null=True,
         editable=False,
@@ -72,6 +65,20 @@ class Forum(models.Model):
 
     view_count = models.IntegerField(default=0, editable=False)
     post_count = models.IntegerField(default=0, editable=False)
+
+    @property
+    def have_remainders(self):
+        count = self.remainder_set.filter(start_date__lte=timezone.now(), finish_date__gte=timezone.now()).count()
+        if count > 0:
+            return True
+        else:
+            return False
+
+    @property
+    def get_active_remainders(self):
+        remainders = self.remainder_set.filter(start_date__lte=timezone.now(),
+                                               finish_date__gte=timezone.now())
+        return remainders
 
     @property
     def thread_count(self):
@@ -233,7 +240,6 @@ class Forum(models.Model):
 
 
 class ForumPost(models.Model):
-
     author = models.ForeignKey(User, related_name="%(app_label)s_%(class)s_related")
     content = models.TextField()
     content_html = models.TextField()
@@ -255,7 +261,6 @@ class ForumPost(models.Model):
 
 
 class ForumThread(ForumPost):
-
     # used for code that needs to know the kind of post this object is.
     kind = "thread"
 
@@ -346,7 +351,6 @@ class ForumThread(ForumPost):
 
 
 class ForumReply(ForumPost):
-
     # used for code that needs to know the kind of post this object is.
     kind = "reply"
 
@@ -358,7 +362,6 @@ class ForumReply(ForumPost):
 
 
 class UserPostCount(models.Model):
-
     user = models.ForeignKey(User, related_name="post_count")
     count = models.IntegerField(default=0)
 
@@ -380,7 +383,6 @@ class UserPostCount(models.Model):
 
 
 class ThreadSubscription(models.Model):
-
     thread = models.ForeignKey(ForumThread, related_name="subscriptions")
     user = models.ForeignKey(User, related_name="forum_subscriptions")
     kind = models.CharField(max_length=15)
