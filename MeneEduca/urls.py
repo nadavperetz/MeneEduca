@@ -15,6 +15,7 @@ urlpatterns = patterns(
     url(r"^educational/", include("educational.urls", namespace='educational')),
     url(r"^forums/", include("agora.urls", namespace='forums')),
     url(r"^questionnaire/", include("questionnaire.urls", namespace='questionnaire')),
+    url(r'^messages/', include('django_messages.urls')),
 
 )
 

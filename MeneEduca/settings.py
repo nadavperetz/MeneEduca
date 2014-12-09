@@ -137,6 +137,7 @@ INSTALLED_APPS = [
     "metron",
     "eventlog",
     "easy_thumbnails",
+    'django_messages',
 
     # project
     "account",
