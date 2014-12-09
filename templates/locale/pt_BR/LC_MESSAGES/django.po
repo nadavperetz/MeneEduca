@@ -20,89 +20,90 @@ msgstr ""
 
 #: 404.html:5
 msgid "Not Found"
-msgstr ""
+msgstr "não encontrado"
 
 #: 404.html:9
 msgid "Page not found"
-msgstr ""
+msgstr "página não encontrada"
 
 #: 404.html:10
 msgid "We're sorry but that page could not be found."
-msgstr ""
+msgstr "pedimos desculpas, mas esta página não pode ser encontrada"
 
 #: 500.html:5
 msgid "Server Error"
-msgstr ""
+msgstr "erro no servidor"
 
 #: 500.html:9
 msgid "Something went wrong"
-msgstr ""
+msgstr "Ocorreu algum engano"
 
 #: 500.html:10
 msgid ""
 "We're sorry but a server error has occurred. We've been notified and will "
 "look into it as soon as possible."
-msgstr ""
+msgstr "Pedimos desculpa, mas ocorreu um erro no servidor. Já fomos notificados e"
+"iremos verificar o ocorrido o mais rápido possível"
 
 #: account/base.html:10
 msgid "Profile"
-msgstr ""
+msgstr "perfil"
 
 #: account/base.html:13 educational/teacher/disicpline_update_view.html:8
 #: profiles/profile_form.html:7 profiles/profile_form.html.py:14
 #: theme/_account_bar.html:37
 msgid "Edit Profile"
-msgstr ""
+msgstr "editar perfil"
 
 #: account/base.html:18 account/password_change.html:14
 #: account/settings.html:14
 msgid "Account"
-msgstr ""
+msgstr "conta"
 
 #: account/base.html:21 account/settings.html:18 theme/_account_bar.html:38
 msgid "Settings"
-msgstr ""
+msgstr "configurações"
 
 #: account/base.html:24 account/password_change.html:9
 #: account/password_change.html.py:18
 msgid "Change password"
-msgstr ""
+msgstr "mudar senha"
 
 #: account/base.html:27
 msgid "Delete account"
-msgstr ""
+msgstr "deletar conta"
 
 #: account/delete.html:14
 msgid "Deactivate Account"
-msgstr ""
+msgstr "desativar conta"
 
 #: account/delete.html:16
 msgid ""
 "If you go ahead and deactivate your account, you may lose <b>all</b> of your "
 "information "
-msgstr ""
+msgstr "Se você for adiante e desativar sua conta, pode perder <br>todas as</> suas informações"
 
 #: account/delete.html:20
 msgid "Deactivate account"
-msgstr ""
+msgstr "desativar conta"
 
 #: account/email_confirm.html:6 account/email_confirm.html.py:12
 msgid "Confirm Email"
-msgstr ""
+msgstr "confirmar e-mail"
 
 #: account/email_confirm.html:15
 #, python-format
 msgid "Confirm email address <b>%(email)s</b>?"
-msgstr ""
+msgstr "confirmar endereço <b>%(email)s</b>?"
 
 #: account/email_confirm.html:16
 msgid "Confirm"
-msgstr ""
+msgstr "confirmar"
 
 #: account/email_confirmation_sent.html:6
 #: account/email_confirmation_sent.html:9
 msgid "Confirm your email address"
-msgstr ""
+msgstr "confirmar seu endereço de e-mail"
 
 #: account/email_confirmation_sent.html:11
 #, python-format
@@ -112,54 +113,60 @@ msgid ""
 "within a few minutes, contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s"
 "\">%(THEME_CONTACT_EMAIL)s</a>."
 msgstr ""
+"Enviamos uma mensagem ao <b>%(email)s</b> para verificação. Abre seu e-mail e clique "
+"no link fornecido para finalizar o processo de inscrição. Se você não receber uma resposta "
+" em poucos minutos, entre em contato em <a href=\"mailto:%(THEME_CONTACT_EMAIL)s"
+"\">%(THEME_CONTACT_EMAIL)s</a>."
 
 #: account/email_confirmed.html:6 account/email_confirmed.html.py:9
 msgid "Email confirmed"
-msgstr ""
+msgstr "e-mail confirmado"
 
 #: account/email_confirmed.html:10
 #, python-format
 msgid "You have confirmed <b>%(email)s</b>"
-msgstr ""
+msgstr "você confirmou <b>%(email)s</b>"
 
 #: account/login.html:7 account/login.html.py:20 theme/_account_bar.html:57
 msgid "Log in"
-msgstr ""
+msgstr "login"
 
 #: account/login.html:13
 msgid "Log in to an existing account"
-msgstr ""
+msgstr "login em uma conta existente"
 
 #: account/login.html:19
 msgid "Forgot your password?"
-msgstr ""
+msgstr "esqueceu sua senha?"
 
 #: account/logout.html:6 account/logout.html.py:12 account/logout.html:16
 #: theme/_account_bar.html:52
 msgid "Log out"
-msgstr ""
+msgstr "logout"
 
 #: account/logout.html:15
 msgid "Are you sure you want to log out?"
-msgstr ""
+msgstr "você tem certeza que quer sair?"
 
 #: account/password_change.html:22 account/password_reset_token.html:17
 msgid "Save"
-msgstr ""
+msgstr "salvar"
 
 #: account/password_reset.html:8 account/password_reset.html.py:16
 msgid "Password reset"
-msgstr ""
+msgstr "reiniciar senha"
 
 #: account/password_reset.html:17
 msgid ""
 "Forgotten your password? Enter your email address below, and we'll send you "
 "an email allowing you to reset it."
 msgstr ""
+"Esqueceu sua senha? Entre seu e-mail abaixo, e nós iremos mandar uma"
+"mensagem com as instruções para o reinício"
 
 #: account/password_reset.html:23
 msgid "Reset my password"
-msgstr ""
+msgstr "reiniciar minha senha"
 
 #: account/password_reset.html:30
 #, python-format
@@ -167,10 +174,12 @@ msgid ""
 "If you have any trouble resetting your password, contact us at <a href="
 "\"mailto:%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</a>."
 msgstr ""
+"Se você tiver problemas reiniciando sua senha, mandar um e-mail para"
+"<a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</a>."
 
 #: account/password_reset_sent.html:7 account/password_reset_sent.html:10
 msgid "Password reset sent"
-msgstr ""
+msgstr "Reinicio de senha enviado"
 
 #: account/password_reset_sent.html:12
 #, python-format
@@ -179,10 +188,13 @@ msgid ""
 "try resending or contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
 "%(THEME_CONTACT_EMAIL)s</a>."
 msgstr ""
+"Enviamos um e-mail. Se você não receber em poucos minutos, verifique sua caixa"
+"de spam ou envie um e-mail para <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
+"%(THEME_CONTACT_EMAIL)s</a>."
 
 #: account/password_reset_sent.html:21
 msgid "Resend"
-msgstr ""
+msgstr "Renviar"
 
 #: account/password_reset_sent.html:26
 #, python-format
@@ -191,15 +203,18 @@ msgid ""
 "minutes, contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
 "%(THEME_CONTACT_EMAIL)s</a>."
 msgstr ""
+"Enviamos um e-mail. Se você não receber em poucos minutos, verifique sua caixa"
+"de spam ou envie um e-mail para <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
+"%(THEME_CONTACT_EMAIL)s</a>."
 
 #: account/password_reset_token.html:7 account/password_reset_token.html:13
 msgid "Set your new password"
-msgstr ""
+msgstr "Indique sua nova senha"
 
 #: account/password_reset_token_fail.html:6
 #: account/password_reset_token_fail.html:9
 msgid "Bad token"
-msgstr ""
+msgstr "Token errado"
 
 #: account/password_reset_token_fail.html:11
 #, python-format
@@ -207,19 +222,21 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a <a href=\"%(url)s\">new password reset</a>."
 msgstr ""
-
+"O link para mudança de senha é invalido, provavelmente por ele já ter sido usado"
+"Por favor, <a href=\"%(url)s\"> requisite uma nova senha </a>"
 #: account/signup.html:7 account/signup.html.py:13 account/signup.html:19
 #: account/signup_closed.html:6 theme/_account_bar.html:58
 msgid "Sign up"
-msgstr ""
+msgstr "Inscreva-se"
 
 #: account/signup_closed.html:9
 msgid "This site is in private beta"
-msgstr ""
+msgstr "Este site é privado"
 
 #: account/signup_closed.html:12
 msgid " \"Your signup code...\"  "
-msgstr ""
+msgstr " \"Seu código de inscrição...\" "
+
 
 #: account/email/email_confirmation_message.txt:1
 #, python-format
@@ -250,44 +267,44 @@ msgstr ""
 #: account/email/password_reset_subject.txt:1
 #, python-format
 msgid "[%(site_name)s] Password reset"
-msgstr ""
+msgstr "[%(site_name)s] resetar senha"
 
 #: agora/forum_raw.html:8
 msgid "Make a New Post"
-msgstr ""
+msgstr "Criar novo post"
 
 #: agora/forum_raw.html:11
 msgid "closed"
-msgstr ""
+msgstr "fechado"
 
 #: agora/forum_raw.html:49
 msgid "Thread Title"
-msgstr ""
+msgstr "Título do tópico"
 
 #: agora/forum_raw.html:50
 msgid "Last Post"
-msgstr ""
+msgstr "último post"
 
 #: agora/forum_raw.html:51
 msgid "Replies"
-msgstr ""
+msgstr "respostas"
 
 #: agora/forum_raw.html:52
 msgid "Views"
-msgstr ""
+msgstr "visualizações"
 
 #: agora/forum_raw.html:74
 msgid "There are currently no threads."
-msgstr ""
+msgstr "Não existem tópicos"
 
 #: agora/reminders/_forum_messages.html:5
 #: agora/reminders/_statics_messages.html:3
 msgid "Reminders"
-msgstr ""
+msgstr "lembrete"
 
 #: agora/reminders/_forum_messages.html:8
 msgid "Description"
-msgstr ""
+msgstr "descrição"
 
 #: agora/reminders/_forum_messages.html:9 django_messages/trash.html:16
 #: django_messages/view.html:16
@@ -396,6 +413,7 @@ msgid ""
 "rely on this feature for long-time storage."
 msgstr ""
 
+""
 #: django_messages/view.html:8
 msgid "View Messag"
 msgstr ""
@@ -407,164 +425,164 @@ msgstr ""
 #: educational/teacher/assignment_create_view.html:8
 #: educational/teacher/assignment_create_view.html:13
 msgid "Create Assignment"
-msgstr ""
+msgstr "criar tarefa"
 
 #: educational/teacher/assignment_detail.html:8 profiles/teacher.html:40
 msgid "View Assignment"
-msgstr ""
+msgstr "ver tarefas"
 
 #: educational/teacher/discipline_detail.html:8 profiles/teacher.html:20
 msgid "View Discipline"
-msgstr ""
+msgstr "ver disciplina"
 
 #: educational/teacher/discipline_detail.html:23
 msgid "Teacher"
-msgstr ""
+msgstr "professor"
 
 #: educational/teacher/discipline_detail.html:27
 msgid "Assignments"
-msgstr ""
+msgstr "tarefas"
 
 #: educational/teacher/discipline_detail.html:28
 msgid "Add new assingment"
-msgstr ""
+msgstr "adicionar nova tarefa"
 
 #: educational/teacher/discipline_detail.html:37
 msgid "Students"
-msgstr ""
+msgstr "estudante"
 
 #: educational/teacher/discipline_detail.html:38
 msgid "Edit students"
-msgstr ""
+msgstr "editar estudante"
 
 #: educational/teacher/disicpline_update_view.html:12
 msgid "Edit Discipline"
-msgstr ""
+msgstr "editar disciplina"
 
 #: pagination/builtin_pagination.html:10 pagination/builtin_pagination.html:13
 #: pagination/django_pagination_pagination.html:9
 #: pagination/django_pagination_pagination.html:12
 msgid "Previous"
-msgstr ""
+msgstr "anterior"
 
 #: pagination/builtin_pagination.html:19 pagination/builtin_pagination.html:21
 #: pagination/django_pagination_pagination.html:22
 #: pagination/django_pagination_pagination.html:24
 msgid "Next"
-msgstr ""
+msgstr "próximo"
 
 #: profiles/calendar.html:7
 msgid "Next seven days"
-msgstr ""
+msgstr "próximos sete dias"
 
 #: profiles/student.html:2 profiles/teacher.html:5
 msgid "Disciplines"
-msgstr ""
+msgstr "disciplinas"
 
 #: profiles/teacher.html:15
 msgid "Go to Forum"
-msgstr ""
+msgstr "ir para o fórum"
 
 #: profiles/teacher.html:35
 msgid "View groups"
-msgstr ""
+msgstr "ver grupos"
 
 #: questionnaire/questionnaire_form.html:10
 msgid "Questionnaire"
-msgstr ""
+msgstr "questionário"
 
 #: survey/base.html:6
 msgid "Surveys"
-msgstr ""
+msgstr "formulários"
 
 #: survey/base.html:10 survey/forms/form_detail.html:7
 msgid "Survey"
-msgstr ""
+msgstr "formulário"
 
 #: survey/base.html:14
 msgid "Incompleted"
-msgstr ""
+msgstr "incompleto"
 
 #: survey/base.html:17
 msgid "Completed"
-msgstr ""
+msgstr "completo"
 
 #: survey/survey_completed_list_view.html:18
 msgid "Lets start!"
-msgstr ""
+msgstr "vamos começar!"
 
 #: survey/admin/forms/change_form.html:10 survey/admin/forms/entries.html:117
 msgid "View entries"
-msgstr ""
+msgstr "ver dados"
 
 #: survey/admin/forms/change_form.html:13
 msgid "History"
-msgstr ""
+msgstr "histórico"
 
 #: survey/admin/forms/change_form.html:17
 msgid "View on site"
-msgstr ""
+msgstr "Ver no site"
 
 #: survey/admin/forms/entries.html:62
 msgid "No entries selected"
-msgstr ""
+msgstr "Não foram selecionados dados"
 
 #: survey/admin/forms/entries.html:65
 msgid "Delete selected entries?"
-msgstr ""
+msgstr "apagar os dados selecionados?"
 
 #: survey/admin/forms/entries.html:74
 msgid "Home"
-msgstr ""
+msgstr "home"
 
 #: survey/admin/forms/entries.html:88
 msgid "Field"
-msgstr ""
+msgstr "campo"
 
 #: survey/admin/forms/entries.html:89
 msgid "Include"
-msgstr ""
+msgstr "incluir"
 
 #: survey/admin/forms/entries.html:90
 msgid "Filter by"
-msgstr ""
+msgstr "filtar por"
 
 #: survey/admin/forms/entries.html:108
 msgid "All"
-msgstr ""
+msgstr "tudo"
 
 #: survey/admin/forms/entries.html:116 survey/admin/forms/entries.html:157
 msgid "Back to form"
-msgstr ""
+msgstr "Voltar ao formulário"
 
 #: survey/admin/forms/entries.html:118
 msgid "Export CSV"
-msgstr ""
+msgstr "Exportar CSV"
 
 #: survey/admin/forms/entries.html:120
 msgid "Export XLS"
-msgstr ""
+msgstr "Exportar XLS"
 
 #: survey/admin/forms/entries.html:124
 msgid "Entries"
-msgstr ""
+msgstr "Entradas"
 
 #: survey/admin/forms/entries.html:158
 msgid "Delete selected"
-msgstr ""
+msgstr "Deleção selecionada"
 
 #: survey/admin/forms/entries.html:162
 msgid "No entries to display"
-msgstr ""
+msgstr "Não existem dados"
 
 #: theme/_account_bar.html:40
 msgid "Tests"
-msgstr ""
+msgstr "testes"
 
 #: theme/_account_bar.html:44
 msgid "Teacher area"
-msgstr ""
+msgstr "Área do professor"
 
 #: theme/_account_bar.html:48
 msgid "Admin"
-msgstr ""
+msgstr "admin"
