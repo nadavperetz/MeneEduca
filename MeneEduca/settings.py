@@ -149,7 +149,8 @@ INSTALLED_APPS = [
     "groups",
     'educational',
     'events_calendar',
-    'questionnaire'
+    'questionnaire',
+    'fb',
 ]
 
 AUTH_PROFILE_MODULE = "profiles.Profile"
