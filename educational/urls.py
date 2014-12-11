@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 from django.conf.urls import patterns, url
 
-from .views.teachers import DisciplineUpdateView, DisciplineDetailView, AssignmentCreateView, AssignmentDetailView
+from .views.teachers import *
 
 urlpatterns = patterns(
     "",
@@ -10,5 +10,5 @@ urlpatterns = patterns(
     url(r"^disciplines/edit/(?P<pk>\d+)/$", DisciplineUpdateView.as_view(), name="discipline_update"),
     url(r"^disciplines/(?P<discipline_id>\d+)/assignments/create/$", AssignmentCreateView.as_view(), name="assignment_create"),
     url(r"^assignments/(?P<pk>\d+)/$", AssignmentDetailView.as_view(), name="assignment_detail"),
-
+    url(r"^assignments/(?P<assignment_id>\d+)/groups/$", GroupListView.as_view(), name="group_list"),
 )

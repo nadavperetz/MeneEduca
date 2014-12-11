@@ -4,6 +4,7 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.shortcuts import get_object_or_404, redirect, render
 
 from educational.models import Discipline, Assignment
+from groups.models import Group
 
 
 class DisciplineDetailView(DetailView):
@@ -42,8 +43,15 @@ class AssignmentCreateView(CreateView):
     def get_success_url(self):
         return reverse('educational:discipline_detail', kwargs={'pk': self.kwargs['discipline_id']})
 
-
 def assignment_create(request, discipline_id):
     discipline = get_object_or_404(Discipline, pk=discipline_id)
     return render(request, 'educational/teacher/assignment_create.html', {'discipline': discipline})
 
+class GroupListView(ListView):
+    model = Group
+    template_name = 'educational/teacher/group_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(GroupListView, self).get_context_data(**kwargs)
+        context['assignment'] = Assignment.objects.get(pk=self.kwargs['assignment_id'])
+        return context

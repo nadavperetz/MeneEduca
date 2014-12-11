@@ -1,0 +1,39 @@
+{% extends "theme/base.html" %}
+
+{% load i18n %}
+
+{% load bootstrap %}
+{% load url from future %}
+
+{% block head_title %}{% trans "View Groups" %}{% endblock %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>View Groups</h3>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>{% trans "Group" %}</th>
+                    <th>{% trans "Members" %}</th>
+                </tr>
+            <tbody>
+                <tr>
+                {% for group in assignment.group.all %}
+                    <td>
+                        <a href="#">{{ assignment.title }}</a>
+                    </td>
+                    <td>
+                        <ul class="list-unstyled">
+                        {% for profile in group.profiles.all %}
+                            <li>{{ profile }}</li>
+                        {% endfor %}
+                        </ul>
+                    </td>
+                {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
