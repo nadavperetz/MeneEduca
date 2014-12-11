@@ -8,9 +8,29 @@
 {% block head_title %}{% trans "View Assignment" %}{% endblock %}
 
 {% block body %}
-    <div class="table-responsive">
-        <h4>
-            <a href="{% url 'educational:discipline_detail' assignment.discipline.pk %}">{{ assignment.discipline.code }} - {{ assignment.discipline.name }}</a> - {{ assignment.title }}
-        </h4>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>
+                {{ assignment.title }}
+            </h3>
+        </div>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>{% trans "Discipline" %}</th>
+                    <td><a href="{% url 'educational:discipline_detail' assignment.discipline.pk %}">{{ assignment.discipline.code }} - {{ assignment.discipline.name }}</a></td>
+                </tr>
+                <tr>
+                    <th>{% trans "Groups" %}</th>
+                    <td>
+                        <ul class="list-unstyled">
+                        {% for group in assignment.group.all %}
+                            <li><a href="{% url 'forums:agora_forum' group.forum_set.first.pk %}">{{ assignment.title }}</a></li>
+                        {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 {% endblock %}
