@@ -5,16 +5,39 @@
 {% load url from future %}
 
 {% block body %}
-<div class="panel panel-default">
-    <form action="" method="POST" enctype="multipart/form-data">
-        <legend>{% trans "Questionnaire" %}</legend>
-        {{ formset.management_form }}
-        {% for form in formset %}
-            {% csrf_token %}
-            <h3> {{ form.instance.question }} </h3>
-                {{ form }}
-        {% endfor %}<br>
-        <button type="submit" class="btn btn-primary">Save</button>
-    </form>
-</div>
+    <div class="panel panel-default">
+
+        <form action="" method="POST" enctype="multipart/form-data">
+            <legend>{% trans "Questionnaire" %}</legend>
+            <ul>
+                {{ formset.management_form }}
+                {% for form in formset %}
+                    {% csrf_token %}
+                    <h3> {{ form.instance.question }} </h3>
+                    <div class="btn-group btn-group-sm" data-toggle="buttons">
+                        {% for field in form.visible_fields %}
+                            <label class="btn  btn-info">
+                                <input type="radio" name{{ field.1.name }} autocomplete="off" checked>{{ field.1.choice_label }}
+                            </label>
+                            <label class="btn btn-info">
+                                <input type="radio" name{{ field.2.name }} autocomplete="off" checked>{{ field.2.choice_label }}
+                            </label>
+                            <label class="btn btn-info active">
+                                <input type="radio" name{{ field.3.name }} autocomplete="off" checked>{{ field.3.choice_label }}
+                            </label>
+                            <label class="btn btn-info">
+                                <input type="radio" name{{ field.4.name }} autocomplete="off" checked>{{ field.4.choice_label }}
+                            </label>
+                            <label class="btn btn-info">
+                                <input type="radio" name{{ field.5.name }} autocomplete="off" checked>{{ field.5.choice_label }}
+                            </label>
+
+                        {% endfor %}
+                    </div>
+                {% endfor %}<br><br><br>
+                <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button> </ul>
+
+        </form>
+
+    </div>
 {% endblock %}

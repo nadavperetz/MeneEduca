@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.forms.models import inlineformset_factory
@@ -7,7 +8,7 @@ from django.views.generic import ListView, CreateView, DetailView
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .models import QuestionnaireModel, QuestionnaireAnswered, QuestionModel, QuestionAnswered
-
+from .forms import HorizRadioRenderer
 
 class QuestionnaireListView(ListView):
     model = QuestionnaireModel
@@ -16,10 +17,10 @@ class QuestionnaireListView(ListView):
 
 def questionnaire_redirect(request, pk):
     questionnaire = get_object_or_404(QuestionnaireModel, pk=pk)
-    q = QuestionnaireAnswered.objects.get(
+    q = QuestionnaireAnswered.objects.filter(
         questionnaire=questionnaire,
         student=request.user.profile.student)
-    if q and q.finish:
+    if q and q[0].finish:
         return redirect('questionnaire:detail', pk=pk)
     else:
         return redirect('questionnaire:answer', pk=pk)
@@ -55,7 +56,8 @@ def questionnaire_create_view(request, pk):
         QuestionnaireAnswered, QuestionAnswered,
         extra=len(lista_perguntas),
         can_delete=False,
-        fields=['answer'])
+        fields=['answer'],
+        widgets={'answer': forms.RadioSelect(renderer=HorizRadioRenderer)})
 
     if request.method == 'POST':
         formset = questionnaire_formset(request.POST)
@@ -78,6 +80,8 @@ def questionnaire_create_view(request, pk):
         for subform, question in zip(formset.forms, lista_perguntas):
             subform.instance.question = question.question
             subform.initial = {'question': question.question}
+            for fields in subform.visible_fields():
+                print dir(fields[0])
     context = {'questionnaire': questionnaire_model, 'formset': formset}
     return render(request, 'questionnaire/questionnaire_form.html', context)
 
