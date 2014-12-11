@@ -40,7 +40,6 @@ class QuestionModel(models.Model):
         return self.question
 
 
-@python_2_unicode_compatible
 class QuestionnaireAnswered(models.Model):
     questionnaire = models.ForeignKey(QuestionnaireModel)
     student = models.ForeignKey('profiles.Student')
@@ -70,15 +69,12 @@ class QuestionnaireAnswered(models.Model):
         print dicionario
         return dicionario
 
-
-
     def __str__(self):
         text = str(self.questionnaire) + " "
         text += str(self.student)
         return text
 
 
-@python_2_unicode_compatible
 class QuestionAnswered(models.Model):
     question = models.ForeignKey(QuestionModel)
     answer = models.IntegerField(choices=answers, blank=True, null=True)
