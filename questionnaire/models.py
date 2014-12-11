@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.encoding import python_2_unicode_compatible
 
 indicator_choices = (('Extroversion ', _('Extroversion (1)')),
                      ('Agreeableness', _('Agreeableness (2)')),
@@ -19,6 +20,7 @@ indicator_weight = (('+', '+'),
                     ('-', '-'))
 
 
+@python_2_unicode_compatible
 class QuestionnaireModel(models.Model):
     name = models.CharField(max_length=50, verbose_name=_("Name"))
 
@@ -26,6 +28,7 @@ class QuestionnaireModel(models.Model):
         return self.name
 
 
+@python_2_unicode_compatible
 class QuestionModel(models.Model):
     question = models.CharField(max_length=50, verbose_name=_("Question"))
     type_of_answer = models.CharField(max_length=30, verbose_name=_("Type of Factor"),
@@ -65,8 +68,6 @@ class QuestionnaireAnswered(models.Model):
                 dicionario[question.question.type_of_answer] += question.answer
         print dicionario
         return dicionario
-
-
 
     def __str__(self):
         text = str(self.questionnaire) + " "
