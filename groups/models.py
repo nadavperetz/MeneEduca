@@ -26,6 +26,5 @@ class Group(models.Model):
                           description=description,
                           group=self)
             forum.save()
-
-
-
+        else:
+            super(Group, self).save()
