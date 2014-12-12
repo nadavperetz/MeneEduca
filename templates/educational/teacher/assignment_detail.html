@@ -25,8 +25,13 @@
                     <td>
                         <ul class="list-unstyled">
                         {% for group in assignment.group.all %}
-                            <li><a href="{% url 'educational:group_detail' group.pk %}">{{ assignment.title }}</a></li>
+                            <li>
+                                <a href="{% url 'educational:group_detail' group.pk %}">{{ group.name }}</a>
+                            </li>
                         {% endfor %}
+                            <li>
+                                <a href="{% url 'educational:group_create' assignment.id %}">+ {% trans "Create new group" %}</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>

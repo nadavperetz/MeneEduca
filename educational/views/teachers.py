@@ -2,9 +2,14 @@ from django.core.urlresolvers import reverse
 from django.forms.models import inlineformset_factory
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.shortcuts import get_object_or_404, redirect, render
+from django.http import HttpResponseRedirect
 
 from educational.models import Discipline, Assignment
 from groups.models import Group
+from profiles.models import Profile
+
+
+from educational.forms import NameForm
 
 
 class DisciplineDetailView(DetailView):
@@ -71,3 +76,31 @@ class GroupUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('educational:group_detail', kwargs={'pk': self.object.pk})
+
+
+def group_create(request, assignment_id):
+    assignment = get_object_or_404(Assignment, id=assignment_id)
+
+    # students = assignment.discipline.group.profiles.filter(student=True)
+    students = []
+    for profile in assignment.discipline.group.profiles.all():
+        if profile.is_student():
+            students.append(profile)
+
+    if request.method == 'POST':
+        form = NameForm(students, request.POST)
+        if form.is_valid():
+            g = Group()
+            g.name = form.cleaned_data['name']
+            g.save()
+
+            for selected_student in form.cleaned_data['students']:
+                g.profiles.add(Profile.objects.get(pk=selected_student))
+
+            assignment.group.add(g)
+            return HttpResponseRedirect(reverse("educational:assignment_detail", kwargs={'pk': assignment.pk}))
+
+    else:
+        form = NameForm(students)
+
+    return render(request, 'educational/teacher/group_create.html', {'form': form})
