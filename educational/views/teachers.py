@@ -118,7 +118,7 @@ def group_create(request, assignment_id):
 
             for selected_student in form.cleaned_data['students']:
                 g.profiles.add(Profile.objects.get(pk=selected_student))
-            get.profiles.add(assignment.discipline.teacher.profile)
+            g.profiles.add(assignment.discipline.teacher.profile)
 
             assignment.group.add(g)
             return HttpResponseRedirect(reverse("educational:assignment_detail", kwargs={'pk': assignment.pk}))
