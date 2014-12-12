@@ -80,6 +80,7 @@ class Assignment(models.Model):
         name += str(self.title)
         return name
 
+"""
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         if not self.pk:
@@ -89,7 +90,7 @@ class Assignment(models.Model):
             group.save()
             self.group = group
         super(Assignment, self).save()
-
+"""
 
 class Deadline(models.Model):
     description = models.CharField(max_length=60, verbose_name=_(u"title"))
