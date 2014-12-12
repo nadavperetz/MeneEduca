@@ -49,6 +49,16 @@ class AssignmentCreateView(CreateView):
         return reverse('educational:discipline_detail', kwargs={'pk': self.kwargs['discipline_id']})
 
 
+class AssignmentUpdateView(UpdateView):
+    model = Assignment
+    template_name = 'educational/teacher/assignment_update.html'
+
+    fields = ['title']
+
+    def get_success_url(self):
+        return reverse('educational:assignment_detail', kwargs={'pk': self.object.pk})
+
+
 def assignment_create(request, discipline_id):
     discipline = get_object_or_404(Discipline, pk=discipline_id)
     return render(request, 'educational/teacher/assignment_create.html', {'discipline': discipline})
