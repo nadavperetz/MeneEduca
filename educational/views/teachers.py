@@ -94,7 +94,12 @@ def group_update(request, group_id):
 
             return HttpResponseRedirect(reverse("educational:assignment_detail", kwargs={'pk': assignment.pk}))
     else:
-        form = GroupForm(students)
+        old_students = []
+        for profile in group.profiles.all():
+            if profile.is_student():
+                old_students.append(profile)
+        print [s.pk for s in old_students]
+        form = GroupForm(students, initial={'name': group.name, 'students': [s.pk for s in old_students]})
 
     return render(request, 'educational/teacher/group_update.html', {'form': form})
 
