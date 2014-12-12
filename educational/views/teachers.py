@@ -69,13 +69,35 @@ class GroupDetailView(DetailView):
     template_name = 'educational/teacher/group_detail.html'
 
 
-class GroupUpdateView(UpdateView):
-    model = Group
-    template_name = 'educational/teacher/group_update.html'
-    # fields = ['name', 'code', 'start_date', 'finish_date', 'teacher']
+def group_update(request, group_id):
+    group = get_object_or_404(Group, id=group_id)
+    assignment = Assignment.objects.filter(group=group)[0]
 
-    def get_success_url(self):
-        return reverse('educational:group_detail', kwargs={'pk': self.object.pk})
+    # students = assignment.discipline.group.profiles.filter(student=True)
+    students = []
+    for profile in assignment.discipline.group.profiles.all():
+        if profile.is_student():
+            students.append(profile)
+
+    if request.method == 'POST':
+        form = GroupForm(students, request.POST)
+        if form.is_valid():
+            group.name = form.cleaned_data['name']
+            group.save()
+
+            for profile in group.profiles.all():
+                group.profiles.remove(profile)
+
+            for selected_student in form.cleaned_data['students']:
+                group.profiles.add(Profile.objects.get(pk=selected_student))
+            group.profiles.add(assignment.discipline.teacher.profile)
+
+            return HttpResponseRedirect(reverse("educational:assignment_detail", kwargs={'pk': assignment.pk}))
+    else:
+        form = GroupForm(students)
+
+    return render(request, 'educational/teacher/group_update.html', {'form': form})
+
 
 
 def group_create(request, assignment_id):
@@ -96,6 +118,7 @@ def group_create(request, assignment_id):
 
             for selected_student in form.cleaned_data['students']:
                 g.profiles.add(Profile.objects.get(pk=selected_student))
+            get.profiles.add(assignment.discipline.teacher.profile)
 
             assignment.group.add(g)
             return HttpResponseRedirect(reverse("educational:assignment_detail", kwargs={'pk': assignment.pk}))

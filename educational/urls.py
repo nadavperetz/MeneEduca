@@ -13,7 +13,7 @@ urlpatterns = patterns(
 
     url(r"^assignments/(?P<assignment_id>\d+)/groups/$", GroupListView.as_view(), name="group_list"),
     url(r"^groups/(?P<pk>\d+)/$", GroupDetailView.as_view(), name="group_detail"),
-    url(r"^groups/edit/(?P<pk>\d+)/$", GroupUpdateView.as_view(), name="group_update"),
+    url(r"^groups/edit/(?P<group_id>\d+)/$", "educational.views.teachers.group_update", name="group_update"),
     url(r"^assignments/(?P<assignment_id>\d+)/groups/create/$", "educational.views.teachers.group_create", name="group_create"),
 
 )
