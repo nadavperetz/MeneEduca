@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from educational.models import Discipline, Assignment
 
+from fb.models import Likes
 
 class DisciplineDetailView(DetailView):
     model = Discipline
@@ -46,4 +47,11 @@ class AssignmentCreateView(CreateView):
 def assignment_create(request, discipline_id):
     discipline = get_object_or_404(Discipline, pk=discipline_id)
     return render(request, 'educational/teacher/assignment_create.html', {'discipline': discipline})
+
+def social_network(request, discipline_id):
+    discipline=Discipline.objects.get(pk=discipline_id)
+    users=discipline.group.profiles.all()
+    likes=Likes.objects.filter(profile__in=users)
+    return render(request, 'educational/teacher/likes.html',{'likes' : likes})
+    
 

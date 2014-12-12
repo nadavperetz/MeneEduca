@@ -16,7 +16,7 @@ urlpatterns = patterns(
     url(r"^forums/", include("agora.urls", namespace='forums')),
     url(r"^questionnaire/", include("questionnaire.urls", namespace='questionnaire')),
     url(r'^messages/', include('django_messages.urls')),
-    url(r'^fb/', include('fb.urls')),
+    url(r'^fb/', include('fb.urls', namespace='fb')),
 
 )
 

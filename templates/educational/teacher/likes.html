@@ -1,0 +1,14 @@
+{% extends "theme/base.html" %}
+
+{% load i18n %}
+
+{% load bootstrap %}
+{% load url from future %}
+
+{% block head_title %}{% trans "Edit Profile" %}{% endblock %}
+
+{% block body %}
+	{% for like in likes %}
+	{{ like }} - {{ like.category }}<br />
+	{% endfor %}
+{% endblock %}
