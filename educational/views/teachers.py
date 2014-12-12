@@ -92,7 +92,7 @@ def group_update(request, group_id):
                 group.profiles.add(Profile.objects.get(pk=selected_student))
             group.profiles.add(assignment.discipline.teacher.profile)
 
-            return HttpResponseRedirect(reverse("educational:assignment_detail", kwargs={'pk': assignment.pk}))
+            return HttpResponseRedirect(reverse("educational:group_detail", kwargs={'pk': group.pk}))
     else:
         old_students = []
         for profile in group.profiles.all():
