@@ -40,23 +40,23 @@ msgstr ""
 
 #: models.py:11
 msgid "Very Inaccurate"
-msgstr ""
+msgstr "Muito impreciso"
 
 #: models.py:12
 msgid "Moderately Inaccurate"
-msgstr ""
+msgstr "Moderadamente impreciso"
 
 #: models.py:13
 msgid "Neither Accurate Nor Inaccurate"
-msgstr ""
+msgstr "Não sei"
 
 #: models.py:14
 msgid "Moderately Accurate"
-msgstr ""
+msgstr "Moderadamente preciso"
 
 #: models.py:15
 msgid "Very Accurate"
-msgstr ""
+msgstr "Muito preciso"
 
 #: models.py:23
 msgid "Name"
