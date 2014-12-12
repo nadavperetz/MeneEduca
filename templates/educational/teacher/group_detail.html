@@ -1,0 +1,33 @@
+{% extends "theme/base.html" %}
+
+{% load i18n %}
+
+{% load bootstrap %}
+{% load url from future %}
+
+{% block head_title %}{% trans "View Group" %}{% endblock %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>
+                {{ group.name }}
+                <a href="{% url 'educational:group_update' group.pk %}">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+            </h3>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>{% trans "Members" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for profile in group.profiles.all %}
+                <tr><td>{{ profile }}</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
