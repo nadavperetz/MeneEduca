@@ -8,6 +8,9 @@ from django.utils.translation import ugettext_lazy as _
 
 from educational.models import Discipline
 
+# for personality traits
+import random
+
 
 def avatar_upload(instance, filename):
     ext = filename.split(".")[-1]
@@ -73,6 +76,13 @@ class Profile(models.Model):
     def save(self, *args, **kwargs):
         self.modified_at = timezone.now()
         super(Profile, self).save(*args, **kwargs)
+
+    # to-do
+    def get_traits(self):
+        traits = []
+        for x in range(5):
+            traits.append(random.uniform(0, 1))
+        return traits
 
 
 class Course(models.Model):

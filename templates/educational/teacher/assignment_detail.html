@@ -35,6 +35,9 @@
                             <li>
                                 <a href="{% url 'educational:group_create' assignment.id %}">+ {% trans "Create new group" %}</a>
                             </li>
+                            <li>
+                                <a href="{% url 'educational:group_create_personality_based' assignment.id %}"> + {% trans "Create groups based on personality tests results" %}</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>

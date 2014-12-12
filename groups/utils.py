@@ -86,7 +86,7 @@ def bruteforce_group_formation2(people, groups, count):
 
 
 def rate_group(group):
-    ntraits = len(grop[0].get_traits())
+    ntraits = len(group[0].get_traits())
     max_traits = [0.0] * ntraits
     min_traits = [1.0] * ntraits
 

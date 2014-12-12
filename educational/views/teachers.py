@@ -8,8 +8,9 @@ from educational.models import Discipline, Assignment
 from groups.models import Group
 from profiles.models import Profile
 
+from groups.utils import bruteforce_group_formation
 
-from educational.forms import GroupForm
+from educational.forms import GroupForm, PersonalityBasedGroupForm
 
 
 class DisciplineDetailView(DetailView):
@@ -142,3 +143,35 @@ def group_create(request, assignment_id):
         form = GroupForm(students)
 
     return render(request, 'educational/teacher/group_create.html', {'form': form})
+
+
+def group_create_personality_based(request, assignment_id):
+    assignment = get_object_or_404(Assignment, id=assignment_id)
+
+    # students = assignment.discipline.group.profiles.filter(student=True)
+    students = []
+    for profile in assignment.discipline.group.profiles.all():
+        if profile.is_student():
+            students.append(profile)
+    print students
+
+    if request.method == 'POST':
+        form = PersonalityBasedGroupForm(len(students), request.POST)
+
+        if form.is_valid():
+            groups_members = bruteforce_group_formation(students, form.cleaned_data['number'])
+
+            for i in xrange(len(groups_members)):
+                group = Group()
+                group.name = form.cleaned_data['name'] + ' ' + str(i + 1)
+                group.save()
+                assignment.group.add(group)
+
+                for member in groups_members[i]:
+                    group.profiles.add(member)
+            return HttpResponseRedirect(reverse("educational:assignment_detail", kwargs={'pk': assignment.pk}))
+
+    else:
+        form = PersonalityBasedGroupForm(len(students))
+
+    return render(request, 'educational/teacher/group_create_personality_based.html', {'form': form})

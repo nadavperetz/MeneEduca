@@ -17,5 +17,6 @@ urlpatterns = patterns(
     url(r"^groups/(?P<pk>\d+)/$", GroupDetailView.as_view(), name="group_detail"),
     url(r"^groups/edit/(?P<group_id>\d+)/$", "educational.views.teachers.group_update", name="group_update"),
     url(r"^assignments/(?P<assignment_id>\d+)/groups/create/$", "educational.views.teachers.group_create", name="group_create"),
+    url(r"^assignments/(?P<assignment_id>\d+)/groups/create_personality/$", "educational.views.teachers.group_create_personality_based", name="group_create_personality_based"),
 
 )
