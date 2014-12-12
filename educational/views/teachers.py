@@ -20,7 +20,7 @@ class DisciplineDetailView(DetailView):
 
 class DisciplineUpdateView(UpdateView):
     model = Discipline
-    template_name = 'educational/teacher/disicpline_update_view.html'
+    template_name = 'educational/teacher/discipline_update.html'
     fields = ['name', 'code', 'start_date', 'finish_date', 'teacher']
 
     def get_success_url(self):
@@ -34,7 +34,7 @@ class AssignmentDetailView(DetailView):
 
 class AssignmentCreateView(CreateView):
     model = Assignment
-    template_name = 'educational/teacher/assignment_create_view.html'
+    template_name = 'educational/teacher/assignment_create.html'
     fields = ['title']
 
     def get_context_data(self, **kwargs):
