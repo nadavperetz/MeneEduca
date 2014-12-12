@@ -28,22 +28,25 @@ class Profile(models.Model):
     modified_at = models.DateTimeField(default=timezone.now)
 
     def is_student(self):
-        if Student.objects.get(profile=self):
-            return True
-        else:
+        try:
+            Student.objects.get(profile=self)
+        except Student.DoesNotExist:
             return False
+        return True
 
     def is_teacher(self):
-        if Teacher.objects.get(profile=self):
-            return True
-        else:
+        try:
+            Teacher.objects.get(profile=self)
+        except Teacher.DoesNotExist:
             return False
+        return True
 
     def is_guardian(self):
-        if Guardian.objects.get(profile=self):
-            return True
-        else:
+        try:
+            Guardian.objects.get(profile=self)
+        except Guardian.DoesNotExist:
             return False
+        return True
 
     def discipline_and_groups(self):
         returning = {}
