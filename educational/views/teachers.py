@@ -9,7 +9,7 @@ from groups.models import Group
 from profiles.models import Profile
 
 
-from educational.forms import NameForm
+from educational.forms import GroupForm
 
 
 class DisciplineDetailView(DetailView):
@@ -88,7 +88,7 @@ def group_create(request, assignment_id):
             students.append(profile)
 
     if request.method == 'POST':
-        form = NameForm(students, request.POST)
+        form = GroupForm(students, request.POST)
         if form.is_valid():
             g = Group()
             g.name = form.cleaned_data['name']
@@ -101,6 +101,6 @@ def group_create(request, assignment_id):
             return HttpResponseRedirect(reverse("educational:assignment_detail", kwargs={'pk': assignment.pk}))
 
     else:
-        form = NameForm(students)
+        form = GroupForm(students)
 
     return render(request, 'educational/teacher/group_create.html', {'form': form})
