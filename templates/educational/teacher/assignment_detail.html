@@ -25,7 +25,7 @@
                     <td>
                         <ul class="list-unstyled">
                         {% for group in assignment.group.all %}
-                            <li><a href="{% url 'forums:agora_forum' group.forum_set.first.pk %}">{{ assignment.title }}</a></li>
+                            <li><a href="{% url 'educational:group_detail' group.pk %}">{{ assignment.title }}</a></li>
                         {% endfor %}
                         </ul>
                     </td>
