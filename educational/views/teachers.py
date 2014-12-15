@@ -6,11 +6,11 @@ from django.http import HttpResponseRedirect
 
 from educational.models import Discipline, Assignment
 from groups.models import Group
-from profiles.models import Profile
+from profiles.models import Profile, Teacher
 
 from groups.utils import bruteforce_group_formation, random_best_group_formation, random_group_formation
 
-from educational.forms import GroupForm, PersonalityBasedGroupForm
+from educational.forms import GroupForm, PersonalityBasedGroupForm, DisciplineForm
 
 
 class DisciplineDetailView(DetailView):
@@ -18,13 +18,38 @@ class DisciplineDetailView(DetailView):
     template_name = 'educational/teacher/discipline_detail.html'
 
 
-class DisciplineUpdateView(UpdateView):
-    model = Discipline
-    template_name = 'educational/teacher/discipline_update.html'
-    fields = ['name', 'code', 'start_date', 'finish_date', 'teacher']
+def discipline_update(request, pk):
+    discipline = get_object_or_404(Discipline, pk=pk)
 
-    def get_success_url(self):
-        return reverse('educational:discipline_detail', kwargs={'pk': self.object.pk})
+    old_students = []
+    for profile in discipline.group.profiles.all():
+        if profile.is_student():
+            old_students.append(profile)
+
+    if request.method == 'POST':
+        form = DisciplineForm(request.POST)
+        if form.is_valid():
+            print 'b'
+            discipline.name = form.cleaned_data['name']
+            discipline.code = form.cleaned_data['code']
+            discipline.start_date = form.cleaned_data['start_date']
+            discipline.finish_date = form.cleaned_data['finish_date']
+            discipline.teacher = Teacher.objects.get(pk=form.cleaned_data['teacher'])
+            discipline.save()
+
+            for profile in discipline.group.profiles.all():
+                discipline.group.profiles.remove(profile)
+
+            discipline.group.profiles.add(Teacher.objects.get(pk=form.cleaned_data['teacher']).profile)
+            for selected_student in form.cleaned_data['students']:
+                discipline.group.profiles.add(Profile.objects.get(pk=selected_student))
+
+
+            return HttpResponseRedirect(reverse("educational:discipline_detail", kwargs={'pk': pk}))
+    else:
+        form = DisciplineForm(initial={'name': discipline.name, 'code': discipline.code, 'start_date': discipline.start_date, 'finish_date': discipline.finish_date, 'teacher': discipline.teacher.pk, 'students': [s.pk for s in old_students]})
+
+    return render(request, 'educational/teacher/discipline_update.html', {'form': form})
 
 
 class AssignmentDetailView(DetailView):
@@ -58,11 +83,6 @@ class AssignmentUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('educational:assignment_detail', kwargs={'pk': self.object.pk})
-
-
-def assignment_create(request, discipline_id):
-    discipline = get_object_or_404(Discipline, pk=discipline_id)
-    return render(request, 'educational/teacher/assignment_create.html', {'discipline': discipline})
 
 
 class GroupListView(ListView):

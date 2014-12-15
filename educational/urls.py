@@ -8,7 +8,8 @@ import views.guardians
 urlpatterns = patterns(
     "",
     url(r"^disciplines/(?P<pk>\d+)/$", views.teachers.DisciplineDetailView.as_view(), name="discipline_detail"),
-    url(r"^disciplines/edit/(?P<pk>\d+)/$", views.teachers.DisciplineUpdateView.as_view(), name="discipline_update"),
+    #url(r"^disciplines/edit/(?P<pk>\d+)/$", views.teachers.DisciplineUpdateView.as_view(), name="discipline_update"),
+    url(r"^disciplines/edit/(?P<pk>\d+)/$", "educational.views.teachers.discipline_update", name="discipline_update"),
 
     url(r"^disciplines/(?P<discipline_id>\d+)/assignments/create/$", views.teachers.AssignmentCreateView.as_view(), name="assignment_create"),
     url(r"^assignments/(?P<pk>\d+)/$", views.teachers.AssignmentDetailView.as_view(), name="assignment_detail"),
