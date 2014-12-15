@@ -83,7 +83,7 @@ class Profile(models.Model):
                     assignments = discipline.assignment_set.all()
                     for assignment in assignments:
                         aux.append(assignment)
-                    aux2[discipline.parent_group] = aux
+                    aux2[discipline] = aux
                 returning[child] = aux2
         return returning
 

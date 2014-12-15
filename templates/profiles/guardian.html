@@ -6,8 +6,8 @@
         {{ child }}
     </a>
     {% for discipline, assignments in disciplines.items %}
-    <a class="list-group-item active" href="{% url 'forums:agora_forum' discipline.forum_set.first.pk %}">
-        {{ discipline }}
+    <a class="list-group-item active" href="{% url 'forums:agora_forum' discipline.parent_group.forum_set.first.pk %}">
+        {{ discipline.code }} - {{ discipline.name }}
     </a>
         {% for assignment in assignments %}
     <a class="list-group-item " href="{% url 'educational:assignment_detail_guardian' assignment.pk %}">

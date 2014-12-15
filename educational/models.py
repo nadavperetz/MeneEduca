@@ -46,14 +46,14 @@ class Discipline(models.Model):
             group.save()
             self.group = group
 
-            parent_group = Group(name=str(str(self.name) + " - " + str(_("Guardians"))))
+            parent_group = Group(name=u'{0} - {1}'.format(self.name, _(u'Guardians')))
             parent_group.save()
             parent_group.profiles.add(self.teacher.profile)
             parent_group.save()
             self.parent_group = parent_group
         self.group.name = str(self.name)
         self.group.save()
-        self.parent_group.name = str(str(self.name) + " - " + str(_("Guardians")))
+        self.parent_group.name = u'{0} - {1}'.format(self.name, _(u'Guardians'))
         self.parent_group.save()
         super(Discipline, self).save()
 
