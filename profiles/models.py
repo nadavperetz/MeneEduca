@@ -51,6 +51,7 @@ class Profile(models.Model):
             return False
         return True
 
+
     def discipline_and_groups(self):
         returning = {}
         if self.is_student():
@@ -67,6 +68,23 @@ class Profile(models.Model):
                 # print aux
                 returning[discipline.group] = aux
             # print returning
+        return returning
+
+
+    def children_disciplines_and_assignments(self):
+        returning = {}
+        if self.is_guardian():
+            children = self.guardian.children.all()
+            for child in children:
+                aux2 = {}
+                disciplines = Discipline.objects.filter(group__profiles=child.profile)
+                for discipline in disciplines:
+                    aux = []
+                    assignments = discipline.assignment_set.all()
+                    for assignment in assignments:
+                        aux.append(assignment)
+                    aux2[discipline.parent_group] = aux
+                returning[child] = aux2
         return returning
 
 
