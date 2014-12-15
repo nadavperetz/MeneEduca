@@ -27,47 +27,36 @@
                 <th>{% trans "Assignments" %}</th>
                 <td>
                     <ul class="list-unstyled">
-                    {% for assignment in discipline.assignment_set.all %}
-                        <li>
-                            <a href="{% url 'educational:assignment_detail' assignment.pk %}">{{ assignment.title }}</a>
-                        </li>
-                    {% endfor %}
+                        {% for assignment in discipline.assignment_set.all %}
+                            <li>
+                                <a href="{% url 'educational:assignment_detail' assignment.pk %}">{{ assignment.title }}</a>
+                            </li>
+                        {% endfor %}
                         <li><a href="{% url 'educational:assignment_create' discipline_id=discipline.pk %}">+ {% trans "Add new assingment" %}</a></li>
                     </ul>
                 </td>
             </tr>
-<<<<<<< HEAD
+            <<<<<<< HEAD
             <tr>
                 <th>Students</th>
                 <td>
                     <ul class="list-unstyled">
-                    {% for profile in discipline.group.profiles.all %}
-                        {% if profile.is_student %}
-                        <li>
-                            <a href="#">{{ profile }}</a>
-                        </li>
-                        {% endif %}
-                    {% endfor %}
+                        {% for profile in discipline.group.profiles.all %}
+                            {% if profile.is_student %}
+                                <tr>
+                                    <th> </th>
+                                    <td>{{ profile }} <td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
                     </ul>
                 </td>
-=======
-            {% for profile in discipline.group.profiles.all %}
-                {% if profile.is_student %}
-                <tr>
-                    <th> </th>
-                    <td>{{ profile }} <td>
-                </tr>
-                {% endif %}
-            {% endfor %}
-            
+
+
             <tr>
-            	<th>Redes Sociais</th>
-				<td><a href="/educational/disciplines/likes/{{ discipline.pk }}/">Facebook</a></td>
-			</tr>
-			<div id='likes'>
- 
-			</div>
->>>>>>> facebook
+                <th>Redes Sociais</th>
+                <td><a href="/educational/disciplines/likes/{{ discipline.pk }}/">Facebook</a></td>
+            </tr>
             </tbody>
         </table>
     </div><!-- /.table-responsive -->
