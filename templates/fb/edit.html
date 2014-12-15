@@ -1,0 +1,25 @@
+{% extends "account/base.html" %}
+{% load i18n %}
+
+{% load bootstrap %}
+{% load url from future %}
+
+{% block head_title %}{% trans "Edit Profile" %}{% endblock %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-heading"><h4>Profile</h4></div>
+        <div class="panel-body">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <legend>{% trans "Edit Social Networks" %}</legend>
+                <a class="btn btn-primary authomatic" href="login/fb">Vincular conta Facebook</a>
+                <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+                <script src="{{ STATIC_URL }}js/authomatic.js"></script>
+                 <script type="text/javascript">
+                 json = authomatic.popupInit();
+     			 </script>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

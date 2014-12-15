@@ -1,18 +1,13 @@
 from __future__ import unicode_literals
 
 from django.conf.urls import patterns, url
-
+from educational.views.teachers import social_network
 import views.teachers
 import views.guardians
 
+
 urlpatterns = patterns(
     "",
-    url(r"^disciplines/(?P<pk>\d+)/$", views.teachers.DisciplineDetailView.as_view(), name="discipline_detail"),
-    #url(r"^disciplines/edit/(?P<pk>\d+)/$", views.teachers.DisciplineUpdateView.as_view(), name="discipline_update"),
-    url(r"^disciplines/edit/(?P<pk>\d+)/$", "educational.views.teachers.discipline_update", name="discipline_update"),
-    url(r"^disciplines/create/$", "educational.views.teachers.discipline_create", name="discipline_create"),
-
-
     url(r"^disciplines/(?P<discipline_id>\d+)/assignments/create/$", views.teachers.AssignmentCreateView.as_view(), name="assignment_create"),
     url(r"^assignments/(?P<pk>\d+)/$", views.teachers.AssignmentDetailView.as_view(), name="assignment_detail"),
     url(r"^assignments/edit/(?P<pk>\d+)/$", views.teachers.AssignmentUpdateView.as_view(), name="assignment_update"),
@@ -24,4 +19,5 @@ urlpatterns = patterns(
     url(r"^assignments/(?P<assignment_id>\d+)/groups/create_personality/$", "educational.views.teachers.group_create_personality_based", name="group_create_personality_based"),
 
     url(r"^guardians/assignments/(?P<pk>\d+)/$", views.guardians.AssignmentDetailView.as_view(), name="assignment_detail_guardian"),
+    url(r"^disciplines/likes/(?P<discipline_id>\d+)/$", social_network, name="social_network"),
 )

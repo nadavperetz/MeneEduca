@@ -12,6 +12,9 @@ from groups.utils import bruteforce_group_formation, random_best_group_formation
 
 from educational.forms import GroupForm, PersonalityBasedGroupForm, DisciplineForm
 
+from fb.models import Likes
+
+from collections import Counter
 
 class DisciplineDetailView(DetailView):
     model = Discipline
@@ -219,3 +222,16 @@ def group_create_personality_based(request, assignment_id):
         form = PersonalityBasedGroupForm(len(students))
 
     return render(request, 'educational/teacher/group_create_personality_based.html', {'form': form})
+
+
+def social_network(request, discipline_id):
+    discipline=Discipline.objects.get(pk=discipline_id)
+    users=discipline.group.profiles.all()
+    l=Likes.objects.filter(profile__in=users)
+    likes={}
+    for i in l:
+        if not i.name in likes:
+            likes[i.name]=[1,i.category]
+        else:
+            likes[i.name][0]=likes[i.name][0]+1
+    return render(request, 'educational/teacher/likes.html',{'likes' : likes})

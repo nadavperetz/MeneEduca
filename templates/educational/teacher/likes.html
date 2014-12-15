@@ -1,0 +1,47 @@
+{% extends "theme/base.html" %}
+
+{% load i18n %}
+
+{% load bootstrap %}
+{% load url from future %}
+
+{% block head_title %}{% trans "Edit Profile" %}{% endblock %}
+
+{% block body %}
+<div class="col-sm-9">
+<div class="panel panel-default">
+	<table id="likes" border=0>
+	<thead>
+	<tr>
+	<th>Nome</th>
+	<th>Categoria</th>
+	<th>N&#250;mero de ocorr&#234;ncias</th>
+	</tr>
+	</thead>
+	<tbody>
+	{% for key, value in likes.items %}
+	<tr>
+	<td>{{ key }}</td>
+	<td>{{ value.1 }}</td>
+	<td>{{ value.0 }}</td>
+	</tr>
+	{% endfor %}
+	</tbody>
+	</table>
+</div>
+</div>	
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
+	<script>
+	$('#likes').DataTable({
+		"language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
+		},
+		"paging": false,
+		"searching": false,
+		"info": false,
+	});
+	</script>
+
+{% endblock %}
