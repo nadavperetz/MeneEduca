@@ -121,6 +121,7 @@ class Guardian(models.Model):
 
     def save(self, *args, **kwargs):
         self.modified_at = timezone.now()
+        super(Guardian, self).save(*args, **kwargs)
 
     def __str__(self):
         return "%s %s" % (self.profile.name, self.profile.last_name)
