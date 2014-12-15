@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-09 19:56-0200\n"
+"POT-Creation-Date: 2014-12-15 20:49-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,34 +42,40 @@ msgstr "Ocorreu algum engano"
 msgid ""
 "We're sorry but a server error has occurred. We've been notified and will "
 "look into it as soon as possible."
-msgstr "Pedimos desculpa, mas ocorreu um erro no servidor. Já fomos notificados e"
-"iremos verificar o ocorrido o mais rápido possível"
+msgstr ""
+"Pedimos desculpa, mas ocorreu um erro no servidor. Já fomos notificados "
+"eiremos verificar o ocorrido o mais rápido possível"
 
 #: account/base.html:10
 msgid "Profile"
 msgstr "perfil"
 
-#: account/base.html:13 educational/teacher/disicpline_update_view.html:8
+#: account/base.html:13 educational/teacher/group_update.html:8
+#: educational/teacher/likes.html:8 fb/edit.html:7
 #: profiles/profile_form.html:7 profiles/profile_form.html.py:14
 #: theme/_account_bar.html:37
 msgid "Edit Profile"
 msgstr "editar perfil"
 
-#: account/base.html:18 account/password_change.html:14
+#: account/base.html:16
+msgid "Social Networks"
+msgstr "Redes Sociais"
+
+#: account/base.html:21 account/password_change.html:14
 #: account/settings.html:14
 msgid "Account"
 msgstr "conta"
 
-#: account/base.html:21 account/settings.html:18 theme/_account_bar.html:38
+#: account/base.html:24 account/settings.html:18 theme/_account_bar.html:38
 msgid "Settings"
 msgstr "configurações"
 
-#: account/base.html:24 account/password_change.html:9
+#: account/base.html:27 account/password_change.html:9
 #: account/password_change.html.py:18
 msgid "Change password"
 msgstr "mudar senha"
 
-#: account/base.html:27
+#: account/base.html:30
 msgid "Delete account"
 msgstr "deletar conta"
 
@@ -81,7 +87,9 @@ msgstr "desativar conta"
 msgid ""
 "If you go ahead and deactivate your account, you may lose <b>all</b> of your "
 "information "
-msgstr "Se você for adiante e desativar sua conta, pode perder <br>todas as</> suas informações"
+msgstr ""
+"Se você for adiante e desativar sua conta, pode perder <br>todas as</> suas "
+"informações"
 
 #: account/delete.html:20
 msgid "Deactivate account"
@@ -113,10 +121,10 @@ msgid ""
 "within a few minutes, contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s"
 "\">%(THEME_CONTACT_EMAIL)s</a>."
 msgstr ""
-"Enviamos uma mensagem ao <b>%(email)s</b> para verificação. Abre seu e-mail e clique "
-"no link fornecido para finalizar o processo de inscrição. Se você não receber uma resposta "
-" em poucos minutos, entre em contato em <a href=\"mailto:%(THEME_CONTACT_EMAIL)s"
-"\">%(THEME_CONTACT_EMAIL)s</a>."
+"Enviamos uma mensagem ao <b>%(email)s</b> para verificação. Abre seu e-mail "
+"e clique no link fornecido para finalizar o processo de inscrição. Se você "
+"não receber uma resposta  em poucos minutos, entre em contato em <a href="
+"\"mailto:%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</a>."
 
 #: account/email_confirmed.html:6 account/email_confirmed.html.py:9
 msgid "Email confirmed"
@@ -127,7 +135,7 @@ msgstr "e-mail confirmado"
 msgid "You have confirmed <b>%(email)s</b>"
 msgstr "você confirmou <b>%(email)s</b>"
 
-#: account/login.html:7 account/login.html.py:20 theme/_account_bar.html:57
+#: account/login.html:7 account/login.html.py:20 theme/_account_bar.html:60
 msgid "Log in"
 msgstr "login"
 
@@ -140,7 +148,7 @@ msgid "Forgot your password?"
 msgstr "esqueceu sua senha?"
 
 #: account/logout.html:6 account/logout.html.py:12 account/logout.html:16
-#: theme/_account_bar.html:52
+#: theme/_account_bar.html:55
 msgid "Log out"
 msgstr "logout"
 
@@ -161,8 +169,8 @@ msgid ""
 "Forgotten your password? Enter your email address below, and we'll send you "
 "an email allowing you to reset it."
 msgstr ""
-"Esqueceu sua senha? Entre seu e-mail abaixo, e nós iremos mandar uma"
-"mensagem com as instruções para o reinício"
+"Esqueceu sua senha? Entre seu e-mail abaixo, e nós iremos mandar umamensagem "
+"com as instruções para o reinício"
 
 #: account/password_reset.html:23
 msgid "Reset my password"
@@ -174,8 +182,8 @@ msgid ""
 "If you have any trouble resetting your password, contact us at <a href="
 "\"mailto:%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</a>."
 msgstr ""
-"Se você tiver problemas reiniciando sua senha, mandar um e-mail para"
-"<a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</a>."
+"Se você tiver problemas reiniciando sua senha, mandar um e-mail para<a href="
+"\"mailto:%(THEME_CONTACT_EMAIL)s\">%(THEME_CONTACT_EMAIL)s</a>."
 
 #: account/password_reset_sent.html:7 account/password_reset_sent.html:10
 msgid "Password reset sent"
@@ -188,9 +196,9 @@ msgid ""
 "try resending or contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
 "%(THEME_CONTACT_EMAIL)s</a>."
 msgstr ""
-"Enviamos um e-mail. Se você não receber em poucos minutos, verifique sua caixa"
-"de spam ou envie um e-mail para <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
-"%(THEME_CONTACT_EMAIL)s</a>."
+"Enviamos um e-mail. Se você não receber em poucos minutos, verifique sua "
+"caixade spam ou envie um e-mail para <a href=\"mailto:%(THEME_CONTACT_EMAIL)s"
+"\">%(THEME_CONTACT_EMAIL)s</a>."
 
 #: account/password_reset_sent.html:21
 msgid "Resend"
@@ -203,9 +211,9 @@ msgid ""
 "minutes, contact us at <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
 "%(THEME_CONTACT_EMAIL)s</a>."
 msgstr ""
-"Enviamos um e-mail. Se você não receber em poucos minutos, verifique sua caixa"
-"de spam ou envie um e-mail para <a href=\"mailto:%(THEME_CONTACT_EMAIL)s\">"
-"%(THEME_CONTACT_EMAIL)s</a>."
+"Enviamos um e-mail. Se você não receber em poucos minutos, verifique sua "
+"caixade spam ou envie um e-mail para <a href=\"mailto:%(THEME_CONTACT_EMAIL)s"
+"\">%(THEME_CONTACT_EMAIL)s</a>."
 
 #: account/password_reset_token.html:7 account/password_reset_token.html:13
 msgid "Set your new password"
@@ -222,10 +230,11 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a <a href=\"%(url)s\">new password reset</a>."
 msgstr ""
-"O link para mudança de senha é invalido, provavelmente por ele já ter sido usado"
-"Por favor, <a href=\"%(url)s\"> requisite uma nova senha </a>"
+"O link para mudança de senha é invalido, provavelmente por ele já ter sido "
+"usadoPor favor, <a href=\"%(url)s\"> requisite uma nova senha </a>"
+
 #: account/signup.html:7 account/signup.html.py:13 account/signup.html:19
-#: account/signup_closed.html:6 theme/_account_bar.html:58
+#: account/signup_closed.html:6 theme/_account_bar.html:61
 msgid "Sign up"
 msgstr "Inscreva-se"
 
@@ -236,7 +245,6 @@ msgstr "Este site é privado"
 #: account/signup_closed.html:12
 msgid " \"Your signup code...\"  "
 msgstr " \"Seu código de inscrição...\" "
-
 
 #: account/email/email_confirmation_message.txt:1
 #, python-format
@@ -298,7 +306,6 @@ msgid "There are currently no threads."
 msgstr "Não existem tópicos"
 
 #: agora/reminders/_forum_messages.html:5
-#: agora/reminders/_statics_messages.html:3
 msgid "Reminders"
 msgstr "lembrete"
 
@@ -309,55 +316,55 @@ msgstr "descrição"
 #: agora/reminders/_forum_messages.html:9 django_messages/trash.html:16
 #: django_messages/view.html:16
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: django_messages/base.html:7 theme/_account_bar.html:28
 msgid "Messages"
-msgstr ""
+msgstr "Mensagens"
 
 #: django_messages/base.html:10 django_messages/inbox.html:8
 #: django_messages/new_message.html:13
 msgid "Inbox"
-msgstr ""
+msgstr "Caixa de entrada"
 
 #: django_messages/base.html:13 django_messages/outbox.html:8
 msgid "Sent Messages"
-msgstr ""
+msgstr "Mensagens enviadas"
 
 #: django_messages/base.html:16
 msgid "New Message"
-msgstr ""
+msgstr "Nova mensagem"
 
 #: django_messages/base.html:19
 msgid "Trash"
-msgstr ""
+msgstr "Lixeira"
 
 #: django_messages/compose.html:7
 msgid "Compose Message"
-msgstr ""
+msgstr "Escrever mensagem"
 
 #: django_messages/compose.html:13
 msgid "Send"
-msgstr ""
+msgstr "Enviar"
 
 #: django_messages/inbox.html:14 django_messages/trash.html:14
 #: django_messages/view.html:14
 msgid "Sender"
-msgstr ""
+msgstr "Remetente"
 
 #: django_messages/inbox.html:15 django_messages/outbox.html:16
 #: django_messages/trash.html:15 django_messages/view.html:12
 msgid "Subject"
-msgstr ""
+msgstr "Assunto"
 
 #: django_messages/inbox.html:16
 msgid "Received"
-msgstr ""
+msgstr "Recebidas"
 
 #: django_messages/inbox.html:17 django_messages/outbox.html:18
 #: django_messages/trash.html:17
 msgid "Action"
-msgstr ""
+msgstr "Ação"
 
 #: django_messages/inbox.html:29 django_messages/outbox.html:28
 #: django_messages/trash.html:26 django_messages/view.html:17
@@ -366,12 +373,12 @@ msgstr ""
 
 #: django_messages/inbox.html:30 django_messages/outbox.html:29
 msgid "delete"
-msgstr ""
+msgstr "deletar"
 
 #: django_messages/inbox.html:36 django_messages/outbox.html:35
 #: django_messages/trash.html:33
 msgid "No messages."
-msgstr ""
+msgstr "Sem mensagens."
 
 #: django_messages/new_message.html:4
 #, python-format
@@ -381,57 +388,96 @@ msgid ""
 "    you received a private message from %(sender)s with\n"
 "    the following contents:"
 msgstr ""
+"Olá %(recipient)s,\n"
+"\n"
+"    você recebeu uma mensagem privada de %(sender)s com\n"
+"    o seguinte conteúdo:"
 
 #: django_messages/new_message.html:12
 #, python-format
-msgid "Sent from %(site_url)s"
+msgid "Enviada de %(site_url)s"
 msgstr ""
 
 #: django_messages/new_message.html:14 django_messages/view.html:24
 msgid "Reply"
-msgstr ""
+msgstr "Responder"
 
 #: django_messages/outbox.html:15 django_messages/view.html:18
 msgid "Recipient"
-msgstr ""
+msgstr "Destinatário"
 
 #: django_messages/outbox.html:17
 msgid "Sent"
-msgstr ""
+msgstr "Enviada"
 
 #: django_messages/trash.html:8
 msgid "Deleted Messages"
-msgstr ""
+msgstr "Mensagens deletadas"
 
 #: django_messages/trash.html:27
 msgid "undelete"
-msgstr ""
+msgstr "recuperar"
 
 #: django_messages/trash.html:36
 msgid ""
 "Deleted Messages are removed from the trash at unregular intervals, don't "
 "rely on this feature for long-time storage."
 msgstr ""
+"Mensagens deletadas são removidas da lixeira em intervalos não-regulares, não "
+"conte com essa feature para armazenamento de longo-prazo."
 
-""
 #: django_messages/view.html:8
 msgid "View Messag"
-msgstr ""
+msgstr "Ver mensagem"
 
 #: django_messages/view.html:26
 msgid "Delete"
-msgstr ""
+msgstr "Deletar"
 
-#: educational/teacher/assignment_create_view.html:8
-#: educational/teacher/assignment_create_view.html:13
-msgid "Create Assignment"
-msgstr "criar tarefa"
-
-#: educational/teacher/assignment_detail.html:8 profiles/teacher.html:40
+#: educational/guardian/assignment_detail.html:8
+#: educational/teacher/assignment_detail.html:8 profiles/teacher.html:39
 msgid "View Assignment"
 msgstr "ver tarefas"
 
-#: educational/teacher/discipline_detail.html:8 profiles/teacher.html:20
+#: educational/guardian/assignment_detail.html:23
+#: educational/teacher/assignment_detail.html:23
+#, fuzzy
+msgid "Discipline"
+msgstr "disciplinas"
+
+#: educational/guardian/assignment_detail.html:27
+#: educational/teacher/assignment_detail.html:27
+msgid "Groups"
+msgstr "Grupos"
+
+#: educational/teacher/assignment_create.html:8
+#: educational/teacher/assignment_create.html:13
+msgid "Create Assignment"
+msgstr "criar tarefa"
+
+#: educational/teacher/assignment_detail.html:36
+msgid "Create new group"
+msgstr "Criar novo grupo"
+
+#: educational/teacher/assignment_detail.html:39
+#: educational/teacher/group_create_personality_based.html:8
+#: educational/teacher/group_create_personality_based.html:13
+msgid "Create groups based on personality tests results"
+msgstr "Criar grupos baseados nos resultados dos testes de personalidade"
+
+#: educational/teacher/assignment_update.html:8
+#: educational/teacher/assignment_update.html:13
+#, fuzzy
+msgid "Edit Assignment"
+msgstr "ver tarefas"
+
+#: educational/teacher/discipline_create.html:8
+#: educational/teacher/discipline_create.html:13
+#, fuzzy
+msgid "Create Discipline"
+msgstr "ver disciplina"
+
+#: educational/teacher/discipline_detail.html:8 profiles/teacher.html:24
 msgid "View Discipline"
 msgstr "ver disciplina"
 
@@ -443,21 +489,57 @@ msgstr "professor"
 msgid "Assignments"
 msgstr "tarefas"
 
-#: educational/teacher/discipline_detail.html:28
+#: educational/teacher/discipline_detail.html:35
 msgid "Add new assingment"
 msgstr "adicionar nova tarefa"
 
-#: educational/teacher/discipline_detail.html:37
+#: educational/teacher/discipline_detail.html:40
 msgid "Students"
 msgstr "estudante"
 
-#: educational/teacher/discipline_detail.html:38
-msgid "Edit students"
-msgstr "editar estudante"
-
-#: educational/teacher/disicpline_update_view.html:12
+#: educational/teacher/discipline_update.html:8
+#: educational/teacher/discipline_update.html:13
 msgid "Edit Discipline"
 msgstr "editar disciplina"
+
+#: educational/teacher/group_create.html:8
+#: educational/teacher/group_create.html:13
+msgid "Create Group"
+msgstr "Criar grupo"
+
+#: educational/teacher/group_detail.html:8
+#, fuzzy
+msgid "View Group"
+msgstr "ver grupos"
+
+#: educational/teacher/group_detail.html:23
+#: educational/teacher/group_list.html:19
+msgid "Members"
+msgstr "Membros"
+
+#: educational/teacher/group_detail.html:33
+#: educational/teacher/group_detail.html:35
+#, fuzzy
+msgid "Forum"
+msgstr "ir para o fórum"
+
+#: educational/teacher/group_list.html:8
+#, fuzzy
+msgid "View Groups"
+msgstr "ver grupos"
+
+#: educational/teacher/group_list.html:18
+msgid "Group"
+msgstr "Grupo"
+
+#: educational/teacher/group_update.html:13
+#, fuzzy
+msgid "Edit Group"
+msgstr "editar perfil"
+
+#: fb/edit.html:14
+msgid "Edit Social Networks"
+msgstr "Editar Redes Sociais"
 
 #: pagination/builtin_pagination.html:10 pagination/builtin_pagination.html:13
 #: pagination/django_pagination_pagination.html:9
@@ -479,17 +561,17 @@ msgstr "próximos sete dias"
 msgid "Disciplines"
 msgstr "disciplinas"
 
-#: profiles/teacher.html:15
+#: profiles/teacher.html:19
 msgid "Go to Forum"
 msgstr "ir para o fórum"
-
-#: profiles/teacher.html:35
-msgid "View groups"
-msgstr "ver grupos"
 
 #: questionnaire/questionnaire_form.html:10
 msgid "Questionnaire"
 msgstr "questionário"
+
+#: questionnaire/questionnaire_form.html:20
+msgid "Submit"
+msgstr "Enviar"
 
 #: survey/base.html:6
 msgid "Surveys"
@@ -579,10 +661,12 @@ msgstr "Não existem dados"
 msgid "Tests"
 msgstr "testes"
 
-#: theme/_account_bar.html:44
-msgid "Teacher area"
-msgstr "Área do professor"
-
-#: theme/_account_bar.html:48
+#: theme/_account_bar.html:51
 msgid "Admin"
 msgstr "admin"
+
+#~ msgid "Edit students"
+#~ msgstr "editar estudante"
+
+#~ msgid "Teacher area"
+#~ msgstr "Área do professor"
