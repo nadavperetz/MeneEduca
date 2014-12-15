@@ -1,5 +1,4 @@
 from random import shuffle
-from timeout import timeout, TimeoutError
 from math import factorial
 from time import time
 
