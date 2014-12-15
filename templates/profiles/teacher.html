@@ -6,7 +6,7 @@
 {% for discipline in user.profile.teacher.discipline_of_teacher.all  %}
     <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" style="width: 100%; text-align: left" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-            {{ discipline.group }}
+            {{ discipline.code }} - {{ discipline.name }}
             <span class="glyphicon glyphicon-plus pull-right "></span>
         </button>
         <ul class="dropdown-menu" style="width: 100%;" role="menu" aria-labelledby="dropdownMenu1">

@@ -18,6 +18,29 @@ class DisciplineDetailView(DetailView):
     template_name = 'educational/teacher/discipline_detail.html'
 
 
+def discipline_create(request):
+    if request.method == 'POST':
+        form = DisciplineForm(request.POST)
+        if form.is_valid():
+            discipline = Discipline()
+            discipline.name = form.cleaned_data['name']
+            discipline.code = form.cleaned_data['code']
+            discipline.start_date = form.cleaned_data['start_date']
+            discipline.finish_date = form.cleaned_data['finish_date']
+            discipline.teacher = Teacher.objects.get(pk=form.cleaned_data['teacher'])
+            discipline.save()
+
+            discipline.group.profiles.add(Teacher.objects.get(pk=form.cleaned_data['teacher']).profile)
+            for selected_student in form.cleaned_data['students']:
+                discipline.group.profiles.add(Profile.objects.get(pk=selected_student))
+
+            return HttpResponseRedirect(reverse("educational:discipline_detail", kwargs={'pk': discipline.pk}))
+    else:
+        form = DisciplineForm()
+
+    return render(request, 'educational/teacher/discipline_create.html', {'form': form})
+
+
 def discipline_update(request, pk):
     discipline = get_object_or_404(Discipline, pk=pk)
 
@@ -29,7 +52,6 @@ def discipline_update(request, pk):
     if request.method == 'POST':
         form = DisciplineForm(request.POST)
         if form.is_valid():
-            print 'b'
             discipline.name = form.cleaned_data['name']
             discipline.code = form.cleaned_data['code']
             discipline.start_date = form.cleaned_data['start_date']
@@ -43,7 +65,6 @@ def discipline_update(request, pk):
             discipline.group.profiles.add(Teacher.objects.get(pk=form.cleaned_data['teacher']).profile)
             for selected_student in form.cleaned_data['students']:
                 discipline.group.profiles.add(Profile.objects.get(pk=selected_student))
-
 
             return HttpResponseRedirect(reverse("educational:discipline_detail", kwargs={'pk': pk}))
     else:
