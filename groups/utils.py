@@ -1,6 +1,6 @@
 from random import shuffle
-from timeout import timeout, TimeoutError
 from math import factorial
+from time import time
 
 
 def bigger_groups_number(npeople, ngroups):
@@ -86,7 +86,7 @@ def bruteforce_group_formation2(people, groups, count):
 
 
 def rate_group(group):
-    ntraits = len(grop[0].get_traits())
+    ntraits = len(group[0].get_traits())
     max_traits = [0.0] * ntraits
     min_traits = [1.0] * ntraits
 
@@ -119,26 +119,24 @@ def rate_formation(groups):
     return rate
 
 
-@timeout(10)
-def random_group_formation(people, ngroups):
+def random_best_group_formation(people, ngroups):
     npeople = len(people)
     best_score = 0.0
     best_formation = None
 
-    try:
-        tmp = list(people)
+    init_time = time()
+    print init_time
 
-        while True:
-            shuffle(tmp)
-            formation = stupid_group_formation(tmp, ngroups)
-            score = rate_formation(formation)
+    tmp = list(people)
 
-            if score > best_score:
-                best_score = score
-                best_formation = formation
+    while(time() - init_time <= 1):
+        shuffle(tmp)
+        formation = stupid_group_formation(tmp, ngroups)
+        score = rate_formation(formation)
 
-    except TimeoutError:
-        pass
+        if score > best_score:
+            best_score = score
+            best_formation = formation
 
     # gives a sorted answer (not required, but nice)
     bigger_number = bigger_groups_number(npeople, ngroups)
@@ -148,6 +146,12 @@ def random_group_formation(people, ngroups):
     best_formation = sorted(best_formation[0 : bigger_number]) + sorted(best_formation[bigger_number : bigger_number + smaller_number])
 
     return best_formation
+
+
+def random_group_formation(people, ngroups):
+    tmp = list(people)
+    shuffle(tmp)
+    return stupid_group_formation(tmp, ngroups)
 
 
 def stupid_group_formation(people, ngroups):

@@ -8,8 +8,9 @@ from educational.models import Discipline, Assignment
 from groups.models import Group
 from profiles.models import Profile
 
+from groups.utils import bruteforce_group_formation, random_best_group_formation, random_group_formation
 
-from educational.forms import GroupForm
+from educational.forms import GroupForm, PersonalityBasedGroupForm
 
 
 class DisciplineDetailView(DetailView):
@@ -19,7 +20,7 @@ class DisciplineDetailView(DetailView):
 
 class DisciplineUpdateView(UpdateView):
     model = Discipline
-    template_name = 'educational/teacher/disicpline_update_view.html'
+    template_name = 'educational/teacher/discipline_update.html'
     fields = ['name', 'code', 'start_date', 'finish_date', 'teacher']
 
     def get_success_url(self):
@@ -33,7 +34,7 @@ class AssignmentDetailView(DetailView):
 
 class AssignmentCreateView(CreateView):
     model = Assignment
-    template_name = 'educational/teacher/assignment_create_view.html'
+    template_name = 'educational/teacher/assignment_create.html'
     fields = ['title']
 
     def get_context_data(self, **kwargs):
@@ -47,6 +48,16 @@ class AssignmentCreateView(CreateView):
 
     def get_success_url(self):
         return reverse('educational:discipline_detail', kwargs={'pk': self.kwargs['discipline_id']})
+
+
+class AssignmentUpdateView(UpdateView):
+    model = Assignment
+    template_name = 'educational/teacher/assignment_update.html'
+
+    fields = ['title']
+
+    def get_success_url(self):
+        return reverse('educational:assignment_detail', kwargs={'pk': self.object.pk})
 
 
 def assignment_create(request, discipline_id):
@@ -92,9 +103,13 @@ def group_update(request, group_id):
                 group.profiles.add(Profile.objects.get(pk=selected_student))
             group.profiles.add(assignment.discipline.teacher.profile)
 
-            return HttpResponseRedirect(reverse("educational:assignment_detail", kwargs={'pk': assignment.pk}))
+            return HttpResponseRedirect(reverse("educational:group_detail", kwargs={'pk': group.pk}))
     else:
-        form = GroupForm(students)
+        old_students = []
+        for profile in group.profiles.all():
+            if profile.is_student():
+                old_students.append(profile)
+        form = GroupForm(students, initial={'name': group.name, 'students': [s.pk for s in old_students]})
 
     return render(request, 'educational/teacher/group_update.html', {'form': form})
 
@@ -127,3 +142,39 @@ def group_create(request, assignment_id):
         form = GroupForm(students)
 
     return render(request, 'educational/teacher/group_create.html', {'form': form})
+
+
+def group_create_personality_based(request, assignment_id):
+    assignment = get_object_or_404(Assignment, id=assignment_id)
+
+    # students = assignment.discipline.group.profiles.filter(student=True)
+    students = []
+    for profile in assignment.discipline.group.profiles.all():
+        if profile.is_student():
+            students.append(profile)
+
+    if request.method == 'POST':
+        form = PersonalityBasedGroupForm(len(students), request.POST)
+
+        if form.is_valid():
+            if form.cleaned_data['algorithm'] == '1':
+                groups_members = bruteforce_group_formation(students, form.cleaned_data['number'])
+            elif form.cleaned_data['algorithm'] == '2':
+                groups_members = random_best_group_formation(students, form.cleaned_data['number'])
+            else:
+                groups_members = random_group_formation(students, form.cleaned_data['number'])
+
+            for i in xrange(len(groups_members)):
+                group = Group()
+                group.name = form.cleaned_data['name'] + ' ' + str(i + 1)
+                group.save()
+                assignment.group.add(group)
+
+                for member in groups_members[i]:
+                    group.profiles.add(member)
+            return HttpResponseRedirect(reverse("educational:assignment_detail", kwargs={'pk': assignment.pk}))
+
+    else:
+        form = PersonalityBasedGroupForm(len(students))
+
+    return render(request, 'educational/teacher/group_create_personality_based.html', {'form': form})

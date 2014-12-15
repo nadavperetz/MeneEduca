@@ -8,16 +8,16 @@
 {% block head_title %}{% trans "View Discipline" %}{% endblock %}
 
 {% block body %}
-
-    <div class="table-responsive">
-        <h4>
-            {{ discipline.code}} - {{ discipline.name }}
-            <a href="{% url 'educational:discipline_update' discipline.pk %}">
-                <span class="glyphicon glyphicon-edit"></span>
-            </a>
-        </h4>
-        <table class="table">
-
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>
+                {{ discipline.code}} - {{ discipline.name }}
+                <a href="{% url 'educational:discipline_update' discipline.pk %}">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+            </h3>
+        </div>
+        <table class="table table-striped">
             <tbody>
             <tr>
                 <th>{% trans "Teacher" %}</th>
@@ -25,27 +25,30 @@
             </tr>
             <tr>
                 <th>{% trans "Assignments" %}</th>
-                <td><a href="{% url 'educational:assignment_create' discipline_id=discipline.pk %}">{% trans "Add new assingment" %}</a> </td>
+                <td>
+                    <ul class="list-unstyled">
+                    {% for assignment in discipline.assignment_set.all %}
+                        <li>
+                            <a href="{% url 'educational:assignment_detail' assignment.pk %}">{{ assignment.title }}</a>
+                        </li>
+                    {% endfor %}
+                        <li><a href="{% url 'educational:assignment_create' discipline_id=discipline.pk %}">+ {% trans "Add new assingment" %}</a></li>
+                    </ul>
+                </td>
             </tr>
-            {% for assignment in discipline.assignment_set.all %}
-                <tr>
-                    <th> </th>
-                    <td><a href="{% url 'educational:assignment_detail' assignment.pk %}">{{ assignment.title }}</a><td>
-                </tr>
-            {% endfor %}
-             <tr>
-            <th>{% trans "Students" %}</th>
-                <td><a href="#">{% trans "Edit students" %}</a> </td>
-            </tr>
-            {% for profile in discipline.group.profiles.all %}
-                {% if profile.is_student %}
-                <tr>
-                    <th> </th>
-                    <td>{{ profile }} <td>
-                </tr>
-                {% endif %}
-            {% endfor %}
-
+            <tr>
+                <th>Students</th>
+                <td>
+                    <ul class="list-unstyled">
+                    {% for profile in discipline.group.profiles.all %}
+                        {% if profile.is_student %}
+                        <li>
+                            <a href="#">{{ profile }}</a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                </td>
             </tbody>
         </table>
     </div><!-- /.table-responsive -->

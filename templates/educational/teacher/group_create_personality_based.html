@@ -5,14 +5,14 @@
 {% load bootstrap %}
 {% load url from future %}
 
-{% block head_title %}{% trans "Create Assignment" %}{% endblock %}
+{% block head_title %}{% trans "Create groups based on personality tests results" %}{% endblock %}
 
 {% block body %}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3>{% trans "Create Assignment" %}</h3>
+            <h3>{% trans "Create groups based on personality tests results" %}</h3>
         </div>
-        <div style="padding: 8px;">
+        <div class="panel-body">
             <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form|bootstrap }}
