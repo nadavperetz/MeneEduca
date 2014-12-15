@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-09 19:43-0200\n"
+"POT-Creation-Date: 2014-12-15 17:37-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,94 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: forms.py:10 forms.py:18 forms.py:29
+msgid "Name"
+msgstr "Nome"
+
+#: forms.py:11 forms.py:39
+msgid "Students"
+msgstr "Alunos"
+
+#: forms.py:12
+msgid ""
+"Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
+msgstr ""
+"Pressione \"Control\", ou \"Command\" em um Mac, para selecionar mais de uma "
+"opção"
+
+#: forms.py:19
+msgid ""
+"Name base of the groups. A number to identify the different groups will be "
+"appended to this name."
+msgstr ""
+"Base do nome dos grupos. Um número para diferenciar os grupos será "
+"concatenado a este nome"
+
+#: forms.py:20
+msgid "Number of groups"
+msgstr "Número de grupos"
+
+#: forms.py:21
+msgid ""
+"The number of groups that will be generated. This must be less than or equal "
+"to the number of students enrolled in the discipline."
+msgstr ""
+"O número de grupos que a serem gerados. Este número deve ser menor ou igual "
+"ao número de estudantes matriculados na disciplina."
+
+#: forms.py:22
+msgid "Algorithm"
+msgstr "Algoritmo"
+
+#: forms.py:23
+msgid ""
+"The bruteforce algorithm tries all the possible group formations. It should "
+"not be used when there's a big number of students. Random best chooses the "
+"best group formation after 1 second of random tries. Random generates a "
+"random group."
+msgstr ""
+"O algoritmo força bruta tenta todas as formações de grupos possíveis. Ele "
+"não deve ser usado quando há um número grande de alunos matriculados na "
+"matéria. O algoritmo melhor aleatório escolhe a melhor formação de grupos "
+"após 1 segundo de tentativas aleatórias. O algoritmo aleatório gera grupos "
+"aleatóriamente."
+
+#: forms.py:30
+msgid "Name of the discipline."
+msgstr "Nome da disciplina."
+
+#: forms.py:31
+msgid "Code"
+msgstr "Código"
+
+#: forms.py:32
+msgid "A unique code identifying the discipline."
+msgstr "Um código identificando a disciplina."
+
+#: forms.py:33 models.py:14
+msgid "Start date"
+msgstr "Data de início"
+
+#: forms.py:34
+msgid "The day the discipline starts."
+msgstr "O dia em que começa a disciplina."
+
+#: forms.py:35 models.py:16
+msgid "Finish date"
+msgstr "Data de término"
+
+#: forms.py:36
+msgid "The day the discipline ends."
+msgstr "O dia em que termina a disciplina."
+
+#: forms.py:37
+msgid "Teacher"
+msgstr "Professor(a)"
+
+#: forms.py:38
+msgid "The teacher responsible for this discipline."
+msgstr "O(a) professor(a) responsável por esta disciplina."
+
 #: models.py:12
 msgid "name"
 msgstr "nome"
@@ -26,52 +114,50 @@ msgstr "nome"
 msgid "code"
 msgstr "código"
 
-#: models.py:14
-msgid "Start date"
-msgstr "Data de início"
-
-#: models.py:16
-msgid "Finish date"
-msgstr "Data de término"
-
 #: models.py:18
 msgid "teacher"
 msgstr "professor(a)"
 
-#: models.py:19 models.py:75
+#: models.py:19 models.py:86
 msgid "group"
 msgstr "grupo"
 
-#: models.py:73
+#: models.py:20
+msgid "group of parents"
+msgstr "grupo dos pais"
+
+#: models.py:49 models.py:56
+msgid "Guardians"
+msgstr "Guardiões"
+
+#: models.py:84
 msgid "discipline"
 msgstr "disciplina"
 
-#: models.py:74 models.py:95
+#: models.py:85 models.py:107
 msgid "title"
 msgstr "título"
 
-#: models.py:96 models.py:119
-#, fuzzy
+#: models.py:108 models.py:131
 msgid "start date"
 msgstr "data de início"
 
-#: models.py:97 models.py:120
-#, fuzzy
+#: models.py:109 models.py:132
 msgid "finish date"
 msgstr "data de término"
 
-#: models.py:98
+#: models.py:110
 msgid "assignment"
 msgstr "tarefa"
 
-#: models.py:99
+#: models.py:111
 msgid "eventos"
 msgstr "evento"
 
-#: models.py:121
+#: models.py:133
 msgid "description"
 msgstr "descrição"
 
-#: models.py:122
+#: models.py:134
 msgid "forum"
 msgstr "fórum"

@@ -17,7 +17,7 @@ class Discipline(models.Model):
                                    default=date(date.today().year, 12, 31))
     teacher = models.ForeignKey('profiles.Teacher', related_name="discipline_of_teacher", verbose_name=_(u"teacher"))
     group = models.ForeignKey('groups.Group', blank=True, null=True, verbose_name=_(u"group"))
-    parent_group  = models.ForeignKey('groups.Group', blank=True, null=True, verbose_name=_(u"group_of_parents"), related_name="group_of_parents")
+    parent_group  = models.ForeignKey('groups.Group', blank=True, null=True, verbose_name=_(u"group of parents"), related_name="group_of_parents")
 
     def is_active(self):
         if date.today() > self.finish_date:
