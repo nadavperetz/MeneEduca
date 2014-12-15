@@ -17,3 +17,4 @@ class PersonalityBasedGroupForm(forms.Form):
         self.fields['number'] = forms.IntegerField(label=_(u'Number of groups'), min_value=1, max_value=max_groups)
         self.fields['number'].help_text = _('The number of groups that will be generated. This must be less than or equal to the number of students enrolled in the discipline.')
         self.fields['algorithm'] = forms.ChoiceField(label=_(u'Algorithm'), choices=[(1, 'Bruteforce'), (2, 'Random best'), (3, 'Random')])
+        self.fields['algorithm'].help_text = _("The bruteforce algorithm tries all the possible group formations. It should not be used when there's a big number of students. Random best chooses the best group formation after 1 second of random tries. Random generates a random group.")
