@@ -9,6 +9,7 @@ from educational.views.teachers import social_network
 
 urlpatterns = patterns(
     "",
+    url(r"^disciplines/create/$", 'educational.views.teachers.discipline_create', name="discipline_create"),
     url(r"^disciplines/(?P<pk>\d+)/$", DisciplineDetailView.as_view(), name="discipline_detail"),
     url(r"^disciplines/edit/(?P<pk>\d+)/$", 'educational.views.teachers.discipline_update', name="discipline_update"),
     url(r"^disciplines/(?P<discipline_id>\d+)/assignments/create/$", AssignmentCreateView.as_view(), name="assignment_create"),

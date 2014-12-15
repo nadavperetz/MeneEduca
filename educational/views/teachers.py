@@ -37,6 +37,12 @@ def discipline_create(request):
             for selected_student in form.cleaned_data['students']:
                 discipline.group.profiles.add(Profile.objects.get(pk=selected_student))
 
+            discipline.parent_group.profiles.add(Teacher.objects.get(pk=form.cleaned_data['teacher']).profile)
+            for selected_student in form.cleaned_data['students']:
+                for guardian in Profile.objects.get(pk=selected_student).student.guardians_children.all():
+                    discipline.parent_group.profiles.add(guardian.profile)
+
+
             return HttpResponseRedirect(reverse("educational:discipline_detail", kwargs={'pk': discipline.pk}))
     else:
         form = DisciplineForm()
@@ -68,6 +74,14 @@ def discipline_update(request, pk):
             discipline.group.profiles.add(Teacher.objects.get(pk=form.cleaned_data['teacher']).profile)
             for selected_student in form.cleaned_data['students']:
                 discipline.group.profiles.add(Profile.objects.get(pk=selected_student))
+
+            for profile in discipline.parent_group.profiles.all():
+                discipline.parent_group.profiles.remove(profile)
+
+            discipline.parent_group.profiles.add(Teacher.objects.get(pk=form.cleaned_data['teacher']).profile)
+            for selected_student in form.cleaned_data['students']:
+                for guardian in Profile.objects.get(pk=selected_student).student.guardians_children.all():
+                    discipline.parent_group.profiles.add(guardian.profile)
 
             return HttpResponseRedirect(reverse("educational:discipline_detail", kwargs={'pk': pk}))
     else:

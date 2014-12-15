@@ -26,7 +26,7 @@ class Group(models.Model):
         print self.name
         description = "Forum " + unicode(self.name)
 
-        if not self.pk:
+        if len(Forum.objects.filter(group=self)) == 0:
             forum = Forum(title=self.name,
                           description=description,
                           group=self)
