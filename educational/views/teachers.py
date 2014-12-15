@@ -85,11 +85,6 @@ class AssignmentUpdateView(UpdateView):
         return reverse('educational:assignment_detail', kwargs={'pk': self.object.pk})
 
 
-def assignment_create(request, discipline_id):
-    discipline = get_object_or_404(Discipline, pk=discipline_id)
-    return render(request, 'educational/teacher/assignment_create.html', {'discipline': discipline})
-
-
 class GroupListView(ListView):
     model = Group
     template_name = 'educational/teacher/group_list.html'
