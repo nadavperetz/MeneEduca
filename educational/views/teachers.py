@@ -8,7 +8,7 @@ from educational.models import Discipline, Assignment
 from groups.models import Group
 from profiles.models import Profile
 
-from groups.utils import bruteforce_group_formation
+from groups.utils import bruteforce_group_formation, random_best_group_formation, random_group_formation
 
 from educational.forms import GroupForm, PersonalityBasedGroupForm
 
@@ -109,7 +109,6 @@ def group_update(request, group_id):
         for profile in group.profiles.all():
             if profile.is_student():
                 old_students.append(profile)
-        print [s.pk for s in old_students]
         form = GroupForm(students, initial={'name': group.name, 'students': [s.pk for s in old_students]})
 
     return render(request, 'educational/teacher/group_update.html', {'form': form})
@@ -153,13 +152,17 @@ def group_create_personality_based(request, assignment_id):
     for profile in assignment.discipline.group.profiles.all():
         if profile.is_student():
             students.append(profile)
-    print students
 
     if request.method == 'POST':
         form = PersonalityBasedGroupForm(len(students), request.POST)
 
         if form.is_valid():
-            groups_members = bruteforce_group_formation(students, form.cleaned_data['number'])
+            if form.cleaned_data['algorithm'] == '1':
+                groups_members = bruteforce_group_formation(students, form.cleaned_data['number'])
+            elif form.cleaned_data['algorithm'] == '2':
+                groups_members = random_best_group_formation(students, form.cleaned_data['number'])
+            else:
+                groups_members = random_group_formation(students, form.cleaned_data['number'])
 
             for i in xrange(len(groups_members)):
                 group = Group()

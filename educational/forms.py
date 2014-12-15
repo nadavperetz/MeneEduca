@@ -16,3 +16,4 @@ class PersonalityBasedGroupForm(forms.Form):
         self.fields['name'].help_text = _('Name base of the groups. A number to identify the different groups will be appended to this name.')
         self.fields['number'] = forms.IntegerField(label=_(u'Number of groups'), min_value=1, max_value=max_groups)
         self.fields['number'].help_text = _('The number of groups that will be generated. This must be less than or equal to the number of students enrolled in the discipline.')
+        self.fields['algorithm'] = forms.ChoiceField(label=_(u'Algorithm'), choices=[(1, 'Bruteforce'), (2, 'Random best'), (3, 'Random')])
