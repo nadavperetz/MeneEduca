@@ -34,22 +34,22 @@
                         {% user_display request.user %}
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{% url "profiles:profiles_edit" %}"><i class="fa fa-user"></i> {% trans "Edit Profile" %}</a></li>
-                        <li><a href="{% url "account_settings" %}"><i class="fa fa-user"></i> {% trans "Settings" %}</a></li>
+                        <li><a href="{% url "profiles:profiles_edit" %}"><i class="glyphicon glyphicon-user"></i> {% trans "Edit Profile" %}</a></li>
+                        <li><a href="{% url "account_settings" %}"><i class="glyphicon glyphicon-cog"></i> {% trans "Settings" %}</a></li>
                         {% if request.user.profile.is_student %}
-                            <li><a href="{% url "questionnaire:index" %}"><i class="fa fa-user"></i> {% trans "Tests" %}</a>
+                            <li><a href="{% url "questionnaire:index" %}"><i class="glyphicon glyphicon-pencil"></i> {% trans "Tests" %}</a>
                             </li>
                         {% endif %}
                         {% if request.user.profile.is_teacher %}
-                            <li><a href="#"><i class="fa fa-desktop"></i> {% trans "Teacher area" %}</a>
+                            <li><a href="#"><i class="glyphicon glyphicon-desktop"></i> {% trans "Teacher area" %}</a>
                             </li>
                         {% endif %}
                         {% if request.user.is_staff %}
-                            <li><a href="{% url THEME_ADMIN_URL|default:"admin:index" %}"><i class="fa fa-cog"></i> {% trans "Admin" %}</a></li>
+                            <li><a href="{% url THEME_ADMIN_URL|default:"admin:index" %}"><i class="glyphicon glyphicon-wrench"></i> {% trans "Admin" %}</a></li>
                         {% endif %}
                         <li class="divider"></li>
                         <li>
-                            <a id="account_logout" href="{% url "account_logout" %}"><i class="fa fa-power-off"></i> {% trans "Log out" %}</a>
+                                <a id="account_logout" href="{% url "account_logout" %}"><i class="glyphicon glyphicon-off"></i> {% trans "Log out" %}</a>
                         </li>
                     </ul>
                 </li>

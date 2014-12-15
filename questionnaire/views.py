@@ -73,6 +73,7 @@ def questionnaire_create_view(request, pk):
                 teste.question = lista_perguntas[i].question
                 teste.questionnaire = questionnaire[0]
                 teste.save()
+                lista_perguntas[i].delete()
             i += 1
         questionnaire[0].finish = True
         questionnaire[0].save()
@@ -83,9 +84,6 @@ def questionnaire_create_view(request, pk):
         for subform, question in zip(formset.forms, lista_perguntas):
             subform.instance.question = question.question
             subform.initial = {'question': question.question}
-            print subform
-            for field in subform.visible_fields():
-                print dir(field)
     context = {'questionnaire': questionnaire_model, 'formset': formset}
     return render(request, 'questionnaire/questionnaire_form.html', context)
 
