@@ -13,6 +13,9 @@ from agora.conf import settings
 from agora.managers import ForumThreadManager
 from django.utils.translation import ugettext_lazy as _
 
+from django.utils.encoding import python_2_unicode_compatible
+
+
 # this is the glue to the activity events framework, provided as a no-op here
 def issue_update(kind, **kwargs):
     pass
@@ -39,6 +42,7 @@ class ForumCategory(models.Model):
         return self.forum_set.order_by("title")
 
 
+@python_2_unicode_compatible
 class Forum(models.Model):
     title = models.CharField(max_length=100, verbose_name=_(u"title"))
     description = models.TextField(verbose_name=_(u"description"))
@@ -108,6 +112,9 @@ class Forum(models.Model):
         self.save()
         if self.parent:
             self.parent.new_post(post)
+
+    def __str__(self):
+        return self.title
 
     def __unicode__(self):
         return self.title
