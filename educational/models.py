@@ -17,6 +17,7 @@ class Discipline(models.Model):
                                    default=date(date.today().year, 12, 31))
     teacher = models.ForeignKey('profiles.Teacher', related_name="discipline_of_teacher", verbose_name=_(u"teacher"))
     group = models.ForeignKey('groups.Group', blank=True, null=True, verbose_name=_(u"group"))
+    parent_group  = models.ForeignKey('groups.Group', blank=True, null=True, verbose_name=_(u"group_of_parents"), related_name="group_of_parents")
 
     def is_active(self):
         if date.today() > self.finish_date:
@@ -39,11 +40,17 @@ class Discipline(models.Model):
         if not self.pk:
             if not self.code:
                 self.code = self.name[:15]
-            group_teste = Group(name=str(self.name))
-            group_teste.save()
-            group_teste.profiles.add(self.teacher.profile)
-            group_teste.save()
-            self.group = group_teste
+            group = Group(name=str(self.name))
+            group.save()
+            group.profiles.add(self.teacher.profile)
+            group.save()
+            self.group = group
+
+            parent_group = Group(name=str(self.name) + " - " + _("Guardians"))
+            parent_group.save()
+            parent_group.profiles.add(self.teacher.profile)
+            parent_group.save()
+            self.parent_group = parent_group
         super(Discipline, self).save()
 
     def __str__(self):

@@ -1,0 +1,41 @@
+{% extends "theme/base.html" %}
+
+{% load i18n %}
+
+{% load bootstrap %}
+{% load url from future %}
+
+{% block head_title %}{% trans "View Assignment" %}{% endblock %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>
+                {{ assignment.title }}
+                <a href="{% url 'educational:assignment_update' assignment.pk %}">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+            </h3>
+        </div>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>{% trans "Discipline" %}</th>
+                    <td><a href="{% url 'educational:discipline_detail' assignment.discipline.pk %}">{{ assignment.discipline.code }} - {{ assignment.discipline.name }}</a></td>
+                </tr>
+                <tr>
+                    <th>{% trans "Groups" %}</th>
+                    <td>
+                        <ul class="list-unstyled">
+                        {% for group in assignment.group.all %}
+                            <li>
+                                <a href="{% url 'educational:group_detail' group.pk %}">{{ group.name }}</a>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
