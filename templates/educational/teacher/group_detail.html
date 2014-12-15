@@ -18,15 +18,23 @@
             </h3>
         </div>
         <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>{% trans "Members" %}</th>
-                </tr>
-            </thead>
             <tbody>
-            {% for profile in group.profiles.all %}
-                <tr><td>{{ profile }}</td></tr>
-            {% endfor %}
+            <tr>
+                <th>{% trans "Members" %}</th>
+                <td>
+                    <ul class="list-unstyled">
+                        {% for profile in group.profiles.all %}
+                            <li>{{ profile }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>{% trans "Forum" %}</th>
+                <td>
+                    <a href="{% url 'forums:agora_forum' group.forum_set.first.pk %}">{% trans "Forum" %}</a>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

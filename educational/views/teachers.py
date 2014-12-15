@@ -83,6 +83,13 @@ def discipline_update(request, pk):
                 for guardian in Profile.objects.get(pk=selected_student).student.guardians_children.all():
                     discipline.parent_group.profiles.add(guardian.profile)
 
+            for assignment in discipline.assignment_set.all():
+                for group in assignment.group.all():
+                    for profile in group.profiles.all():
+                        if profile.is_teacher:
+                            group.profiles.remove(profile)
+                    group.profiles.add(Teacher.objects.get(pk=form.cleaned_data['teacher']).profile)
+
             return HttpResponseRedirect(reverse("educational:discipline_detail", kwargs={'pk': pk}))
     else:
         form = DisciplineForm(initial={'name': discipline.name, 'code': discipline.code, 'start_date': discipline.start_date, 'finish_date': discipline.finish_date, 'teacher': discipline.teacher.pk, 'students': [s.pk for s in old_students]})
@@ -230,6 +237,8 @@ def group_create_personality_based(request, assignment_id):
 
                 for member in groups_members[i]:
                     group.profiles.add(member)
+                group.profiles.add(assignment.discipline.teacher.profile)
+
             return HttpResponseRedirect(reverse("educational:assignment_detail", kwargs={'pk': assignment.pk}))
 
     else:
