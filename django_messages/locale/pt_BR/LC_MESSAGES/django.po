@@ -213,7 +213,7 @@ msgstr "excluir"
 #: templates/messages/inbox.html:27 templates/messages/outbox.html:24
 #: templates/messages/trash.html:24
 msgid "No messages."
-msgstr ""
+msgstr "Sem mensagens"
 
 #: templates/messages/new_message.html:1
 #, python-format

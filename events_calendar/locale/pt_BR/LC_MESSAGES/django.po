@@ -20,4 +20,4 @@ msgstr ""
 
 #: models.py:7
 msgid "title"
-msgstr ""
+msgstr "título"

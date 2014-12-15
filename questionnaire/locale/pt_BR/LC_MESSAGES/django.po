@@ -20,7 +20,7 @@ msgstr ""
 
 #: models.py:5
 msgid "Extroversion (1)"
-msgstr ""
+msgstr "Extroversão (1)"
 
 #: models.py:6
 msgid "Agreeableness (2)"
@@ -60,16 +60,16 @@ msgstr "Muito preciso"
 
 #: models.py:23
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #: models.py:30
 msgid "Question"
-msgstr ""
+msgstr "Questão"
 
 #: models.py:31
 msgid "Type of Factor"
-msgstr ""
+msgstr "Fator"
 
 #: models.py:33
 msgid "Weight"
-msgstr ""
+msgstr "Peso"

@@ -24,7 +24,10 @@ msgid ""
 "address                                                in order to "
 "navigate                                                through the site"
 msgstr ""
+"Você precisa autenticar seu email "
+"														para poder"
+"navegar												 por este site"
 
 #: views.py:35
 msgid "You successfully updated your profile."
-msgstr ""
+msgstr "Você atualizou corretamente seu perfil"
