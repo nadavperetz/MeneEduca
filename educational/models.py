@@ -40,7 +40,7 @@ class Discipline(models.Model):
         if not self.pk:
             if not self.code:
                 self.code = self.name[:15]
-            group = Group(name=str(self.name))
+            group = Group(name=self.name)
             group.save()
             group.profiles.add(self.teacher.profile)
             group.save()
@@ -51,7 +51,7 @@ class Discipline(models.Model):
             parent_group.profiles.add(self.teacher.profile)
             parent_group.save()
             self.parent_group = parent_group
-        self.group.name = str(self.name)
+        self.group.name = self.name
         self.group.save()
         self.parent_group.name = u'{0} - {1}'.format(self.name, _(u'Guardians'))
         self.parent_group.save()
