@@ -40,16 +40,17 @@ def login(request, provider_name):
             # We need to update the user to get more info.
             if not (result.user.name and result.user.id):
                 result.user.update()
-                url = 'https://graph.facebook.com/v2.2/{0}?fields=likes,id'
+                url = 'https://graph.facebook.com/v2.2/{0}?fields=likes,id&locale=pt_BR'
                 url = url.format(result.user.id)
                 
                 access_response = result.provider.access(url)
                 if access_response.status == 200:
                     likes=access_response.data.get('likes').get('data')
+                    profile=Profile.objects.get(user=request.user)
+                    Likes.objects.filter(profile=profile).delete()
                     for l in likes:
                         category=l.get('category')
                         name=l.get('name')
-                        profile=Profile.objects.get(user=request.user)
                         like=Likes(profile=profile,category=category,name=name)
                         like.save()
                     response.write('<script type="text/javascript">window.close()</script>') 

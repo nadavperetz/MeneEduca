@@ -12,13 +12,12 @@
         <div class="panel-body">
             <form action="" method="POST" enctype="multipart/form-data">
                 <legend>{% trans "Edit Social Networks" %}</legend>
-                <a class="authomatic" href="login/fb">Login with Facebook</a>
-                <script src="/static/pinax/js/jquery.js"></script>
-                <script src="/static/js/authomatic.js"></script>
+                <a class="btn btn-primary authomatic" href="login/fb">Vincular conta Facebook</a>
+                <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+                <script src="{{ STATIC_URL }}js/authomatic.js"></script>
                  <script type="text/javascript">
                  json = authomatic.popupInit();
      			 </script>
-                <button type="submit" class="btn btn-primary">Save</button>
             </form>
         </div>
     </div>

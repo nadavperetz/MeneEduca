@@ -7,6 +7,8 @@ from educational.models import Discipline, Assignment
 
 from fb.models import Likes
 
+from collections import Counter
+
 class DisciplineDetailView(DetailView):
     model = Discipline
     template_name = 'educational/teacher/discipline_detail.html'
@@ -51,7 +53,13 @@ def assignment_create(request, discipline_id):
 def social_network(request, discipline_id):
     discipline=Discipline.objects.get(pk=discipline_id)
     users=discipline.group.profiles.all()
-    likes=Likes.objects.filter(profile__in=users)
+    l=Likes.objects.filter(profile__in=users)
+    likes={}
+    for i in l:
+        if not i.name in likes:
+            likes[i.name]=[1,i.category]
+        else:
+            likes[i.name][0]=likes[i.name][0]+1
     return render(request, 'educational/teacher/likes.html',{'likes' : likes})
     
 
