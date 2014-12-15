@@ -88,9 +88,7 @@ class Assignment(models.Model):
     group = models.ManyToManyField('groups.Group', blank=True, editable=False, verbose_name=_(u"group"))
 
     def __str__(self):
-        opt = " Assign. "
-        name = str(self.discipline.code) + opt
-        name += str(self.title)
+        name = str(self.title)
         return name
 
 """
