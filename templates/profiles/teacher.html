@@ -2,7 +2,11 @@
 
 
 
-<div class="panel-heading">{% trans "Disciplines" %}</div>
+<div class="panel-heading">{% trans "Disciplines" %}
+    <a href="{% url 'educational:discipline_create' %}">
+        <i class="glyphicon glyphicon-plus"></i>
+    </a>
+</div>
 {% for discipline in user.profile.teacher.discipline_of_teacher.all  %}
     <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" style="width: 100%; text-align: left" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
