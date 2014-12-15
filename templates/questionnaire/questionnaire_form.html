@@ -15,9 +15,7 @@
                 {% for form in formset %}
                     {% csrf_token %}
                     <h3> {{ form.instance.question }} </h3>
-                    <div class="btn-group btn-group-sm" data-toggle="buttons">
                         {{ form }}
-                     </div>
                 {% endfor %}<br><br><br>
                 <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>
             </ul>
