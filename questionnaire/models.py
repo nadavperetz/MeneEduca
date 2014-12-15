@@ -45,14 +45,15 @@ class QuestionnaireAnswered(models.Model):
     student = models.ForeignKey('profiles.Student')
     finish = models.BooleanField(default=False)
 
+    @property
     def values(self):
         dicionario = {}
         for choice in indicator_choices:
             dicionario[str(choice[0])] = 0
-        print dicionario
+        # print dicionario
         for question in self.questionanswered_set.all():
-            print "Answer"
-            print question.question.type_of_answer
+            # print "Answer"
+            # print question.question.type_of_answer
             if question.question.weight == "-":
                 if question.answer == '1':
                     dicionario[question.question.type_of_answer] += 5
@@ -66,7 +67,7 @@ class QuestionnaireAnswered(models.Model):
                     dicionario[question.question.type_of_answer] += question.answer
             else:
                 dicionario[question.question.type_of_answer] += question.answer
-        print dicionario
+        # print dicionario
         return dicionario
 
     def __str__(self):

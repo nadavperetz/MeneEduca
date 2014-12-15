@@ -5,7 +5,7 @@ from agora.models import Forum
 
 
 class Group(models.Model):
-    name = models.CharField(max_length=75)
+    name = models.CharField(max_length=75, unique=False)
     profiles = models.ManyToManyField("profiles.Profile", blank=True, null=True)
 
     def is_discipline(self):

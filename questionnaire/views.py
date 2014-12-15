@@ -10,6 +10,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from .models import QuestionnaireModel, QuestionnaireAnswered, QuestionModel, QuestionAnswered
 from .forms import HorizRadioRenderer
 
+
 class QuestionnaireListView(ListView):
     model = QuestionnaireModel
     template_name = 'questionnaire/questionnaire_list_view.html'
@@ -20,10 +21,10 @@ def questionnaire_redirect(request, pk):
     q = QuestionnaireAnswered.objects.filter(
         questionnaire=questionnaire,
         student=request.user.profile.student)
-    if q and q[0].finish:
-        return redirect('questionnaire:detail', pk=pk)
-    else:
-        return redirect('questionnaire:answer', pk=pk)
+    if q:
+        if q[0].finish:
+            return redirect('questionnaire:detail', pk=pk)
+    return redirect('questionnaire:answer', pk=pk)
 
 
 class QuestionnaireDetailView(DetailView):
@@ -50,7 +51,9 @@ def questionnaire_create_view(request, pk):
             question_answer = QuestionAnswered(question=question,
                                                questionnaire=questionnaire[0])
             question_answer.save()
-
+    else:
+        if questionnaire[0].finish:
+            return redirect('questionnaire:detail', pk=questionnaire[0].pk)
     lista_perguntas = list(questionnaire[0].questionanswered_set.all())
     questionnaire_formset = inlineformset_factory(
         QuestionnaireAnswered, QuestionAnswered,
@@ -71,7 +74,7 @@ def questionnaire_create_view(request, pk):
                 teste.questionnaire = questionnaire[0]
                 teste.save()
             i += 1
-        questionnaire[0].finsh = True
+        questionnaire[0].finish = True
         questionnaire[0].save()
         return HttpResponseRedirect(reverse(
             'questionnaire:detail', kwargs={'pk': questionnaire_model.pk}))
@@ -80,8 +83,8 @@ def questionnaire_create_view(request, pk):
         for subform, question in zip(formset.forms, lista_perguntas):
             subform.instance.question = question.question
             subform.initial = {'question': question.question}
-            for fields in subform.visible_fields():
-                print dir(fields[0])
+            for field in subform.visible_fields():
+                print dir(field)
     context = {'questionnaire': questionnaire_model, 'formset': formset}
     return render(request, 'questionnaire/questionnaire_form.html', context)
 

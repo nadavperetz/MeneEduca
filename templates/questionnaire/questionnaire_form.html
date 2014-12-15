@@ -16,25 +16,37 @@
                     {% csrf_token %}
                     <h3> {{ form.instance.question }} </h3>
                     <div class="btn-group btn-group-sm" data-toggle="buttons">
-                         {% for field in form.visible_fields %}
-                            <label class="btn  btn-info">
-                                <input type="radio" name{{ field.1.name }} autocomplete="off" checked>{{ field.1.choice_label }}
+                        {% for field in form.visible_fields %}
+                            <label class="btn  btn-info" for={{ field.1.id_for_label }}>
+                                <input type="radio" name={{ field.1.name }} id={{ field.1.id }} autocomplete="off"
+                                       checked value={{ field.1.value }}>
+                                {{ field.1.choice_label }}
                             </label>
-                            <label class="btn btn-info">
-                                <input type="radio" name{{ field.2.name }} autocomplete="off" checked>{{ field.2.choice_label }}
+                            <label class="btn btn-info" for={{ field.2.id_for_label }}>
+                                <input type="radio" name={{ field.2.name }} id={{ field.2.id }} autocomplete="off"
+                                       checked value={{ field.2.value }}>
+                                {{ field.2.choice_label }}
                             </label>
-                            <label class="btn btn-info active">
-                                <input type="radio" name{{ field.3.name }} autocomplete="off" checked>{{ field.3.choice_label }}
+                            <label class="btn btn-info active" for={{ field.3.id_for_label }}>
+                                <input type="radio" name={{ field.3.name }} id={{ field.3.id }} autocomplete="off
+                                 checked value={{ field.3.value }}>
+                                {{ field.3.choice_label }}
                             </label>
-                            <label class="btn btn-info">
-                                <input type="radio" name{{ field.4.name }} autocomplete="off" checked>{{ field.4.choice_label }}
-                            </label>
-                            <label class="btn btn-info">
-                                <input type="radio" name{{ field.5.name }} autocomplete="off" checked>{{ field.5.choice_label }}
-                            </label>
-                        </div>
-                    {% endfor %}
 
+                            <label class="btn btn-info" for={{ field.4.id_for_label }} >
+                                <input type="radio" name={{ field.4.name }} id={{ field.4.id }} autocomplete="off"
+                                       checked value={{ field.4.value }}>
+                                {{ field.4.choice_label }}
+                            </label>
+
+                            <label class="btn btn-info" for={{ field.5.id_for_label }}>
+                                <input type="radio" name={{ field.5.name }} id={{ field.5.id }} autocomplete="off"
+                                       checked value={{ field.5.value }}>
+                                {{ field.5.choice_label }}
+                            </label>
+
+                        {% endfor %}
+                     </div>
                 {% endfor %}<br><br><br>
                 <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>
             </ul>

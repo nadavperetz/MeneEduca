@@ -1,14 +1,16 @@
 {% extends "theme/base.html" %}
 
 {% block body %}
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3>
-           {{ object.questionnaire }}
-        </h3>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>
+                {{ object.questionnaire }}
+            </h3>
+        </div>
+        <div class="panel-body">
+            {% for key, value in object.values.items  %}
+                <h4>{{ key }} : {{ value }}</h4>
+            {% endfor %}
+        </div>
     </div>
-        {% for key, value in object.values.items  %}
-        <h4>{{ key }} : {{ value }}</h4>
-        {% endfor %}
-</div>
 {% endblock %}
