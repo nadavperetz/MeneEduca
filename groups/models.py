@@ -23,7 +23,7 @@ class Group(models.Model):
     def save(self, force_insert=False, force_update=False, using=None,
              update_fields=None):
         super(Group, self).save()
-        description = "Forum " + self.name
+        description = "Forum " + unicode(self.name)
 
         if len(Forum.objects.filter(group=self)) == 0:
             forum = Forum(title=self.name,
