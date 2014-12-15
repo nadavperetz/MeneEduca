@@ -78,7 +78,7 @@ class QuestionnaireAnswered(models.Model):
 
 class QuestionAnswered(models.Model):
     question = models.ForeignKey(QuestionModel)
-    answer = models.IntegerField(choices=answers, blank=True, null=True)
+    answer = models.IntegerField(choices=answers, blank=True, null=True, default=answers[2][0])
     questionnaire = models.ForeignKey(QuestionnaireAnswered)
     answered = models.BooleanField(default=False)
 
