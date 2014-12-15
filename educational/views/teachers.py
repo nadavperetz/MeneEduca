@@ -230,6 +230,8 @@ def group_create_personality_based(request, assignment_id):
 
                 for member in groups_members[i]:
                     group.profiles.add(member)
+                group.profiles.add(assignment.discipline.teacher.profile)
+
             return HttpResponseRedirect(reverse("educational:assignment_detail", kwargs={'pk': assignment.pk}))
 
     else:
