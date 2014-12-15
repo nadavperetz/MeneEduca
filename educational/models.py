@@ -4,10 +4,12 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from datetime import date, timedelta
 from django.utils import timezone
+from future.utils import python_2_unicode_compatible
 from groups.models import Group
 from events_calendar.models import Event
 
 
+@python_2_unicode_compatible
 class Discipline(models.Model):
     name = models.CharField(max_length=60, verbose_name=_(u"name"))
     code = models.CharField(max_length=15, verbose_name=_(u"code"))
