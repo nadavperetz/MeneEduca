@@ -2,66 +2,68 @@
 {% load account_tags %}
 
 <div class="navbar navbar-blue navbar-static-top">
-  <div class="col-sm-12">
-    <div class="navbar-header">
-        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a href="/" class="navbar-brand logo">M</a>
-    </div>
-    <nav class="collapse navbar-collapse" role="navigation">
-        <form class="navbar-form navbar-left">
-            <div class="input-group input-group-sm" style="max-width:360px;">
-                <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
-                <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+    <div class="col-sm-12">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand logo">M</a>
+        </div>
+        <nav class="collapse navbar-collapse" role="navigation">
+            <form class="navbar-form navbar-left">
+                <div class="input-group input-group-sm" style="max-width:360px;">
+                    <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
 
 
-        <ul class="nav navbar-nav navbar-right">
-             <li>
-                <a href="{% url "messages_inbox" %}">{% trans "Messages" %} <span class="badge">{{ messages_inbox_count }}</span></a>
-            </li>
-            {% if request.user.is_authenticated %}
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="glyphicon glyphicon-user"></i>
-                        {% user_display request.user %}
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="{% url "profiles:profiles_edit" %}"><i class="glyphicon glyphicon-user"></i> {% trans "Edit Profile" %}</a></li>
-                        <li><a href="{% url "account_settings" %}"><i class="glyphicon glyphicon-cog"></i> {% trans "Settings" %}</a></li>
-                        {% if request.user.profile.is_student %}
-                            <li><a href="{% url "questionnaire:index" %}"><i class="glyphicon glyphicon-pencil"></i> {% trans "Tests" %}</a>
-                            </li>
-                        {% endif %}
-                        {% if request.user.profile.is_teacher %}
-                            <li><a href="#"><i class="glyphicon glyphicon-desktop"></i> {% trans "Teacher area" %}</a>
-                            </li>
-                        {% endif %}
-                        {% if request.user.is_staff %}
-                            <li><a href="{% url THEME_ADMIN_URL|default:"admin:index" %}"><i class="glyphicon glyphicon-wrench"></i> {% trans "Admin" %}</a></li>
-                        {% endif %}
-                        <li class="divider"></li>
-                        <li>
-                                <a id="account_logout" href="{% url "account_logout" %}"><i class="glyphicon glyphicon-off"></i> {% trans "Log out" %}</a>
-                        </li>
-                    </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="{% url "messages_inbox" %}">{% trans "Messages" %} <span class="badge">{{ messages_inbox_count }}</span></a>
                 </li>
-            {% else %}
-                <li><a href="{% url "account_login" %}">{% trans "Log in" %}</a></li>
-                <li><a href="{% url "account_signup" %}">{% trans "Sign up" %}</a></li>
-            {% endif %}
-        </ul>
-        <form id="accountLogOutForm" style="display: none;" action="{% url "account_logout" %}" method="POST">
-            {% csrf_token %}
-        </form>
-    </nav>
-</div></div>
+                {% if request.user.is_authenticated %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="glyphicon glyphicon-user"></i>
+                            {% user_display request.user %}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url "profiles:profiles_edit" %}"><i class="glyphicon glyphicon-user"></i> {% trans "Edit Profile" %}</a></li>
+                            <li><a href="{% url "account_settings" %}"><i class="glyphicon glyphicon-cog"></i> {% trans "Settings" %}</a></li>
+                            {% if request.user.profile.is_student %}
+                                <li><a href="{% url "questionnaire:index" %}"><i class="glyphicon glyphicon-pencil"></i> {% trans "Tests" %}</a>
+                                </li>
+                            {% endif %}
+                            {% comment %}
+                                {% if request.user.profile.is_teacher %}
+                                    <li><a href="#"><i class="glyphicon glyphicon-desktop"></i> {% trans "Teacher area" %}</a>
+                                    </li>
+                                {% endif %}
+                            {% endcomment %}
+                            {% if request.user.is_staff %}
+                                <li><a href="{% url THEME_ADMIN_URL|default:"admin:index" %}"><i class="glyphicon glyphicon-wrench"></i> {% trans "Admin" %}</a></li>
+                            {% endif %}
+                            <li class="divider"></li>
+                            <li>
+                                <a id="account_logout" href="{% url "account_logout" %}"><i class="glyphicon glyphicon-off"></i> {% trans "Log out" %}</a>
+                            </li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li><a href="{% url "account_login" %}">{% trans "Log in" %}</a></li>
+                    <li><a href="{% url "account_signup" %}">{% trans "Sign up" %}</a></li>
+                {% endif %}
+            </ul>
+            <form id="accountLogOutForm" style="display: none;" action="{% url "account_logout" %}" method="POST">
+                {% csrf_token %}
+            </form>
+        </nav>
+    </div></div>
 
 <!-- /top nav -->
