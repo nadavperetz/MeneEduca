@@ -103,6 +103,7 @@ class Assignment(models.Model):
         super(Assignment, self).save()
 """
 
+
 class Deadline(models.Model):
     description = models.CharField(max_length=60, verbose_name=_(u"title"))
     start_date = models.DateTimeField(default=timezone.now(), verbose_name=_(u"start date"))
