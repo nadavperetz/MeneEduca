@@ -1,10 +1,11 @@
+from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.forms.models import inlineformset_factory
 from django.views.generic import ListView, CreateView, DetailView, UpdateView
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponseRedirect
 
-from educational.models import Discipline, Assignment
+from educational.models import Discipline, Assignment, Remainder
 from groups.models import Group
 from profiles.models import Profile, Teacher
 
@@ -14,7 +15,7 @@ from educational.forms import GroupForm, PersonalityBasedGroupForm, DisciplineFo
 
 from fb.models import Likes
 
-from collections import Counter
+
 
 class DisciplineDetailView(DetailView):
     model = Discipline
@@ -41,7 +42,6 @@ def discipline_create(request):
             for selected_student in form.cleaned_data['students']:
                 for guardian in Profile.objects.get(pk=selected_student).student.guardians_children.all():
                     discipline.parent_group.profiles.add(guardian.profile)
-
 
             return HttpResponseRedirect(reverse("educational:discipline_detail", kwargs={'pk': discipline.pk}))
     else:
@@ -92,7 +92,10 @@ def discipline_update(request, pk):
 
             return HttpResponseRedirect(reverse("educational:discipline_detail", kwargs={'pk': pk}))
     else:
-        form = DisciplineForm(initial={'name': discipline.name, 'code': discipline.code, 'start_date': discipline.start_date, 'finish_date': discipline.finish_date, 'teacher': discipline.teacher.pk, 'students': [s.pk for s in old_students]})
+        form = DisciplineForm(
+            initial={'name': discipline.name, 'code': discipline.code, 'start_date': discipline.start_date,
+                     'finish_date': discipline.finish_date, 'teacher': discipline.teacher.pk,
+                     'students': [s.pk for s in old_students]})
 
     return render(request, 'educational/teacher/discipline_update.html', {'form': form})
 
@@ -179,7 +182,6 @@ def group_update(request, group_id):
     return render(request, 'educational/teacher/group_update.html', {'form': form})
 
 
-
 def group_create(request, assignment_id):
     assignment = get_object_or_404(Assignment, id=assignment_id)
 
@@ -248,13 +250,30 @@ def group_create_personality_based(request, assignment_id):
 
 
 def social_network(request, discipline_id):
-    discipline=Discipline.objects.get(pk=discipline_id)
-    users=discipline.group.profiles.all()
-    l=Likes.objects.filter(profile__in=users)
-    likes={}
+    discipline = Discipline.objects.get(pk=discipline_id)
+    users = discipline.group.profiles.all()
+    l = Likes.objects.filter(profile__in=users)
+    likes = {}
     for i in l:
         if not i.name in likes:
-            likes[i.name]=[1,i.category]
+            likes[i.name] = [1, i.category]
         else:
-            likes[i.name][0]=likes[i.name][0]+1
-    return render(request, 'educational/teacher/likes.html',{'likes' : likes})
+            likes[i.name][0] += 1
+    return render(request, 'educational/teacher/likes.html', {'likes': likes})
+
+
+class RemainderCreateView(CreateView):
+    model = Remainder
+    template_name = 'educational/teacher/remainder_create.html'
+    fields = ['description', 'finish_date']
+
+    def form_valid(self, form):
+        discipline = Discipline.objects.get(pk=self.kwargs['discipline_id'])
+        forum = discipline.group.forum_set.first()
+        form.instance.forum = forum
+        form.instance.start_date = timezone.now()
+        return super(RemainderCreateView, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('educational:discipline_detail', kwargs={'pk': self.kwargs['discipline_id']})
+

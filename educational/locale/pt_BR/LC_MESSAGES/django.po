@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-15 17:37-0200\n"
+"POT-Creation-Date: 2014-12-15 22:48-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,7 +82,7 @@ msgstr "Código"
 msgid "A unique code identifying the discipline."
 msgstr "Um código identificando a disciplina."
 
-#: forms.py:33 models.py:14
+#: forms.py:33 models.py:16
 msgid "Start date"
 msgstr "Data de início"
 
@@ -90,7 +90,7 @@ msgstr "Data de início"
 msgid "The day the discipline starts."
 msgstr "O dia em que começa a disciplina."
 
-#: forms.py:35 models.py:16
+#: forms.py:35 models.py:18
 msgid "Finish date"
 msgstr "Data de término"
 
@@ -106,58 +106,58 @@ msgstr "Professor(a)"
 msgid "The teacher responsible for this discipline."
 msgstr "O(a) professor(a) responsável por esta disciplina."
 
-#: models.py:12
+#: models.py:14
 msgid "name"
 msgstr "nome"
 
-#: models.py:13
+#: models.py:15
 msgid "code"
 msgstr "código"
 
-#: models.py:18
+#: models.py:20
 msgid "teacher"
 msgstr "professor(a)"
 
-#: models.py:19 models.py:86
+#: models.py:21 models.py:88
 msgid "group"
 msgstr "grupo"
 
-#: models.py:20
+#: models.py:22
 msgid "group of parents"
 msgstr "grupo dos pais"
 
-#: models.py:49 models.py:56
+#: models.py:51 models.py:58
 msgid "Guardians"
 msgstr "Guardiões"
 
-#: models.py:84
+#: models.py:86
 msgid "discipline"
 msgstr "disciplina"
 
-#: models.py:85 models.py:107
+#: models.py:87 models.py:108
 msgid "title"
 msgstr "título"
 
-#: models.py:108 models.py:131
+#: models.py:109 models.py:132
 msgid "start date"
 msgstr "data de início"
 
-#: models.py:109 models.py:132
+#: models.py:110 models.py:133
 msgid "finish date"
 msgstr "data de término"
 
-#: models.py:110
+#: models.py:111
 msgid "assignment"
 msgstr "tarefa"
 
-#: models.py:111
+#: models.py:112
 msgid "eventos"
 msgstr "evento"
 
-#: models.py:133
+#: models.py:134
 msgid "description"
 msgstr "descrição"
 
-#: models.py:134
+#: models.py:135
 msgid "forum"
 msgstr "fórum"

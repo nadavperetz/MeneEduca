@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-15 20:49-0200\n"
+"POT-Creation-Date: 2014-12-15 22:30-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,7 +55,7 @@ msgstr "perfil"
 #: profiles/profile_form.html:7 profiles/profile_form.html.py:14
 #: theme/_account_bar.html:37
 msgid "Edit Profile"
-msgstr "editar perfil"
+msgstr "Editar Perfil"
 
 #: account/base.html:16
 msgid "Social Networks"
@@ -234,7 +234,7 @@ msgstr ""
 "usadoPor favor, <a href=\"%(url)s\"> requisite uma nova senha </a>"
 
 #: account/signup.html:7 account/signup.html.py:13 account/signup.html:19
-#: account/signup_closed.html:6 theme/_account_bar.html:61
+#: account/signup_closed.html:6
 msgid "Sign up"
 msgstr "Inscreva-se"
 
@@ -395,7 +395,7 @@ msgstr ""
 
 #: django_messages/new_message.html:12
 #, python-format
-msgid "Enviada de %(site_url)s"
+msgid "Sent from %(site_url)s"
 msgstr ""
 
 #: django_messages/new_message.html:14 django_messages/view.html:24
@@ -423,8 +423,8 @@ msgid ""
 "Deleted Messages are removed from the trash at unregular intervals, don't "
 "rely on this feature for long-time storage."
 msgstr ""
-"Mensagens deletadas são removidas da lixeira em intervalos não-regulares, não "
-"conte com essa feature para armazenamento de longo-prazo."
+"Mensagens deletadas são removidas da lixeira em intervalos não-regulares, "
+"não conte com essa feature para armazenamento de longo-prazo."
 
 #: django_messages/view.html:8
 msgid "View Messag"
@@ -479,7 +479,7 @@ msgstr "ver disciplina"
 
 #: educational/teacher/discipline_detail.html:8 profiles/teacher.html:24
 msgid "View Discipline"
-msgstr "ver disciplina"
+msgstr "Ver Disciplina"
 
 #: educational/teacher/discipline_detail.html:23
 msgid "Teacher"
@@ -487,20 +487,20 @@ msgstr "professor"
 
 #: educational/teacher/discipline_detail.html:27
 msgid "Assignments"
-msgstr "tarefas"
+msgstr "Tarefas"
 
 #: educational/teacher/discipline_detail.html:35
 msgid "Add new assingment"
-msgstr "adicionar nova tarefa"
+msgstr "Adicionar nova tarefa"
 
 #: educational/teacher/discipline_detail.html:40
 msgid "Students"
-msgstr "estudante"
+msgstr "Estudante"
 
 #: educational/teacher/discipline_update.html:8
 #: educational/teacher/discipline_update.html:13
 msgid "Edit Discipline"
-msgstr "editar disciplina"
+msgstr "Editar disciplina"
 
 #: educational/teacher/group_create.html:8
 #: educational/teacher/group_create.html:13

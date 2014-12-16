@@ -5,7 +5,7 @@ from django.conf.urls import patterns, url
 import views.teachers
 import views.guardians
 from .views.teachers import DisciplineDetailView, AssignmentCreateView, AssignmentDetailView
-from educational.views.teachers import social_network
+from educational.views.teachers import social_network, RemainderCreateView
 
 urlpatterns = patterns(
     "",
@@ -26,4 +26,6 @@ urlpatterns = patterns(
 
     url(r"^guardians/assignments/(?P<pk>\d+)/$", views.guardians.AssignmentDetailView.as_view(), name="assignment_detail_guardian"),
     url(r"^disciplines/likes/(?P<discipline_id>\d+)/$", social_network, name="social_network"),
+
+    url(r"^remainders/create/(?P<discipline_id>\d+)/$", RemainderCreateView.as_view(), name="remainder_create")
 )
