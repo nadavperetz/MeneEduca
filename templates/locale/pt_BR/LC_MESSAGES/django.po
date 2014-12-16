@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-15 23:19-0200\n"
+"POT-Creation-Date: 2014-12-15 23:32-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,15 +23,15 @@ msgstr "não encontrado"
 
 #: 404.html:9
 msgid "Page not found"
-msgstr "página não encontrada"
+msgstr "Página não encontrada"
 
 #: 404.html:10
 msgid "We're sorry but that page could not be found."
-msgstr "pedimos desculpas, mas esta página não pode ser encontrada"
+msgstr "Pedimos desculpas, mas esta página não pode ser encontrada"
 
 #: 500.html:5
 msgid "Server Error"
-msgstr "erro no servidor"
+msgstr "Erro no servidor"
 
 #: 500.html:9
 msgid "Something went wrong"
@@ -48,7 +47,7 @@ msgstr ""
 
 #: account/base.html:10
 msgid "Profile"
-msgstr "perfil"
+msgstr "Perfil"
 
 #: account/base.html:13 educational/teacher/group_update.html:8
 #: educational/teacher/likes.html:8 fb/edit.html:7
@@ -64,24 +63,24 @@ msgstr "Redes Sociais"
 #: account/base.html:21 account/password_change.html:14
 #: account/settings.html:14
 msgid "Account"
-msgstr "conta"
+msgstr "Conta"
 
 #: account/base.html:24 account/settings.html:18 theme/_account_bar.html:38
 msgid "Settings"
-msgstr "configurações"
+msgstr "Configurações"
 
 #: account/base.html:27 account/password_change.html:9
 #: account/password_change.html.py:18
 msgid "Change password"
-msgstr "mudar senha"
+msgstr "Mudar senha"
 
 #: account/base.html:30
 msgid "Delete account"
-msgstr "deletar conta"
+msgstr "Deletar conta"
 
 #: account/delete.html:14
 msgid "Deactivate Account"
-msgstr "desativar conta"
+msgstr "Desativar conta"
 
 #: account/delete.html:16
 msgid ""
@@ -93,25 +92,25 @@ msgstr ""
 
 #: account/delete.html:20
 msgid "Deactivate account"
-msgstr "desativar conta"
+msgstr "Desativar conta"
 
 #: account/email_confirm.html:6 account/email_confirm.html.py:12
 msgid "Confirm Email"
-msgstr "confirmar e-mail"
+msgstr "Confirmar e-mail"
 
 #: account/email_confirm.html:15
 #, python-format
 msgid "Confirm email address <b>%(email)s</b>?"
-msgstr "confirmar endereço <b>%(email)s</b>?"
+msgstr "Confirmar endereço <b>%(email)s</b>?"
 
 #: account/email_confirm.html:16
 msgid "Confirm"
-msgstr "confirmar"
+msgstr "Confirmar"
 
 #: account/email_confirmation_sent.html:6
 #: account/email_confirmation_sent.html:9
 msgid "Confirm your email address"
-msgstr "confirmar seu endereço de e-mail"
+msgstr "Confirmar seu endereço de e-mail"
 
 #: account/email_confirmation_sent.html:11
 #, python-format
@@ -128,41 +127,41 @@ msgstr ""
 
 #: account/email_confirmed.html:6 account/email_confirmed.html.py:9
 msgid "Email confirmed"
-msgstr "e-mail confirmado"
+msgstr "E-mail confirmado"
 
 #: account/email_confirmed.html:10
 #, python-format
 msgid "You have confirmed <b>%(email)s</b>"
-msgstr "você confirmou <b>%(email)s</b>"
+msgstr "Você confirmou <b>%(email)s</b>"
 
 #: account/login.html:7 account/login.html.py:20 theme/_account_bar.html:60
 msgid "Log in"
-msgstr "login"
+msgstr "Login"
 
 #: account/login.html:13
 msgid "Log in to an existing account"
-msgstr "login em uma conta existente"
+msgstr "Login em uma conta existente"
 
 #: account/login.html:19
 msgid "Forgot your password?"
-msgstr "esqueceu sua senha?"
+msgstr "Esqueceu sua senha?"
 
 #: account/logout.html:6 account/logout.html.py:12 account/logout.html:16
 #: theme/_account_bar.html:55
 msgid "Log out"
-msgstr "logout"
+msgstr "Logout"
 
 #: account/logout.html:15
 msgid "Are you sure you want to log out?"
-msgstr "você tem certeza que quer sair?"
+msgstr "Você tem certeza que quer sair?"
 
 #: account/password_change.html:22 account/password_reset_token.html:17
 msgid "Save"
-msgstr "salvar"
+msgstr "Salvar"
 
 #: account/password_reset.html:8 account/password_reset.html.py:16
 msgid "Password reset"
-msgstr "reiniciar senha"
+msgstr "Reiniciar senha"
 
 #: account/password_reset.html:17
 msgid ""
@@ -174,7 +173,7 @@ msgstr ""
 
 #: account/password_reset.html:23
 msgid "Reset my password"
-msgstr "reiniciar minha senha"
+msgstr "Reiniciar minha senha"
 
 #: account/password_reset.html:30
 #, python-format
@@ -283,7 +282,7 @@ msgstr "Criar novo post"
 
 #: agora/forum_raw.html:11
 msgid "closed"
-msgstr "fechado"
+msgstr "Fechado"
 
 #: agora/forum_raw.html:49
 msgid "Thread Title"
@@ -291,15 +290,15 @@ msgstr "Título do tópico"
 
 #: agora/forum_raw.html:50
 msgid "Last Post"
-msgstr "último post"
+msgstr "Último post"
 
 #: agora/forum_raw.html:51
 msgid "Replies"
-msgstr "respostas"
+msgstr "Respostas"
 
 #: agora/forum_raw.html:52
 msgid "Views"
-msgstr "visualizações"
+msgstr "Visualizações"
 
 #: agora/forum_raw.html:74
 msgid "There are currently no threads."
@@ -307,11 +306,11 @@ msgstr "Não existem tópicos"
 
 #: agora/reminders/_forum_messages.html:5
 msgid "Reminders"
-msgstr "lembrete"
+msgstr "Lembrete"
 
 #: agora/reminders/_forum_messages.html:8
 msgid "Description"
-msgstr "descrição"
+msgstr "Descrição"
 
 #: agora/reminders/_forum_messages.html:9 django_messages/trash.html:16
 #: django_messages/view.html:16
@@ -373,7 +372,7 @@ msgstr ""
 
 #: django_messages/inbox.html:30 django_messages/outbox.html:29
 msgid "delete"
-msgstr "deletar"
+msgstr "Deletar"
 
 #: django_messages/inbox.html:36 django_messages/outbox.html:35
 #: django_messages/trash.html:33
@@ -416,7 +415,7 @@ msgstr "Mensagens deletadas"
 
 #: django_messages/trash.html:27
 msgid "undelete"
-msgstr "recuperar"
+msgstr "Recuperar"
 
 #: django_messages/trash.html:36
 msgid ""
@@ -437,13 +436,12 @@ msgstr "Deletar"
 #: educational/guardian/assignment_detail.html:8
 #: educational/teacher/assignment_detail.html:8 profiles/teacher.html:39
 msgid "View Assignment"
-msgstr "ver tarefas"
+msgstr "Ver tarefas"
 
 #: educational/guardian/assignment_detail.html:23
 #: educational/teacher/assignment_detail.html:23
-#, fuzzy
 msgid "Discipline"
-msgstr "disciplinas"
+msgstr "Disciplinas"
 
 #: educational/guardian/assignment_detail.html:27
 #: educational/teacher/assignment_detail.html:27
@@ -453,7 +451,7 @@ msgstr "Grupos"
 #: educational/teacher/assignment_create.html:8
 #: educational/teacher/assignment_create.html:13
 msgid "Create Assignment"
-msgstr "criar tarefa"
+msgstr "Criar tarefa"
 
 #: educational/teacher/assignment_detail.html:36
 msgid "Create new group"
@@ -467,15 +465,13 @@ msgstr "Criar grupos baseados nos resultados dos testes de personalidade"
 
 #: educational/teacher/assignment_update.html:8
 #: educational/teacher/assignment_update.html:13
-#, fuzzy
 msgid "Edit Assignment"
-msgstr "ver tarefas"
+msgstr "Ver tarefas"
 
 #: educational/teacher/discipline_create.html:8
 #: educational/teacher/discipline_create.html:13
-#, fuzzy
 msgid "Create Discipline"
-msgstr "ver disciplina"
+msgstr "Ver disciplina"
 
 #: educational/teacher/discipline_detail.html:8 profiles/teacher.html:24
 msgid "View Discipline"
@@ -483,24 +479,21 @@ msgstr "Ver Disciplina"
 
 #: educational/teacher/discipline_detail.html:23
 msgid "Teacher"
-msgstr "professor"
+msgstr "Professor"
 
 #: educational/teacher/discipline_detail.html:27
 msgid "Assignments"
 msgstr "Tarefas"
 
 #: educational/teacher/discipline_detail.html:36
-#, fuzzy
 msgid "Add new assignment"
 msgstr "Adicionar nova tarefa"
 
 #: educational/teacher/discipline_detail.html:42
-#, fuzzy
 msgid "Remainders"
-msgstr "lembrete"
+msgstr "Lembrete"
 
 #: educational/teacher/discipline_detail.html:51
-#, fuzzy
 msgid "Add new remainder"
 msgstr "Adicionar nova tarefa"
 
@@ -519,9 +512,8 @@ msgid "Create Group"
 msgstr "Criar grupo"
 
 #: educational/teacher/group_detail.html:8
-#, fuzzy
 msgid "View Group"
-msgstr "ver grupos"
+msgstr "Ver grupos"
 
 #: educational/teacher/group_detail.html:23
 #: educational/teacher/group_list.html:19
@@ -530,29 +522,25 @@ msgstr "Membros"
 
 #: educational/teacher/group_detail.html:33
 #: educational/teacher/group_detail.html:35
-#, fuzzy
 msgid "Forum"
-msgstr "ir para o fórum"
+msgstr "Ir para o fórum"
 
 #: educational/teacher/group_list.html:8
-#, fuzzy
 msgid "View Groups"
-msgstr "ver grupos"
+msgstr "Ver grupos"
 
 #: educational/teacher/group_list.html:18
 msgid "Group"
 msgstr "Grupo"
 
 #: educational/teacher/group_update.html:13
-#, fuzzy
 msgid "Edit Group"
-msgstr "editar perfil"
+msgstr "Editar perfil"
 
 #: educational/teacher/remainder_create.html:8
 #: educational/teacher/remainder_create.html:13
-#, fuzzy
 msgid "Create Remainder"
-msgstr "lembrete"
+msgstr "Lembrete"
 
 #: fb/edit.html:14
 msgid "Edit Social Networks"
@@ -562,29 +550,29 @@ msgstr "Editar Redes Sociais"
 #: pagination/django_pagination_pagination.html:9
 #: pagination/django_pagination_pagination.html:12
 msgid "Previous"
-msgstr "anterior"
+msgstr "Anterior"
 
 #: pagination/builtin_pagination.html:19 pagination/builtin_pagination.html:21
 #: pagination/django_pagination_pagination.html:22
 #: pagination/django_pagination_pagination.html:24
 msgid "Next"
-msgstr "próximo"
+msgstr "Próximo"
 
 #: profiles/calendar.html:7
 msgid "Next seven days"
-msgstr "próximos sete dias"
+msgstr "Próximos sete dias"
 
 #: profiles/student.html:2 profiles/teacher.html:5
 msgid "Disciplines"
-msgstr "disciplinas"
+msgstr "Disciplinas"
 
 #: profiles/teacher.html:19
 msgid "Go to Forum"
-msgstr "ir para o fórum"
+msgstr "Ir para o fórum"
 
 #: questionnaire/questionnaire_form.html:10
 msgid "Questionnaire"
-msgstr "questionário"
+msgstr "Questionário"
 
 #: questionnaire/questionnaire_form.html:20
 msgid "Submit"
@@ -592,31 +580,31 @@ msgstr "Enviar"
 
 #: survey/base.html:6
 msgid "Surveys"
-msgstr "formulários"
+msgstr "Formulários"
 
 #: survey/base.html:10 survey/forms/form_detail.html:7
 msgid "Survey"
-msgstr "formulário"
+msgstr "Formulário"
 
 #: survey/base.html:14
 msgid "Incompleted"
-msgstr "incompleto"
+msgstr "Incompleto"
 
 #: survey/base.html:17
 msgid "Completed"
-msgstr "completo"
+msgstr "Completo"
 
 #: survey/survey_completed_list_view.html:18
 msgid "Lets start!"
-msgstr "vamos começar!"
+msgstr "Vamos começar!"
 
 #: survey/admin/forms/change_form.html:10 survey/admin/forms/entries.html:117
 msgid "View entries"
-msgstr "ver dados"
+msgstr "Ver dados"
 
 #: survey/admin/forms/change_form.html:13
 msgid "History"
-msgstr "histórico"
+msgstr "Histórico"
 
 #: survey/admin/forms/change_form.html:17
 msgid "View on site"
@@ -628,27 +616,27 @@ msgstr "Não foram selecionados dados"
 
 #: survey/admin/forms/entries.html:65
 msgid "Delete selected entries?"
-msgstr "apagar os dados selecionados?"
+msgstr "Apagar os dados selecionados?"
 
 #: survey/admin/forms/entries.html:74
 msgid "Home"
-msgstr "home"
+msgstr "Home"
 
 #: survey/admin/forms/entries.html:88
 msgid "Field"
-msgstr "campo"
+msgstr "Campo"
 
 #: survey/admin/forms/entries.html:89
 msgid "Include"
-msgstr "incluir"
+msgstr "Incluir"
 
 #: survey/admin/forms/entries.html:90
 msgid "Filter by"
-msgstr "filtar por"
+msgstr "Filtar por"
 
 #: survey/admin/forms/entries.html:108
 msgid "All"
-msgstr "tudo"
+msgstr "Tudo"
 
 #: survey/admin/forms/entries.html:116 survey/admin/forms/entries.html:157
 msgid "Back to form"
@@ -680,7 +668,7 @@ msgstr "testes"
 
 #: theme/_account_bar.html:51
 msgid "Admin"
-msgstr "admin"
+msgstr "Admin"
 
 #~ msgid "Edit students"
 #~ msgstr "editar estudante"

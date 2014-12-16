@@ -110,6 +110,7 @@ MIDDLEWARE_CLASSES = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
 ]
 
 ROOT_URLCONF = "MeneEduca.urls"
@@ -221,3 +222,10 @@ AUTHENTICATION_BACKENDS = [
     "account.auth_backends.UsernameAuthenticationBackend",
     "MeneEduca.auth_backends.PermissionBackend",
 ]
+
+LOCALE_PATHS = (
+    os.path.join(PROJECT_ROOT, 'templates/locale/'),
+    os.path.join(PROJECT_ROOT, 'educational/locale/'),
+    os.path.join(PROJECT_ROOT, 'profiles/locale/'),
+
+)
