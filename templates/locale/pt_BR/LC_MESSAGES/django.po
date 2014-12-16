@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-15 23:32-0200\n"
+"POT-Creation-Date: 2014-12-16 08:21-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -134,15 +134,15 @@ msgstr "E-mail confirmado"
 msgid "You have confirmed <b>%(email)s</b>"
 msgstr "Você confirmou <b>%(email)s</b>"
 
-#: account/login.html:7 account/login.html.py:20 theme/_account_bar.html:60
+#: account/login.html:7 account/login.html.py:24 theme/_account_bar.html:60
 msgid "Log in"
 msgstr "Login"
 
-#: account/login.html:13
+#: account/login.html:14
 msgid "Log in to an existing account"
 msgstr "Login em uma conta existente"
 
-#: account/login.html:19
+#: account/login.html:23
 msgid "Forgot your password?"
 msgstr "Esqueceu sua senha?"
 
@@ -284,13 +284,25 @@ msgstr "Criar novo post"
 msgid "closed"
 msgstr "Fechado"
 
+#: agora/forum_raw.html:20
+msgid "Sub-Forum Name"
+msgstr "Nome do sub-forum"
+
+#: agora/forum_raw.html:21 agora/forum_raw.html.py:50
+msgid "Last Post"
+msgstr "Último post"
+
+#: agora/forum_raw.html:22
+msgid "Threads"
+msgstr "Título do tópico"
+
+#: agora/forum_raw.html:23
+msgid "Posts"
+msgstr "Posts"
+
 #: agora/forum_raw.html:49
 msgid "Thread Title"
 msgstr "Título do tópico"
-
-#: agora/forum_raw.html:50
-msgid "Last Post"
-msgstr "Último post"
 
 #: agora/forum_raw.html:51
 msgid "Replies"
@@ -303,6 +315,54 @@ msgstr "Visualizações"
 #: agora/forum_raw.html:74
 msgid "There are currently no threads."
 msgstr "Não existem tópicos"
+
+#: agora/statics.html:11
+msgid "Most Active Forums"
+msgstr "Fóruns mais ativos"
+
+#: agora/statics.html:24
+msgid "There are no active forums."
+msgstr "Não existem fóruns ativos"
+
+#: agora/statics.html:30
+msgid "Most Viewed Forums"
+msgstr "Fóruns mais vistos"
+
+#: agora/statics.html:43
+msgid "There are no forums"
+msgstr "Não existem tópicos"
+
+#: agora/statics.html:49
+msgid "Latest Posts"
+msgstr "Último post"
+
+#: agora/statics.html:62
+msgid "There are no posts"
+msgstr "Não existem tópicos"
+
+#: agora/statics.html:68
+msgid "Latest Threads"
+msgstr "Últimos tópicos"
+
+#: agora/statics.html:81
+msgid "There are no threads"
+msgstr "Não existem tópicos"
+
+#: agora/statics.html:87
+msgid "Most Active Threads"
+msgstr "Tópicos mais ativos"
+
+#: agora/statics.html:100
+msgid "There are no active threads"
+msgstr "Não existem tópicos"
+
+#: agora/statics.html:106
+msgid "Most Viewed Threads"
+msgstr "Tópicos mais vistos"
+
+#: agora/statics.html:119
+msgid "There are no viewed threads"
+msgstr "Não existem tópicos vistos"
 
 #: agora/reminders/_forum_messages.html:5
 msgid "Reminders"
@@ -471,7 +531,7 @@ msgstr "Ver tarefas"
 #: educational/teacher/discipline_create.html:8
 #: educational/teacher/discipline_create.html:13
 msgid "Create Discipline"
-msgstr "Ver disciplina"
+msgstr "Criar disciplina"
 
 #: educational/teacher/discipline_detail.html:8 profiles/teacher.html:24
 msgid "View Discipline"

@@ -1,4 +1,5 @@
 {% extends "agora/base.html" %}
+{% load i18n %}
 
 {% block body %}
     <div class="row">
@@ -7,7 +8,7 @@
             {% endif %}
             {% include 'agora/reminders/_statics_messages.html' %}
             <div class="panel panel-default">
-                <div class="panel-heading">Most Active Forums</div>
+                <div class="panel-heading">{% trans "Most Active Forums"%}</div>
                 {% if most_active_forums %}
                     <table class="table table-striped">
                         {% for forum in most_active_forums %}
@@ -20,13 +21,13 @@
                     </table>
                 {% else %}
                     <div class="panel-body">
-                        There are no active forums.
+                        {% trans "There are no active forums."%}
                     </div>
                 {% endif %}
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading">Most Viewed Forums</div>
+                <div class="panel-heading">{% trans "Most Viewed Forums" %}</div>
                 {% if most_viewed_forums %}
                     <table class="table table-striped">
                         {% for forum in most_viewed_forums %}
@@ -39,13 +40,13 @@
                     </table>
                 {% else %}
                     <div class="panel-body">
-                        There are no forums.
+                        {% trans "There are no forums" %}.
                     </div>
                 {% endif %}
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading">Latest Posts</div>
+                <div class="panel-heading">{% trans "Latest Posts" %}</div>
                 {% if latest_posts %}
                     <table class="table table-striped">
                         {% for post in latest_posts %}
@@ -58,13 +59,13 @@
                     </table>
                 {% else %}
                     <div class="panel-body">
-                        There are no posts.
+                        {% trans "There are no posts" %}.
                     </div>
                 {% endif %}
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading">Latest Threads</div>
+                <div class="panel-heading">{% trans "Latest Threads" %}</div>
                 {% if latest_threads %}
                     <table class="table table-striped">
                         {% for thread in latest_threads %}
@@ -77,13 +78,13 @@
                     </table>
                 {% else %}
                     <div class="panel-body">
-                        There are no threads.
+                        {% trans "There are no threads" %}.
                     </div>
                 {% endif %}
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading">Most Active Threads</div>
+                <div class="panel-heading">{% trans "Most Active Threads" %}</div>
                 {% if most_active_threads %}
                     <table class="table table-striped">
                         {% for thread in most_active_threads %}
@@ -96,26 +97,26 @@
                     </table>
                 {% else %}
                     <div class="panel-body">
-                        There are no active threads.
+                        {% trans "There are no active threads" %}.
                     </div>
                 {% endif %}
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading">Most Viewed Threads</div>
+                <div class="panel-heading">{% trans "Most Viewed Threads" %}</div>
                 {% if most_viewed_threads %}
                     <table class="table table-striped">
                         {% for thread in most_viewed_threads %}
                             <tr>
                                 <td><a href="{% url "forums:agora_thread" thread.pk %}">{{ thread.title }}</a></td>
-                                <td><a href="{% url "forums:agora_forum" thread.forum.pk %}">{{ thread.forum }}</td>
+                                <td><a href="{% url "forums:agora_forum" thread.forum.pk %}"> {{ thread.forum }}></a></td>
                                 <td>{{ thread.view_count }} view{{ thread.view_count|pluralize }}</td>
                             </tr>
                         {% endfor %}
                     </table>
                 {% else %}
                     <div class="panel-body">
-                        There are no viewed threads.
+                        {% trans "There are no viewed threads" %}.
                     </div>
                 {% endif %}
             </div>
