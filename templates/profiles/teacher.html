@@ -4,14 +4,14 @@
 
 <div class="panel-heading">{% trans "Disciplines" %}
     <a href="{% url 'educational:discipline_create' %}">
-        <i class="glyphicon glyphicon-plus"></i>
+        <i class="glyphicon glyphicon-upload pull-right"></i>
     </a>
 </div>
 {% for discipline in user.profile.teacher.discipline_of_teacher.all  %}
     <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" style="width: 100%; text-align: left" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
             {{ discipline.code }} - {{ discipline.name }}
-            <span class="glyphicon glyphicon-plus pull-right "></span>
+            <span class="glyphicon glyphicon-arrow-down pull-right "></span>
         </button>
         <ul class="dropdown-menu" style="width: 100%;" role="menu" aria-labelledby="dropdownMenu1">
             <li>
@@ -22,7 +22,7 @@
             <li>
                 <a role="menuitem" href="{% url 'educational:discipline_detail' discipline.pk %}" >
                     {% trans "View Discipline" %}
-                    <span class="glyphicon glyphicon-paperclip pull-right"></span>
+                    <span class="glyphicon glyphicon-eye-open pull-right"></span>
                 </a>
             </li>
         </ul>
@@ -31,13 +31,13 @@
         <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" style="width: 100%; text-align: left" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                 <li>   {{ assignment|slice:":20" }}
-                <span class="glyphicon glyphicon-plus pull-right "></span></li>
+                <span class="glyphicon glyphicon-arrow-down pull-right "></span></li>
             </button>
             <ul class="dropdown-menu" style="width: 100%;" role="menu" aria-labelledby="dropdownMenu1">
                 <li>
                     <a role="menuitem" href="{% url 'educational:assignment_detail' assignment.pk %}" >
                         {% trans "View Assignment" %}
-                        <span class="glyphicon glyphicon-paperclip pull-right"></span>
+                        <span class="glyphicon glyphicon-eye-open pull-right"></span>
                     </a>
                 </li>
             </ul>
