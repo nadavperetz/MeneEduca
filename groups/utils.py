@@ -36,7 +36,7 @@ def bruteforce_group_formation2(people, groups, count):
     bigger_size = bigger_groups_size(npeople, ngroups)
     smaller_size = smaller_groups_size(npeople, ngroups)
 
-    best_solution = (0.0, None)
+    best_solution = (-1.0, None)
 
     # base case - all people have been added to a group
     if count == len(people):
@@ -121,7 +121,7 @@ def rate_formation(groups):
 
 def random_best_group_formation(people, ngroups):
     npeople = len(people)
-    best_score = 0.0
+    best_score = -1.0
     best_formation = None
 
     init_time = time()
