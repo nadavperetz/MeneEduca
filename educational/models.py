@@ -82,28 +82,17 @@ class Grade(models.Model):
         return text"""
 
 
+@python_2_unicode_compatible
 class Assignment(models.Model):
     discipline = models.ForeignKey('educational.Discipline', verbose_name=_(u"discipline"))
     title = models.CharField(max_length=60, verbose_name=_(u"title"))
     group = models.ManyToManyField('groups.Group', blank=True, editable=False, verbose_name=_(u"group"))
 
     def __str__(self):
-        name = str(self.title)
+        name = unicode(self.title)
         return name
 
-"""
-    def save(self, force_insert=False, force_update=False, using=None,
-             update_fields=None):
-        if not self.pk:
-            group = Group(name=self.title)
-            group.save()
-            group.profiles.add(self.discipline.teacher.profile)
-            group.save()
-            self.group = group
-        super(Assignment, self).save()
-"""
-
-
+@python_2_unicode_compatible
 class Deadline(models.Model):
     description = models.CharField(max_length=60, verbose_name=_(u"title"))
     start_date = models.DateTimeField(default=timezone.now(), verbose_name=_(u"start date"))
@@ -112,7 +101,7 @@ class Deadline(models.Model):
     event = models.ManyToManyField('events_calendar.Event', blank=True, null=True, verbose_name=_(u"eventos"))
 
     def __str__(self):
-        text = str(self.description)
+        text = unicode(self.description)
         return text
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
@@ -128,6 +117,7 @@ class Deadline(models.Model):
         super(Deadline, self).save()
 
 
+@python_2_unicode_compatible
 class Remainder(models.Model):
     start_date = models.DateField(default=timezone.now(), verbose_name=_(u"start date"))
     finish_date = models.DateField(verbose_name=_(u"finish date"))
