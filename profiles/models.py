@@ -1,5 +1,6 @@
 import os
 import uuid
+from django.core.exceptions import ObjectDoesNotExist
 
 from django.db import models
 from django.utils import timezone
@@ -10,6 +11,7 @@ from educational.models import Discipline
 
 # for personality traits
 import random
+from questionnaire.models import QuestionnaireAnswered
 
 
 def avatar_upload(instance, filename):
@@ -67,7 +69,7 @@ class Profile(models.Model):
                         aux.append(group.first())
                 # print aux
                 returning[discipline.group] = aux
-            # print returning
+                # print returning
         return returning
 
 
@@ -98,8 +100,16 @@ class Profile(models.Model):
     # to-do
     def get_traits(self):
         traits = []
-        for x in range(5):
-            traits.append(random.uniform(0, 1))
+        if self.is_student():
+            try:
+                questionnaire = QuestionnaireAnswered.objects.get(student=self.student,
+                                                                  questionnaire__pk=1)
+                for key, value in questionnaire.values.items():
+                    traits.append(value)
+            except ObjectDoesNotExist:
+                traits = [1, 1, 1, 1, 1]
+        else:
+            traits = [1, 1, 1, 1, 1]
         return traits
 
 

@@ -11,7 +11,11 @@ class QuestionnaireAdmin(admin.ModelAdmin):
     inlines = [QuestionInLine]
 
 
+class QuestionnaireAnsweredAdmin(admin.ModelAdmin):
+    fields = ('questionnaire', 'values')
+
+
 admin.site.register(QuestionnaireModel, QuestionnaireAdmin)
-admin.site.register(QuestionnaireAnswered)
+admin.site.register(QuestionnaireAnswered, QuestionnaireAnsweredAdmin)
 admin.site.register(QuestionAnswered)
 
