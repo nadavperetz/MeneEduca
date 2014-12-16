@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-15 22:30-0200\n"
+"POT-Creation-Date: 2014-12-15 23:19-0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -489,11 +489,22 @@ msgstr "professor"
 msgid "Assignments"
 msgstr "Tarefas"
 
-#: educational/teacher/discipline_detail.html:35
-msgid "Add new assingment"
+#: educational/teacher/discipline_detail.html:36
+#, fuzzy
+msgid "Add new assignment"
 msgstr "Adicionar nova tarefa"
 
-#: educational/teacher/discipline_detail.html:40
+#: educational/teacher/discipline_detail.html:42
+#, fuzzy
+msgid "Remainders"
+msgstr "lembrete"
+
+#: educational/teacher/discipline_detail.html:51
+#, fuzzy
+msgid "Add new remainder"
+msgstr "Adicionar nova tarefa"
+
+#: educational/teacher/discipline_detail.html:58
 msgid "Students"
 msgstr "Estudante"
 
@@ -536,6 +547,12 @@ msgstr "Grupo"
 #, fuzzy
 msgid "Edit Group"
 msgstr "editar perfil"
+
+#: educational/teacher/remainder_create.html:8
+#: educational/teacher/remainder_create.html:13
+#, fuzzy
+msgid "Create Remainder"
+msgstr "lembrete"
 
 #: fb/edit.html:14
 msgid "Edit Social Networks"
